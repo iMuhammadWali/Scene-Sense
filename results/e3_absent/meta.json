@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-13T03:21:03",
+  "git": "f249502",
+  "hardware": {
+    "platform": "Linux-6.18.44-fc-v378-x86_64-with-glibc2.39",
+    "python": "3.13.18",
+    "cpu_count": 2,
+    "loadavg": [
+      1.0,
+      1.0,
+      1.15234375
+    ],
+    "device": "cpu",
+    "torch": "2.15.0+cpu",
+    "transformers": "4.57.6",
+    "faiss": "1.16.0",
+    "cpu_model": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "mem_gb": 8.2
+  },
+  "limit": null,
+  "n_videos": 1334,
+  "n_positive": 3720,
+  "n_indomain": 4002,
+  "n_ood": 4002,
+  "text_encoder": "team CLIP, single projection"
+}

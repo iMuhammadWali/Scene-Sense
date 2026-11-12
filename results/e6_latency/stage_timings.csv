@@ -1,0 +1,128 @@
+kind,video,warmup,session,total_s,upload_copy_s,peak_rss_mb,duration_s,n_candidates,n_retained,s_frame_extraction,s_clip_encoding,s_frame_pruning,s_visual_memory,s_faiss_index,query,routed,error,s_query_classification,s_clip_text_embedding,s_faiss_search,s_similarity_filtering,s_temporal_grouping,s_diversity_selection,s_evidence_frame_extraction,s_answer_ready
+video,VWFJA,True,8df479a998774f81976d5f02929547b2,4.778594016999705,0.008052460001636064,1535.971328,25.8381,129.0,26.0,0.1722,4.5888,0.0,0.0004,0.0,,,,,,,,,,,
+query,VWFJA,True,,1.3233501039994735,,2900.525056,,,,,,,,,person opens the refrigerator.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.5325,0.0252,0.0003,0.0,0.0,0.0,0.7486,
+video,T5SI3,False,36d15ee131594ea9ad279da0203f21bd,2.5754483370001253,0.006000691000735969,2900.74624,13.6,68.0,6.0,0.1474,2.4119,0.0,0.0003,0.0,,,,,,,,,,,
+query,T5SI3,False,,0.8598119159996713,,2902.945792,,,,,,,,,a person is laughing at a book.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.4361,0.0154,0.0002,0.0,0.0,0.0,0.4009,
+query,T5SI3,False,,0.8432520519982063,,2905.051136,,,,,,,,,person starts to close the box.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.429,0.0157,0.0002,0.0,0.0,0.0,0.3881,
+query,T5SI3,False,,0.7542252670009475,,2905.055232,,,,,,,,,person put the paper in a box.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.4205,0.0155,0.0002,0.0,0.0,0.0,0.3099,
+video,KJRR9,False,a2f74cf18df74df6acaa742d97d6f81e,4.608174748000238,0.017603144000531756,2905.055232,24.9172,125.0,39.0,0.2398,4.3519,0.0,0.0007,0.0,,,,,,,,,,,
+query,KJRR9,False,,0.8674062760001107,,2905.075712,,,,,,,,,a person opens a door.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.4321,0.0159,0.0002,0.0,0.0,0.0,0.4117,
+query,KJRR9,False,,0.9004411280002387,,2905.075712,,,,,,,,,person is opening a door.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.4083,0.0146,0.0002,0.0,0.0,0.0,0.4682,
+query,KJRR9,False,,0.4395002580004075,,2905.243648,,,,,,,,,person turning light on.,SIMPLE,,0.4172,0.0141,0.0002,0.0,0.0,0.0,0.0,0.4315
+query,KJRR9,False,,0.4320979679996526,,2905.31328,,,,,,,,,person turns on a light.,SIMPLE,,0.4077,0.0148,0.0002,0.0,0.0,0.0,0.0,0.4227
+query,KJRR9,False,,0.4504799179994734,,2905.31328,,,,,,,,,the person turns on the light.,SIMPLE,,0.4227,0.0171,0.0002,0.0,0.0,0.0,0.0,0.44
+video,C6INR,False,2ab8b8c9c627498a87d5fa84c6500234,6.619286929999362,0.014590732000215212,2926.67392,35.2352,177.0,18.0,0.2681,6.3345,0.0,0.0003,0.0,,,,,,,,,,,
+query,C6INR,False,,0.4464379460005148,,2928.766976,,,,,,,,,person take a picture with a camera.,SIMPLE,,0.4206,0.0171,0.0002,0.0,0.0,0.0,0.0,0.4378
+video,TS2DM,False,b76a3a0591664cb8a6f9e0839b9803f5,5.792257332999725,0.004810078999071266,2928.795648,31.8985,160.0,11.0,0.2524,5.5223,0.0,0.0003,0.0,,,,,,,,,,,
+query,TS2DM,False,,0.4141054390001955,,2930.937856,,,,,,,,,person holding a cellphone.,SIMPLE,,0.3926,0.0144,0.0002,0.0,0.0,0.0,0.0,0.4071
+query,TS2DM,False,,0.42904001799979596,,2935.263232,,,,,,,,,person smiling very happily.,SIMPLE,,0.4009,0.0163,0.0002,0.0,0.0,0.0,0.0,0.4174
+query,TS2DM,False,,0.8614948300000833,,2935.296,,,,,,,,,person still smiling.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.3977,0.0136,0.0001,0.0,0.0,0.0,0.4415,
+query,TS2DM,False,,0.9016329660007614,,2935.427072,,,,,,,,,the person walks through a doorway.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.4076,0.0156,0.0002,0.0,0.0,0.0,0.4698,
+query,TS2DM,False,,0.5841513629984547,,2935.492608,,,,,,,,,person holding a cell phone.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.4263,0.0199,0.0001,0.0,0.0,0.0,0.1294,
+query,TS2DM,False,,0.48592304199883074,,2935.468032,,,,,,,,,person holding the phone.,SIMPLE,,0.4592,0.0178,0.0002,0.0,0.0,0.0,0.0,0.4771
+video,DLFPX,False,2209a9219352490fbee555d174d08770,4.974798577999536,0.052176432000123896,2935.558144,26.6194,133.0,59.0,0.3088,4.6468,0.0,0.0004,0.0,,,,,,,,,,,
+query,DLFPX,False,,1.489486176000355,,2935.656448,,,,,,,,,a person is standing on their stairs holding a bag.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.4482,0.0203,0.0002,0.0,0.0,0.0001,1.0116,
+video,0F7LW,False,25bcdc25882f4e77a06b7e8eeac7f451,5.587337361999744,0.011948095001571346,2940.178432,30.6306,153.0,85.0,0.177,5.3917,0.0,0.0004,0.0,,,,,,,,,,,
+query,0F7LW,False,,1.0819444510016183,,2942.369792,,,,,,,,,person opens a closet door.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.4081,0.0145,0.0002,0.0,0.0,0.0,0.6517,
+query,0F7LW,False,,1.2087390449996747,,2942.5664,,,,,,,,,person takes down a toy laptop.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.4554,0.0153,0.0002,0.0,0.0,0.0,0.7273,
+query,0F7LW,False,,0.4928792840000824,,2942.541824,,,,,,,,,person turns off the light.,SIMPLE,,0.4645,0.0186,0.0002,0.0,0.0,0.0,0.0,0.4833
+query,0F7LW,False,,0.6921602080001321,,2942.5664,,,,,,,,,person turning off the light behind them.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.4149,0.0153,0.0002,0.0,0.0,0.0,0.2527,
+query,0F7LW,False,,0.7372769140001765,,2944.733184,,,,,,,,,a person takes a laptop from a closet shelf.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.4334,0.0182,0.0002,0.0,0.0001,0.0,0.2755,
+query,0F7LW,False,,0.7338102199992136,,2944.864256,,,,,,,,,a person runs into the closet.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.4252,0.0149,0.0002,0.0,0.0,0.0,0.2835,
+query,0F7LW,False,,1.076899425001102,,2944.864256,,,,,,,,,person takes a laptop from the shelf.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.4009,0.0152,0.0002,0.0,0.0,0.0,0.6529,
+video,KQ6XW,False,5885ef73abce4a9f9c42e225eba1a175,7.557949123000071,0.021281425000779564,2965.172224,39.2982,197.0,98.0,0.4714,7.0668,0.0,0.0004,0.0,,,,,,,,,,,
+query,KQ6XW,False,,0.717321649999576,,2965.204992,,,,,,,,,person take a drink from their water bottle.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.4421,0.0164,0.0002,0.0,0.0,0.0,0.2519,
+video,OEM65,False,aa0b1eada4f642c0ad81ced7f8ebfc57,6.3591922169998725,0.00515992699911294,2965.204992,35.4,177.0,18.0,0.306,6.0378,0.0,0.0002,0.0,,,,,,,,,,,
+query,OEM65,False,,0.847441271000207,,2965.336064,,,,,,,,,a person is sneezing.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.4314,0.0144,0.0002,0.0,0.0,0.0,0.3941,
+video,KS5JT,False,e5cde8e742e243a1a38246e72dcac415,5.548196743000517,0.019257742000263534,2965.393408,29.2667,147.0,40.0,0.48,5.0525,0.0,0.0003,0.0,,,,,,,,,,,
+query,KS5JT,False,,0.42604681800003164,,2965.385216,,,,,,,,,person turned on the light.,SIMPLE,,0.4033,0.0141,0.0002,0.0,0.0,0.0,0.0,0.4176
+query,KS5JT,False,,0.4229287229991314,,2965.385216,,,,,,,,,person turns on the light.,SIMPLE,,0.3994,0.0141,0.0002,0.0,0.0,0.0,0.0,0.4137
+query,KS5JT,False,,1.3102575180000713,,2965.409792,,,,,,,,,a person turns on the light.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.4155,0.0206,0.0002,0.0,0.0,0.0,0.864,
+video,TTVN5,False,811df54c2ca84f33b29397123ac185b7,6.482275878999644,0.004206421999697341,2965.409792,32.9,165.0,82.0,0.5808,5.884,0.0,0.0005,0.0,,,,,,,,,,,
+query,TTVN5,False,,0.9646356250013923,,2965.409792,,,,,,,,,a person is holding a camera.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.4218,0.0168,0.0002,0.0,0.0,0.0,0.5189,
+query,TTVN5,False,,0.4447916780009109,,2965.450752,,,,,,,,,the person begins smiling.,SIMPLE,,0.4189,0.014,0.0002,0.0,0.0,0.0,0.0,0.4331
+query,TTVN5,False,,1.0419535119999637,,2965.475328,,,,,,,,,a person is playing on their phone.,COMPLEX,"VLMAPIError: VLM API ERROR
+Provider: openrouter
+Model: google/gemini-2.5-flash
+Path: SLOW
+Reason: OPENROUTER_API_KEY is missing. Add it to .env (backend only).",0.4147,0.016,0.0002,0.0,0.0,0.0,0.6021,

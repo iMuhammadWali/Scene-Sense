@@ -1,0 +1,3 @@
+full_5fps Hit@1=0.486 (95% CI 0.470-0.502) vs random 0.279 -> OK (CI above chance)
+uniform fraction=1.0 identical to full_5fps -> OK
+NaNs in non-random rows -> 0

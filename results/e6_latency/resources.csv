@@ -1,0 +1,9 @@
+item,value
+rss_at_start_mb,521.752576
+clip_load_s,3.0805287749990384
+classifier_load_s,0.41934470500018506
+rss_after_load_mb,979.439616
+rss_end_mb,2965.446656
+ru_maxrss_mb,2895.796
+video_peak_rss_mb_max,2965.409792
+query_peak_rss_mb_max,2965.475328
