@@ -14,3 +14,12 @@ The team's application code lives in `fyp-new-main`; this repo only *imports* it
 - `legacy_draft/` — first-draft harness (superseded)
 
 Large data (videos, embeddings, model weights) are NOT in git; paths are set in `src/sseval/config.py`.
+
+## Running
+```
+scripts/run_all.sh                  # full run (needs all 1,334 embeddings; add --allow-partial otherwise)
+scripts/run_all.sh --allow-partial --out /tmp/subset --limit 40 --e6-videos 2 --e6-queries 2   # quick validation
+python -m pytest tests -q           # unit tests
+```
+Each step writes `results/<id>/DONE` and resumes from shards on rerun. Set `SSEVAL_TEAM_TEXT=1` to use the team's `encode_text`
+unchanged (double text projection under transformers 4.57 - see `src/sseval/data.py`).
