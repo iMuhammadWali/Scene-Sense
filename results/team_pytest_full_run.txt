@@ -1,0 +1,8 @@
+.............................................................            [100%]
+============================= slowest 5 durations ==============================
+107.77s call     tests/test_classifier_eval.py::test_eval_accuracy_report
+9.52s call     tests/test_classifier_eval.py::test_eval_dataset[How does the scene change?]
+9.39s call     tests/test_classifier_eval.py::test_scenesense_live_queries[how many vehicles are there in the video]
+8.76s call     tests/test_classifier_eval.py::test_eval_dataset[How many vehicles passed in the video?]
+8.58s call     tests/test_classifier_eval.py::test_contrastive_pairs[pair_2]
+61 passed in 285.52s (0:04:45)
