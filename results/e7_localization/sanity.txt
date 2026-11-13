@@ -1,0 +1,4 @@
+full_5fps: M3 vs z-scored M3 (w=2,a=0.5) R1@0.5 0.1575 vs 0.1575
+full_5fps: M0 ALL Hit@1=0.486 R1@0.5=0.024 mIoU=0.097 (SUMMARY: full 0.486/0.024/0.097, cos 0.482/0.078/0.150)
+cos095: M3 vs z-scored M3 (w=2,a=0.5) R1@0.5 0.1524 vs 0.1524
+cos095: M0 ALL Hit@1=0.482 R1@0.5=0.078 mIoU=0.150 (SUMMARY: full 0.486/0.024/0.097, cos 0.482/0.078/0.150)
