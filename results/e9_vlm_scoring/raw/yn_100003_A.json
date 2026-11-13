@@ -1,0 +1,19 @@
+{
+ "req_sha": "70d81147a001eaca",
+ "qid": 100003,
+ "kind": "neg",
+ "vid": "NQMMJ",
+ "label": "A",
+ "t": 31.399999618530273,
+ "frame_t": 31.4,
+ "clip_sim": 0.2618970572948456,
+ "p_yes": 0.34864513533394575,
+ "logit_diff": -0.625,
+ "yes_logit": 22.5,
+ "no_logit": 23.125,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.08050410360001478,
+ "proc_s": 0.01863827399984075,
+ "fwd_s": 0.5919120470000507
+}

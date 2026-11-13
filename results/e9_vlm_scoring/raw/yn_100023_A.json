@@ -1,0 +1,19 @@
+{
+ "req_sha": "31ce9c1904f2d861",
+ "qid": 100023,
+ "kind": "neg",
+ "vid": "LUTIO",
+ "label": "A",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.24455766379833221,
+ "p_yes": 0.5,
+ "logit_diff": 0.0,
+ "yes_logit": 23.25,
+ "no_logit": 23.25,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.038241778399969915,
+ "proc_s": 0.017633173999911378,
+ "fwd_s": 0.5709286329999941
+}

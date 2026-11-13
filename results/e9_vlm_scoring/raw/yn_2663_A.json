@@ -1,0 +1,19 @@
+{
+ "req_sha": "a85b81b072cdbcd7",
+ "qid": 2663,
+ "kind": "pos",
+ "vid": "OKHVL",
+ "label": "A",
+ "t": 19.72610092163086,
+ "frame_t": 19.726,
+ "clip_sim": 0.2905326187610626,
+ "p_yes": 0.8670357598021706,
+ "logit_diff": 1.875,
+ "yes_logit": 24.75,
+ "no_logit": 22.875,
+ "argmax_token": " Yes",
+ "n_input_tokens": 92,
+ "decode_s": 0.13408733400001438,
+ "proc_s": 0.01926216399999703,
+ "fwd_s": 0.6871290409999347
+}

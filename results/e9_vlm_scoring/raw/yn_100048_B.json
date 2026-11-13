@@ -1,0 +1,19 @@
+{
+ "req_sha": "cdabc3079651faf3",
+ "qid": 100048,
+ "kind": "neg",
+ "vid": "X9LP4",
+ "label": "B",
+ "t": 29.799999237060547,
+ "frame_t": 29.8,
+ "clip_sim": 0.27236083149909973,
+ "p_yes": 0.6513548646660542,
+ "logit_diff": 0.625,
+ "yes_logit": 24.0,
+ "no_logit": 23.375,
+ "argmax_token": " Yes",
+ "n_input_tokens": 95,
+ "decode_s": 0.05420870519997152,
+ "proc_s": 0.01795124099999157,
+ "fwd_s": 0.5525662259999535
+}

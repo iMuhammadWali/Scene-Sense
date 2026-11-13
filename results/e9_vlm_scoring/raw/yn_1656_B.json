@@ -1,0 +1,19 @@
+{
+ "req_sha": "b30300cf5a0c0142",
+ "qid": 1656,
+ "kind": "pos",
+ "vid": "WPU76",
+ "label": "B",
+ "t": 40.2067985534668,
+ "frame_t": 40.207,
+ "clip_sim": 0.2653200328350067,
+ "p_yes": 0.7057850278370112,
+ "logit_diff": 0.875,
+ "yes_logit": 25.0,
+ "no_logit": 24.125,
+ "argmax_token": " Yes",
+ "n_input_tokens": 91,
+ "decode_s": 0.0717208785999901,
+ "proc_s": 0.02128057799995986,
+ "fwd_s": 0.7059802940000282
+}

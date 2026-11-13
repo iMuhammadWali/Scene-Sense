@@ -1,0 +1,19 @@
+{
+ "req_sha": "f943167d015b003c",
+ "qid": 905,
+ "kind": "pos",
+ "vid": "CUSTU",
+ "label": "A",
+ "t": 32.782798767089844,
+ "frame_t": 32.783,
+ "clip_sim": 0.2764807343482971,
+ "p_yes": 0.9669140216112958,
+ "logit_diff": 3.375,
+ "yes_logit": 26.375,
+ "no_logit": 23.0,
+ "argmax_token": " Yes",
+ "n_input_tokens": 92,
+ "decode_s": 0.06191154879998066,
+ "proc_s": 0.02608313999985512,
+ "fwd_s": 0.8550126390000514
+}

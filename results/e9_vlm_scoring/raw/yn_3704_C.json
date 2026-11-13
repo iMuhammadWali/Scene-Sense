@@ -1,0 +1,19 @@
+{
+ "req_sha": "90d92341920bb39e",
+ "qid": 3704,
+ "kind": "pos",
+ "vid": "M18XP",
+ "label": "C",
+ "t": 3.0,
+ "frame_t": 3.0,
+ "clip_sim": 0.26629576086997986,
+ "p_yes": 0.679178699175393,
+ "logit_diff": 0.75,
+ "yes_logit": 22.75,
+ "no_logit": 22.0,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.08746570359999169,
+ "proc_s": 0.019389430999922297,
+ "fwd_s": 0.8188315870000906
+}

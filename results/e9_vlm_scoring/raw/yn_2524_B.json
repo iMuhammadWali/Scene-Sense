@@ -1,0 +1,19 @@
+{
+ "req_sha": "1e5f292e81219a04",
+ "qid": 2524,
+ "kind": "pos",
+ "vid": "UOZES",
+ "label": "B",
+ "t": 7.0,
+ "frame_t": 7.0,
+ "clip_sim": 0.2799944281578064,
+ "p_yes": 0.1645164628965632,
+ "logit_diff": -1.625,
+ "yes_logit": 22.625,
+ "no_logit": 24.25,
+ "argmax_token": " No",
+ "n_input_tokens": 93,
+ "decode_s": 0.0259542232000058,
+ "proc_s": 0.019914265000011255,
+ "fwd_s": 0.6208803659999376
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "831051eaa61a6da2",
+ "qid": 100041,
+ "kind": "neg",
+ "vid": "URAIM",
+ "label": "B",
+ "t": 27.58329963684082,
+ "frame_t": 27.583,
+ "clip_sim": 0.2904503345489502,
+ "p_yes": 0.6224593312018546,
+ "logit_diff": 0.5,
+ "yes_logit": 24.375,
+ "no_logit": 23.875,
+ "argmax_token": " Yes",
+ "n_input_tokens": 97,
+ "decode_s": 0.0830963593999968,
+ "proc_s": 0.018151672999920265,
+ "fwd_s": 0.5765342939998845
+}

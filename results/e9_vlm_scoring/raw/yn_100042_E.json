@@ -1,0 +1,19 @@
+{
+ "req_sha": "f96d2795fb616ccb",
+ "qid": 100042,
+ "kind": "neg",
+ "vid": "BDY1V",
+ "label": "E",
+ "t": 6.202099800109863,
+ "frame_t": 6.202,
+ "clip_sim": 0.2318873405456543,
+ "p_yes": 0.07585818002124356,
+ "logit_diff": -2.5,
+ "yes_logit": 22.625,
+ "no_logit": 25.125,
+ "argmax_token": " No",
+ "n_input_tokens": 97,
+ "decode_s": 0.0848618575999808,
+ "proc_s": 0.031003437000208578,
+ "fwd_s": 0.9795043219999116
+}

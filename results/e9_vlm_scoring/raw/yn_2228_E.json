@@ -1,0 +1,19 @@
+{
+ "req_sha": "5c68ace9ef2240b7",
+ "qid": 2228,
+ "kind": "pos",
+ "vid": "RJZ3I",
+ "label": "E",
+ "t": 20.799999237060547,
+ "frame_t": 20.8,
+ "clip_sim": 0.2813965678215027,
+ "p_yes": 0.18242552380635632,
+ "logit_diff": -1.5,
+ "yes_logit": 22.25,
+ "no_logit": 23.75,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.04936581179999848,
+ "proc_s": 0.017342160999987755,
+ "fwd_s": 0.6796986370000013
+}

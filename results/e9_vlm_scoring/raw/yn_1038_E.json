@@ -1,0 +1,19 @@
+{
+ "req_sha": "202e1df2056ac862",
+ "qid": 1038,
+ "kind": "pos",
+ "vid": "LXEPT",
+ "label": "E",
+ "t": 30.200000762939453,
+ "frame_t": 30.2,
+ "clip_sim": 0.29492971301078796,
+ "p_yes": 0.9525741268224334,
+ "logit_diff": 3.0,
+ "yes_logit": 25.5,
+ "no_logit": 22.5,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.08047423040000012,
+ "proc_s": 0.01956353899993246,
+ "fwd_s": 0.6406390050000255
+}

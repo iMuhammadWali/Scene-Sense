@@ -1,0 +1,19 @@
+{
+ "req_sha": "bdac95b1b9186dbf",
+ "qid": 100045,
+ "kind": "neg",
+ "vid": "T7ST5",
+ "label": "C",
+ "t": 19.40060043334961,
+ "frame_t": 19.401,
+ "clip_sim": 0.234090194106102,
+ "p_yes": 0.1480471980316895,
+ "logit_diff": -1.75,
+ "yes_logit": 21.875,
+ "no_logit": 23.625,
+ "argmax_token": " No",
+ "n_input_tokens": 91,
+ "decode_s": 0.05952000940001199,
+ "proc_s": 0.028588932000047862,
+ "fwd_s": 0.8618513730000359
+}

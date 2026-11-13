@@ -1,0 +1,19 @@
+{
+ "req_sha": "aaced68be187da2c",
+ "qid": 1620,
+ "kind": "pos",
+ "vid": "CYCEV",
+ "label": "E",
+ "t": 4.199999809265137,
+ "frame_t": 4.0,
+ "clip_sim": 0.28859615325927734,
+ "p_yes": 0.8670357598021706,
+ "logit_diff": 1.875,
+ "yes_logit": 24.125,
+ "no_logit": 22.25,
+ "argmax_token": " Yes",
+ "n_input_tokens": 92,
+ "decode_s": 0.06206437579999147,
+ "proc_s": 0.018738924999979645,
+ "fwd_s": 0.5783502120000321
+}

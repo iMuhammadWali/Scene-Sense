@@ -1,0 +1,19 @@
+{
+ "req_sha": "2a84b713d8495fe6",
+ "qid": 100024,
+ "kind": "neg",
+ "vid": "LSCMZ",
+ "label": "C",
+ "t": 7.0,
+ "frame_t": 7.0,
+ "clip_sim": 0.22696872055530548,
+ "p_yes": 0.017986209962091555,
+ "logit_diff": -4.0,
+ "yes_logit": 21.625,
+ "no_logit": 25.625,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.06219221720002679,
+ "proc_s": 0.017109677999997075,
+ "fwd_s": 0.6205012039999929
+}

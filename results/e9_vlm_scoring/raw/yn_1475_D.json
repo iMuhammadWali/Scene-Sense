@@ -1,0 +1,19 @@
+{
+ "req_sha": "8960e5e97f5e9638",
+ "qid": 1475,
+ "kind": "pos",
+ "vid": "4GLAP",
+ "label": "D",
+ "t": 24.453899383544922,
+ "frame_t": 24.454,
+ "clip_sim": 0.2952492833137512,
+ "p_yes": 0.5,
+ "logit_diff": 0.0,
+ "yes_logit": 22.5,
+ "no_logit": 22.5,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.06622269580000192,
+ "proc_s": 0.01952084399999876,
+ "fwd_s": 0.6736880279999014
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "f5565bdcf8f47bca",
+ "qid": 100009,
+ "kind": "neg",
+ "vid": "1FIGA",
+ "label": "A",
+ "t": 5.797500133514404,
+ "frame_t": 5.798,
+ "clip_sim": 0.25675925612449646,
+ "p_yes": 0.5621765008857981,
+ "logit_diff": 0.25,
+ "yes_logit": 24.0,
+ "no_logit": 23.75,
+ "argmax_token": " Yes",
+ "n_input_tokens": 95,
+ "decode_s": 0.03120283940002082,
+ "proc_s": 0.01773630200000298,
+ "fwd_s": 0.5446748849999494
+}

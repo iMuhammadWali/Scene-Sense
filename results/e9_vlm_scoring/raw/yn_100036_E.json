@@ -1,0 +1,19 @@
+{
+ "req_sha": "d40f1160662e301d",
+ "qid": 100036,
+ "kind": "neg",
+ "vid": "A33VQ",
+ "label": "E",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.23903387784957886,
+ "p_yes": 0.06008665017400762,
+ "logit_diff": -2.75,
+ "yes_logit": 21.375,
+ "no_logit": 24.125,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.06832483419998425,
+ "proc_s": 0.021040731000084634,
+ "fwd_s": 0.6269713290000709
+}

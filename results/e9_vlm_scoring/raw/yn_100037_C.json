@@ -1,0 +1,19 @@
+{
+ "req_sha": "befbcf6d87ca866c",
+ "qid": 100037,
+ "kind": "neg",
+ "vid": "T5SI3",
+ "label": "C",
+ "t": 3.200000047683716,
+ "frame_t": 3.0,
+ "clip_sim": 0.28281641006469727,
+ "p_yes": 0.5312093733737563,
+ "logit_diff": 0.125,
+ "yes_logit": 23.375,
+ "no_logit": 23.25,
+ "argmax_token": " Yes",
+ "n_input_tokens": 96,
+ "decode_s": 0.033583576500006984,
+ "proc_s": 0.017604019999907905,
+ "fwd_s": 0.6147274180000295
+}

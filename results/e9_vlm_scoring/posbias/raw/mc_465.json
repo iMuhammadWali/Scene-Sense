@@ -1,0 +1,17 @@
+{
+ "req_sha": "11b1aae57929e0dc",
+ "qid": 465,
+ "kind": "pos",
+ "perm": [
+  0,
+  2,
+  4,
+  3,
+  1
+ ],
+ "text": " A",
+ "choice": "A",
+ "status": "ok",
+ "input_tokens": 514,
+ "latency_s": 2.904327206000062
+}

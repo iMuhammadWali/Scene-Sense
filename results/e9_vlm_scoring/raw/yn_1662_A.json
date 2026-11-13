@@ -1,0 +1,19 @@
+{
+ "req_sha": "c212a6470af37aea",
+ "qid": 1662,
+ "kind": "pos",
+ "vid": "K9EAZ",
+ "label": "A",
+ "t": 21.399999618530273,
+ "frame_t": 21.4,
+ "clip_sim": 0.2649272680282593,
+ "p_yes": 0.32082130082460697,
+ "logit_diff": -0.75,
+ "yes_logit": 23.125,
+ "no_logit": 23.875,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.10290161860000353,
+ "proc_s": 0.01918355599991628,
+ "fwd_s": 0.9561576140000625
+}

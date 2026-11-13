@@ -1,0 +1,19 @@
+{
+ "req_sha": "cf23eb1485c05b0e",
+ "qid": 3046,
+ "kind": "pos",
+ "vid": "TU9K1",
+ "label": "C",
+ "t": 4.565499782562256,
+ "frame_t": 5.0,
+ "clip_sim": 0.29510298371315,
+ "p_yes": 0.5621765008857981,
+ "logit_diff": 0.25,
+ "yes_logit": 25.625,
+ "no_logit": 25.375,
+ "argmax_token": " Yes",
+ "n_input_tokens": 95,
+ "decode_s": 0.0438602623999941,
+ "proc_s": 0.020384057999990546,
+ "fwd_s": 0.6217340830000921
+}

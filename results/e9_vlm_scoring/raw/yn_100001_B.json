@@ -1,0 +1,19 @@
+{
+ "req_sha": "72fb0fe4be8d3cfc",
+ "qid": 100001,
+ "kind": "neg",
+ "vid": "TQO6O",
+ "label": "B",
+ "t": 13.799799919128418,
+ "frame_t": 13.8,
+ "clip_sim": 0.1906152218580246,
+ "p_yes": 0.37754066879814546,
+ "logit_diff": -0.5,
+ "yes_logit": 22.25,
+ "no_logit": 22.75,
+ "argmax_token": " No",
+ "n_input_tokens": 97,
+ "decode_s": 0.05255134540002473,
+ "proc_s": 0.0246687579999616,
+ "fwd_s": 0.5516982080000616
+}

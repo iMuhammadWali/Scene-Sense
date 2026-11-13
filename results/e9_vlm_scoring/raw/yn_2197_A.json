@@ -1,0 +1,19 @@
+{
+ "req_sha": "1f9f0337bb9d3428",
+ "qid": 2197,
+ "kind": "pos",
+ "vid": "UUPJS",
+ "label": "A",
+ "t": 4.787899971008301,
+ "frame_t": 5.0,
+ "clip_sim": 0.322992742061615,
+ "p_yes": 0.8807970779778823,
+ "logit_diff": 2.0,
+ "yes_logit": 25.75,
+ "no_logit": 23.75,
+ "argmax_token": " Yes",
+ "n_input_tokens": 96,
+ "decode_s": 0.05423748120001619,
+ "proc_s": 0.027075526999965405,
+ "fwd_s": 0.7821050620000278
+}

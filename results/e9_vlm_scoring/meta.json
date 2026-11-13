@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-13T12:38:26",
+  "git": "fdbb4b6",
+  "hardware": {
+    "platform": "Linux-6.18.44-fc-v445-x86_64-with-glibc2.39",
+    "python": "3.13.18",
+    "cpu_count": 2,
+    "loadavg": [
+      1.37255859375,
+      1.81591796875,
+      1.29052734375
+    ],
+    "device": "cpu",
+    "torch": "2.15.0+cpu",
+    "transformers": "4.57.6",
+    "faiss": "1.16.0",
+    "cpu_model": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "mem_gb": 8.2
+  },
+  "limit": null,
+  "model": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+  "w_grid": [
+    0.25,
+    0.5,
+    1.0,
+    2.0
+  ]
+}

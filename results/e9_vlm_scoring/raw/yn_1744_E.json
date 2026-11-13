@@ -1,0 +1,19 @@
+{
+ "req_sha": "c0d1ac875f2082a8",
+ "qid": 1744,
+ "kind": "pos",
+ "vid": "VW4UD",
+ "label": "E",
+ "t": 9.193599700927734,
+ "frame_t": 9.194,
+ "clip_sim": 0.30455270409584045,
+ "p_yes": 0.9875683491468141,
+ "logit_diff": 4.375,
+ "yes_logit": 28.0,
+ "no_logit": 23.625,
+ "argmax_token": " Yes",
+ "n_input_tokens": 96,
+ "decode_s": 0.0991646228000036,
+ "proc_s": 0.019095249999963926,
+ "fwd_s": 0.5897851329999639
+}

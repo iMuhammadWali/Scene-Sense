@@ -1,0 +1,19 @@
+{
+ "req_sha": "27ac0a57bdcbdb65",
+ "qid": 100033,
+ "kind": "neg",
+ "vid": "J662Y",
+ "label": "E",
+ "t": 17.0,
+ "frame_t": 17.0,
+ "clip_sim": 0.20507100224494934,
+ "p_yes": 0.34864513533394575,
+ "logit_diff": -0.625,
+ "yes_logit": 23.375,
+ "no_logit": 24.0,
+ "argmax_token": " No",
+ "n_input_tokens": 96,
+ "decode_s": 0.09682800479999969,
+ "proc_s": 0.018879519999927652,
+ "fwd_s": 0.5680050470000424
+}

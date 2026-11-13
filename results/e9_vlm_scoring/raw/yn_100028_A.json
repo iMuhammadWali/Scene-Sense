@@ -1,0 +1,19 @@
+{
+ "req_sha": "0b26250cafa88cee",
+ "qid": 100028,
+ "kind": "neg",
+ "vid": "YB67Z",
+ "label": "A",
+ "t": 18.27079963684082,
+ "frame_t": 18.271,
+ "clip_sim": 0.30008572340011597,
+ "p_yes": 0.5621765008857981,
+ "logit_diff": 0.25,
+ "yes_logit": 24.375,
+ "no_logit": 24.125,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.051705280200030755,
+ "proc_s": 0.028271861000121135,
+ "fwd_s": 0.572271426999805
+}

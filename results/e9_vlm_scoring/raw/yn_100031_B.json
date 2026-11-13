@@ -1,0 +1,19 @@
+{
+ "req_sha": "b005a5f05e485f37",
+ "qid": 100031,
+ "kind": "neg",
+ "vid": "CXNYW",
+ "label": "B",
+ "t": 28.799999237060547,
+ "frame_t": 27.8,
+ "clip_sim": 0.23912309110164642,
+ "p_yes": 0.5621765008857981,
+ "logit_diff": 0.25,
+ "yes_logit": 24.5,
+ "no_logit": 24.25,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.08732952399996066,
+ "proc_s": 0.01823455700014165,
+ "fwd_s": 0.5508013879998543
+}

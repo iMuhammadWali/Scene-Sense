@@ -1,0 +1,19 @@
+{
+ "req_sha": "900c17b53ba21995",
+ "qid": 2716,
+ "kind": "pos",
+ "vid": "VXZBA",
+ "label": "B",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.258822500705719,
+ "p_yes": 0.37754066879814546,
+ "logit_diff": -0.5,
+ "yes_logit": 22.0,
+ "no_logit": 22.5,
+ "argmax_token": " No",
+ "n_input_tokens": 91,
+ "decode_s": 0.06085959780000394,
+ "proc_s": 0.026488531000040894,
+ "fwd_s": 0.7759626029999254
+}

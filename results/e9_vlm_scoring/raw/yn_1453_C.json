@@ -1,0 +1,19 @@
+{
+ "req_sha": "d91e4e79d85fe9b2",
+ "qid": 1453,
+ "kind": "pos",
+ "vid": "FLLUJ",
+ "label": "C",
+ "t": 8.600000381469727,
+ "frame_t": 8.6,
+ "clip_sim": 0.25538548827171326,
+ "p_yes": 0.5312093733737563,
+ "logit_diff": 0.125,
+ "yes_logit": 22.75,
+ "no_logit": 22.625,
+ "argmax_token": " Yes",
+ "n_input_tokens": 92,
+ "decode_s": 0.09107821099999,
+ "proc_s": 0.01840801299999839,
+ "fwd_s": 0.5932345319999968
+}

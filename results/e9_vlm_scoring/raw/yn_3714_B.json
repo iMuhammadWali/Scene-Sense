@@ -1,0 +1,19 @@
+{
+ "req_sha": "6161fe4160f3f173",
+ "qid": 3714,
+ "kind": "pos",
+ "vid": "SVIXG",
+ "label": "B",
+ "t": 29.023000717163086,
+ "frame_t": 29.023,
+ "clip_sim": 0.2623465359210968,
+ "p_yes": 0.8807970779778823,
+ "logit_diff": 2.0,
+ "yes_logit": 24.75,
+ "no_logit": 22.75,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.06341584980000334,
+ "proc_s": 0.019288769000013417,
+ "fwd_s": 0.6353838739998992
+}

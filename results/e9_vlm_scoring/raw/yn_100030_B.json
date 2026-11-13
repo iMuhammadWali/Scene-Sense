@@ -1,0 +1,19 @@
+{
+ "req_sha": "9ba1f820e5ff3c22",
+ "qid": 100030,
+ "kind": "neg",
+ "vid": "C7G1S",
+ "label": "B",
+ "t": 1.622499942779541,
+ "frame_t": 2.0,
+ "clip_sim": 0.2262820601463318,
+ "p_yes": 0.07585818002124356,
+ "logit_diff": -2.5,
+ "yes_logit": 23.0,
+ "no_logit": 25.5,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.09460409719999915,
+ "proc_s": 0.01848356200002854,
+ "fwd_s": 0.5387998749999952
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "80fef48bf6af77f1",
+ "qid": 100047,
+ "kind": "neg",
+ "vid": "BPT87",
+ "label": "B",
+ "t": 13.22089958190918,
+ "frame_t": 13.221,
+ "clip_sim": 0.2469012439250946,
+ "p_yes": 0.1480471980316895,
+ "logit_diff": -1.75,
+ "yes_logit": 21.625,
+ "no_logit": 23.375,
+ "argmax_token": " No",
+ "n_input_tokens": 93,
+ "decode_s": 0.041167087399981026,
+ "proc_s": 0.020732974000111426,
+ "fwd_s": 0.597580379999954
+}

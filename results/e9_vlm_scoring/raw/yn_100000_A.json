@@ -1,0 +1,19 @@
+{
+ "req_sha": "7b4e9fadcb94b462",
+ "qid": 100000,
+ "kind": "neg",
+ "vid": "F75LG",
+ "label": "A",
+ "t": 27.200000762939453,
+ "frame_t": 27.2,
+ "clip_sim": 0.24238957464694977,
+ "p_yes": 0.1480471980316895,
+ "logit_diff": -1.75,
+ "yes_logit": 21.75,
+ "no_logit": 23.5,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.07921638259999782,
+ "proc_s": 0.02000073399995017,
+ "fwd_s": 0.614717305999875
+}

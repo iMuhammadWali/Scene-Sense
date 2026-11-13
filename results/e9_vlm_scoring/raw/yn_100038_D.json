@@ -1,0 +1,19 @@
+{
+ "req_sha": "cfb9e5d54ed17417",
+ "qid": 100038,
+ "kind": "neg",
+ "vid": "I52A6",
+ "label": "D",
+ "t": 4.395299911499023,
+ "frame_t": 4.0,
+ "clip_sim": 0.24578258395195007,
+ "p_yes": 0.7549149868676283,
+ "logit_diff": 1.125,
+ "yes_logit": 24.5,
+ "no_logit": 23.375,
+ "argmax_token": " Yes",
+ "n_input_tokens": 91,
+ "decode_s": 0.026321568000003025,
+ "proc_s": 0.026549129999921206,
+ "fwd_s": 0.7361786100000245
+}

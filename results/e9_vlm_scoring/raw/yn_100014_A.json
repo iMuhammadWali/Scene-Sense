@@ -1,0 +1,19 @@
+{
+ "req_sha": "33ed76a42ae9cd83",
+ "qid": 100014,
+ "kind": "neg",
+ "vid": "SLAH4",
+ "label": "A",
+ "t": 5.63129997253418,
+ "frame_t": 5.631,
+ "clip_sim": 0.22810101509094238,
+ "p_yes": 0.29421497216298875,
+ "logit_diff": -0.875,
+ "yes_logit": 23.125,
+ "no_logit": 24.0,
+ "argmax_token": " No",
+ "n_input_tokens": 97,
+ "decode_s": 0.04801214575002177,
+ "proc_s": 0.017466357000103017,
+ "fwd_s": 0.5212855869999657
+}

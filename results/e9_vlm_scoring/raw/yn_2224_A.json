@@ -1,0 +1,19 @@
+{
+ "req_sha": "6d380c29507eab30",
+ "qid": 2224,
+ "kind": "pos",
+ "vid": "N8913",
+ "label": "A",
+ "t": 29.84830093383789,
+ "frame_t": 29.848,
+ "clip_sim": 0.27581125497817993,
+ "p_yes": 0.5,
+ "logit_diff": 0.0,
+ "yes_logit": 24.25,
+ "no_logit": 24.25,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.04684832919999735,
+ "proc_s": 0.019943400999977712,
+ "fwd_s": 0.6217933799999855
+}

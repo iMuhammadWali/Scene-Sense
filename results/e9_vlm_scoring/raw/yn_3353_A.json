@@ -1,0 +1,19 @@
+{
+ "req_sha": "f2ab4ad7b3118681",
+ "qid": 3353,
+ "kind": "pos",
+ "vid": "TYWHY",
+ "label": "A",
+ "t": 8.808799743652344,
+ "frame_t": 8.809,
+ "clip_sim": 0.272176057100296,
+ "p_yes": 0.8807970779778823,
+ "logit_diff": 2.0,
+ "yes_logit": 23.875,
+ "no_logit": 21.875,
+ "argmax_token": " Yes",
+ "n_input_tokens": 92,
+ "decode_s": 0.041235873000005085,
+ "proc_s": 0.017624571999931504,
+ "fwd_s": 0.6177212540001165
+}

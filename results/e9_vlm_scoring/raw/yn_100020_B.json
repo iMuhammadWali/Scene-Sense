@@ -1,0 +1,19 @@
+{
+ "req_sha": "7cb0ba5d716f8abd",
+ "qid": 100020,
+ "kind": "neg",
+ "vid": "L39A4",
+ "label": "B",
+ "t": 35.0,
+ "frame_t": 35.0,
+ "clip_sim": 0.2684051990509033,
+ "p_yes": 0.24508501313237172,
+ "logit_diff": -1.125,
+ "yes_logit": 22.625,
+ "no_logit": 23.75,
+ "argmax_token": " No",
+ "n_input_tokens": 93,
+ "decode_s": 0.05527631699997073,
+ "proc_s": 0.026855915999931312,
+ "fwd_s": 0.8963000329999886
+}

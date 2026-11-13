@@ -1,0 +1,19 @@
+{
+ "req_sha": "cf1fb8ebfcc78bf9",
+ "qid": 100008,
+ "kind": "neg",
+ "vid": "CH41S",
+ "label": "E",
+ "t": 22.598899841308594,
+ "frame_t": 22.599,
+ "clip_sim": 0.25904279947280884,
+ "p_yes": 0.18242552380635632,
+ "logit_diff": -1.5,
+ "yes_logit": 22.375,
+ "no_logit": 23.875,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.058363769400011735,
+ "proc_s": 0.018731818999867755,
+ "fwd_s": 0.564678454000159
+}
