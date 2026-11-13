@@ -1,0 +1,60 @@
+{
+ "task": "C2K3_1452",
+ "cond": "C2K3",
+ "qid": 1452,
+ "kind": "pos",
+ "vid": "SAO1A",
+ "req_sha": "807c22d79f2aa4f8",
+ "model": "deepseek-flash",
+ "K": 3,
+ "n_images": 9,
+ "jpeg_bytes": 130671,
+ "cands": [
+  {
+   "label": "A",
+   "t": 5.393199920654297
+  },
+  {
+   "label": "B",
+   "t": 9.613900184631348
+  },
+  {
+   "label": "C",
+   "t": 1.5631999969482422
+  }
+ ],
+ "choice": "B",
+ "confidence": 0.9,
+ "status": "ok",
+ "n_calls": 1,
+ "input_tokens": 1879,
+ "output_tokens": 14,
+ "latency_s": 1.6027511610000147,
+ "cost_peak_usd": 0.0005804999999999999,
+ "cost_actual_usd": 0.0002902499999999999,
+ "calls": [
+  {
+   "text": "{\"choice\": \"B\", \"confidence\": 0.9}",
+   "error": null,
+   "finish": "stop",
+   "usage": {
+    "prompt_tokens": 1879,
+    "completion_tokens": 14,
+    "total_tokens": 1893,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 1879
+   },
+   "latency_s": 1.6027511610000147,
+   "wall_s": 1.6028106212615967,
+   "attempts": 1,
+   "sent_at": "2026-11-13T05:27:30.043638+00:00",
+   "tier": "off",
+   "choice": "B",
+   "confidence": 0.9,
+   "status": "ok"
+  }
+ ]
+}

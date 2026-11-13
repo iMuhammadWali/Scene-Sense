@@ -1,0 +1,56 @@
+{
+ "task": "C2K3_3421",
+ "cond": "C2K3",
+ "qid": 3421,
+ "kind": "pos",
+ "vid": "STHIK",
+ "req_sha": "b55985d8cac20f94",
+ "model": "deepseek-flash",
+ "K": 3,
+ "n_images": 6,
+ "jpeg_bytes": 70581,
+ "cands": [
+  {
+   "label": "A",
+   "t": 5.589799880981445
+  },
+  {
+   "label": "B",
+   "t": 0.0
+  }
+ ],
+ "choice": "A",
+ "confidence": 0.9,
+ "status": "ok",
+ "n_calls": 1,
+ "input_tokens": 1290,
+ "output_tokens": 14,
+ "latency_s": 1.221348216000024,
+ "cost_peak_usd": 0.0004038,
+ "cost_actual_usd": 0.0002019,
+ "calls": [
+  {
+   "text": "{\"choice\": \"A\", \"confidence\": 0.9}",
+   "error": null,
+   "finish": "stop",
+   "usage": {
+    "prompt_tokens": 1290,
+    "completion_tokens": 14,
+    "total_tokens": 1304,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 1290
+   },
+   "latency_s": 1.221348216000024,
+   "wall_s": 1.221400499343872,
+   "attempts": 1,
+   "sent_at": "2026-11-13T05:25:24.939251+00:00",
+   "tier": "off",
+   "choice": "A",
+   "confidence": 0.9,
+   "status": "ok"
+  }
+ ]
+}

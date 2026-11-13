@@ -1,0 +1,56 @@
+{
+ "task": "C2K3_3363",
+ "cond": "C2K3",
+ "qid": 3363,
+ "kind": "pos",
+ "vid": "OGLCO",
+ "req_sha": "929f29f3f0e2cd39",
+ "model": "deepseek-flash",
+ "K": 3,
+ "n_images": 6,
+ "jpeg_bytes": 101978,
+ "cands": [
+  {
+   "label": "A",
+   "t": 0.0
+  },
+  {
+   "label": "B",
+   "t": 8.399999618530273
+  }
+ ],
+ "choice": "B",
+ "confidence": 0.9,
+ "status": "ok",
+ "n_calls": 1,
+ "input_tokens": 1291,
+ "output_tokens": 14,
+ "latency_s": 1.6924051699999154,
+ "cost_peak_usd": 0.0004041,
+ "cost_actual_usd": 0.00020205,
+ "calls": [
+  {
+   "text": "{\"choice\": \"B\", \"confidence\": 0.9}",
+   "error": null,
+   "finish": "stop",
+   "usage": {
+    "prompt_tokens": 1291,
+    "completion_tokens": 14,
+    "total_tokens": 1305,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 1291
+   },
+   "latency_s": 1.6924051699999154,
+   "wall_s": 1.6924524307250977,
+   "attempts": 1,
+   "sent_at": "2026-11-13T05:27:37.584872+00:00",
+   "tier": "off",
+   "choice": "B",
+   "confidence": 0.9,
+   "status": "ok"
+  }
+ ]
+}

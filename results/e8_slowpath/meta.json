@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-13T10:33:07",
+  "git": "6078d08",
+  "hardware": {
+    "platform": "Linux-6.18.44-fc-v445-x86_64-with-glibc2.39",
+    "python": "3.13.18",
+    "cpu_count": 2,
+    "loadavg": [
+      1.75439453125,
+      2.1552734375,
+      1.60693359375
+    ],
+    "device": "cpu",
+    "torch": "2.15.0+cpu",
+    "transformers": "4.57.6",
+    "faiss": "1.16.0",
+    "cpu_model": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "mem_gb": 8.2
+  },
+  "limit": null,
+  "model": "deepseek-flash",
+  "seed": 8,
+  "budget_usd": 1.0
+}
