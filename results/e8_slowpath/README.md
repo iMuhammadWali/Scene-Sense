@@ -39,3 +39,25 @@ C2K3 1.45 s, ~2,970 in tokens; C1K1 1.28 s, ~1,130 in tokens, $0.00022 actual ($
 - Hit@1 improves but span-based R@1 IoU0.5 does not: the candidate span from a full 5 FPS index is ~1 s, so IoU against ~8 s ground truth is low whatever is chosen. Use the widened span (+-4 s) column for localization.
 - Position/label bias, label time ("t=") in the prompt and a single prompt were not ablated. Retrieval metrics use one query per video, not all 3,720 queries.
 - Peak window assumed Mon-Fri 01:00-04:00 and 06:00-10:00 UTC (end-exclusive). Cached input tokens (prompt_cache_hit) are billed at the miss price (conservative).
+
+## Local VLM backend (SmolVLM2 on CPU) - `experiments/e8_slowpath/local_vlm.py`
+Same candidates, prompt, parser (plus lenient bare-letter parsing, see below) and metrics; first 100 positives + 50 negatives of the DeepSeek C1 sample.
+Outputs per model: `local_500M/`, `local_2.2B/` (`raw/`, `per_query.csv`, `summary.csv`, `compare.csv` = paired vs fast path and vs DeepSeek on the same queries).
+Settings: bfloat16, 2 CPU threads, greedy, max 32 new tokens, frames = the same 448 px JPEGs, processor longest edge 384 px, no image splitting
+(~64-81 visual tokens/image; 500M: ~1,180 input tokens at K=3, 2.2B: ~1,440). Figure: `../figures/e8_local_vs_deepseek.png`.
+
+| model | cond | n pos / neg | Hit@1 [95% CI] | fast top-1 (same queries) | DeepSeek (same queries) | NONE on pos | correct NONE on neg | s/query | peak RAM |
+|---|---|---|---|---|---|---|---|---|---|
+| SmolVLM2-500M | C1K1 | 100 / 50 | 48 [38, 58] | 49 | 63 | 2% | 4% | 2.3 | 3.9 GB |
+| SmolVLM2-500M | C1K3 | 100 / 50 | 49 [40, 59] | 49 | 62 | 0% | 0% | 6.8 | 3.9 GB |
+| SmolVLM2-2.2B | C1K1 | 100 / 50 | 11 [6, 18] | 49 | 63 | 84% | 90% | 7.3 | 6.0 GB |
+| SmolVLM2-2.2B | C1K3 | 26 / 12 (PARTIAL, stopped on request) | 31 [15, 50] | 50 | 65 | 42% | 92% | 20.3 | 6.0 GB |
+Paired Hit@1 local - fast (95% CI): 500M K1 -1 pts [-3, 0]; 500M K3 0 [0, 0]; 2.2B K1 -38 [-48, -28]; 2.2B K3 (n=26) -19 [-35, -8].
+Local - DeepSeek: 500M K1 -15 [-26, -3]; K3 -13 [-24, -1]; 2.2B K1 -52 [-62, -42]; K3 (n=26) -35 [-54, -12]. Neither small model beats the fast path.
+
+Answer-distribution diagnosis (positives): 500M answers "A" 98% (K1) / 100% (K3) - pure position bias, i.e. it just echoes the fast path's top-1 (A) and its Hit@1 equals the fast path's;
+negatives also 96-100% A. 2.2B answers NONE 84% (K1) / 42% (K3) of the time on positives (blanket rejection; 90% NONE on negatives is therefore not discrimination); when it does commit its accuracy
+is 69% (n=16, K1) / 53% (n=15, K3). DeepSeek spreads answers A 37 / B 22 / C 19 / D 15 / E 6 % and says NONE 1% on positives, 46% on negatives, which is the only genuinely discriminating behaviour.
+Parse: 0 invalid answers after one retry. Neither small model follows the JSON format (JSON-format failure 100% for 500M, 87-100% for 2.2B; they reply with a bare letter or NONE), so the local backend
+accepts a bare letter / NONE (`parse_response(lenient=True)`; the DeepSeek run used the strict parser). Confidence is therefore not available locally.
+Caveats: prompt not tuned for SmolVLM2; low image resolution (384 px, no splitting) and bf16; 2.2B K=3 stopped early on request (26 positives / 12 negatives only); Hit@1 CIs on 100 queries are wide (+-10 pts).

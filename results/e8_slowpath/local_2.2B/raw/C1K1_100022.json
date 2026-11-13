@@ -1,0 +1,60 @@
+{
+ "task": "C1K1_100022",
+ "cond": "C1K1",
+ "qid": 100022,
+ "kind": "neg",
+ "vid": "7E2AJ",
+ "req_sha": "9e8fc35c17448f4c",
+ "K": 1,
+ "n_images": 5,
+ "cands": [
+  {
+   "label": "A",
+   "t": 0.20800000429153442
+  },
+  {
+   "label": "B",
+   "t": 4.195099830627441
+  },
+  {
+   "label": "C",
+   "t": 13.798800468444824
+  },
+  {
+   "label": "D",
+   "t": 7.384799957275391
+  },
+  {
+   "label": "E",
+   "t": 10.609199523925781
+  }
+ ],
+ "choice": "NONE",
+ "confidence": NaN,
+ "status": "ok",
+ "first_try_ok": true,
+ "first_try_json": false,
+ "n_calls": 1,
+ "input_tokens": 598,
+ "output_tokens": 3,
+ "latency_s": 8.615904795999995,
+ "cost_actual_usd": 0.0,
+ "cost_peak_usd": 0.0,
+ "local": {
+  "model": "HuggingFaceTB/SmolVLM2-2.2B-Instruct",
+  "dtype": "bfloat16",
+  "longest_edge": 384,
+  "image_splitting": false,
+  "max_new_tokens": 32,
+  "threads": 2
+ },
+ "calls": [
+  {
+   "text": " NONE",
+   "latency_s": 8.615904795999995,
+   "tier": "local",
+   "choice": "NONE",
+   "status": "ok"
+  }
+ ]
+}

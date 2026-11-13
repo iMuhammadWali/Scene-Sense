@@ -1,0 +1,60 @@
+{
+ "task": "C1K3_2524",
+ "cond": "C1K3",
+ "qid": 2524,
+ "kind": "pos",
+ "vid": "UOZES",
+ "req_sha": "b4aa068c86b604ea",
+ "K": 3,
+ "n_images": 15,
+ "cands": [
+  {
+   "label": "A",
+   "t": 0.4000000059604645
+  },
+  {
+   "label": "B",
+   "t": 7.0
+  },
+  {
+   "label": "C",
+   "t": 33.0
+  },
+  {
+   "label": "D",
+   "t": 10.399999618530273
+  },
+  {
+   "label": "E",
+   "t": 3.5999999046325684
+  }
+ ],
+ "choice": "A",
+ "confidence": NaN,
+ "status": "ok",
+ "first_try_ok": true,
+ "first_try_json": false,
+ "n_calls": 1,
+ "input_tokens": 1178,
+ "output_tokens": 2,
+ "latency_s": 7.169324879999749,
+ "cost_actual_usd": 0.0,
+ "cost_peak_usd": 0.0,
+ "local": {
+  "model": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+  "dtype": "bfloat16",
+  "longest_edge": 384,
+  "image_splitting": false,
+  "max_new_tokens": 32,
+  "threads": 2
+ },
+ "calls": [
+  {
+   "text": " A",
+   "latency_s": 7.169324879999749,
+   "tier": "local",
+   "choice": "A",
+   "status": "ok"
+  }
+ ]
+}

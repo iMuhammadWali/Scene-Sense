@@ -76,3 +76,10 @@ def test_pricing_and_scrub():
     assert e8.price_tier(datetime.datetime(2026, 11, 13, 12, 0, tzinfo=datetime.timezone.utc)) == "off"
     assert e8.cost_usd(1_000_000, 1_000_000, "peak") == pytest.approx(1.5)
     assert "sk-SECRET" not in e8.scrub("fail with sk-SECRET and Bearer sk-SECRET", "sk-SECRET")
+
+def test_parse_lenient_bare_letter():
+    assert e8.parse_response(" B")[2] == "invalid"                       # strict default unchanged
+    assert e8.parse_response(" B", lenient=True)[:3:2] == ("B", "ok")
+    assert e8.parse_response("NONE.", lenient=True)[0] == "NONE"
+    assert e8.parse_response("I think B maybe", lenient=True)[2] == "invalid"
+    assert e8.parse_response("Z", lenient=True)[2] == "invalid"

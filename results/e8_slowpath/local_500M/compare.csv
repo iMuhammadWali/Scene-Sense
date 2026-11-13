@@ -1,0 +1,9 @@
+model,condition,metric,n_pos,fast,local,deepseek,local_minus_fast,lmf_lo,lmf_hi,local_minus_deepseek,lmd_lo,lmd_hi,deepseek_minus_fast,dmf_lo,dmf_hi
+500M,C1K1,hit1,100,0.49,0.48,0.63,-0.01,-0.03,0.0,-0.15,-0.26,-0.03,0.14,0.02,0.25
+500M,C1K1,r1_iou05_wide,100,0.38,0.37,0.52,-0.01,-0.03,0.0,-0.15,-0.26,-0.03,0.14,0.02,0.25
+500M,C1K1,correct_none_neg,50,0.0,0.04,,,,,,,,,,
+500M,C1K1,none_rate_pos,100,,0.02,0.01,,,,,,,,,
+500M,C1K3,hit1,100,0.49,0.49,0.62,0.0,0.0,0.0,-0.13,-0.24,-0.01,0.13,0.01,0.24
+500M,C1K3,r1_iou05_wide,100,0.38,0.38,0.46,0.0,0.0,0.0,-0.08,-0.18,0.03,0.08,-0.03,0.18
+500M,C1K3,correct_none_neg,50,0.0,0.0,0.4,,,,,,,,,
+500M,C1K3,none_rate_pos,100,,0.0,0.01,,,,,,,,,

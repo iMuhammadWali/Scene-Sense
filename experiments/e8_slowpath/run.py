@@ -66,7 +66,7 @@ _JSON_RE = re.compile(r"\{[^{}]*\}", re.S)
 _CHOICE_RE = re.compile(r"""["']?choice["']?\s*[:=]\s*["']?\s*(NONE|[A-Z])\b""", re.I)
 _CONF_RE = re.compile(r"""["']?confidence["']?\s*[:=]\s*["']?\s*([0-9]*\.?[0-9]+)""", re.I)
 
-def parse_response(text: str | None, n_cand: int = N_CAND):
+def parse_response(text: str | None, n_cand: int = N_CAND, lenient: bool = False):
     """-> (choice, confidence, status). choice in letters[:n_cand] | 'NONE' | None; status 'ok' | 'invalid'.
     Tolerates code fences, prose around the JSON, single quotes, lowercase, and a missing confidence (NaN)."""
     valid = set(LETTERS[:n_cand]) | {"NONE"}
@@ -89,6 +89,10 @@ def parse_response(text: str | None, n_cand: int = N_CAND):
                 try: conf = float(lk.get("confidence", "nan"))
                 except Exception: conf = float("nan")
                 break
+    if choice is None and lenient:       # small local VLMs often answer with a bare letter instead of JSON
+        mb = re.fullmatch(r"\W*(?:clip\s*)?(NONE|[A-Z])\W*", text.strip(), re.I)
+        if mb:
+            choice = mb.group(1).upper()
     if choice is None:
         m = _CHOICE_RE.search(text)
         if m:
