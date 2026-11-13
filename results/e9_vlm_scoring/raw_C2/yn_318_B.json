@@ -1,0 +1,19 @@
+{
+ "req_sha": "31abf20a4170ac6f",
+ "qid": 318,
+ "kind": "pos",
+ "vid": "OVD84",
+ "label": "B",
+ "t": 3.0,
+ "frame_t": 3.0,
+ "clip_sim": 0.27856504917144775,
+ "p_yes": 0.29421497216298875,
+ "logit_diff": -0.875,
+ "yes_logit": 22.875,
+ "no_logit": 23.75,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.025934946500001388,
+ "proc_s": 0.018985557000178233,
+ "fwd_s": 0.531782524999926
+}

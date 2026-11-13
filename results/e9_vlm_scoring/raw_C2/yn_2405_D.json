@@ -1,0 +1,20 @@
+{
+ "req_sha": "d43ee6fee7ace4d8",
+ "qid": 2405,
+ "kind": "pos",
+ "vid": "PJDUN",
+ "label": "D",
+ "t": 17.600000381469727,
+ "frame_t": 17.6,
+ "clip_sim": 0.31880587339401245,
+ "p_yes": 0.7981867777396212,
+ "logit_diff": 1.375,
+ "yes_logit": 23.875,
+ "no_logit": 22.5,
+ "argmax_token": " Yes",
+ "n_input_tokens": 95,
+ "decode_s": 0.07971914319996358,
+ "proc_s": 0.01979508900012661,
+ "fwd_s": 0.7478228389998094,
+ "reused_from": "raw"
+}

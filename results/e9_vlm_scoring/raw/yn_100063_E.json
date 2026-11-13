@@ -1,0 +1,19 @@
+{
+ "req_sha": "ead156f651e86794",
+ "qid": 100063,
+ "kind": "neg",
+ "vid": "G2JR9",
+ "label": "E",
+ "t": 6.0,
+ "frame_t": 6.0,
+ "clip_sim": 0.2968211770057678,
+ "p_yes": 0.24508501313237172,
+ "logit_diff": -1.125,
+ "yes_logit": 22.625,
+ "no_logit": 23.75,
+ "argmax_token": " No",
+ "n_input_tokens": 97,
+ "decode_s": 0.07285272740000437,
+ "proc_s": 0.0203267770000366,
+ "fwd_s": 0.5352572250000094
+}

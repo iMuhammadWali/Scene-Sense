@@ -1,0 +1,19 @@
+{
+ "req_sha": "2c2d871763a24361",
+ "qid": 100056,
+ "kind": "neg",
+ "vid": "BDZNW",
+ "label": "E",
+ "t": 27.79360008239746,
+ "frame_t": 27.794,
+ "clip_sim": 0.25925350189208984,
+ "p_yes": 0.5,
+ "logit_diff": 0.0,
+ "yes_logit": 24.25,
+ "no_logit": 24.25,
+ "argmax_token": " No",
+ "n_input_tokens": 98,
+ "decode_s": 0.0304201895999995,
+ "proc_s": 0.019691353999974126,
+ "fwd_s": 0.6445334750000029
+}

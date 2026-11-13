@@ -1,0 +1,19 @@
+{
+ "req_sha": "eefd6fb0690e4ce0",
+ "qid": 100087,
+ "kind": "neg",
+ "vid": "KA09C",
+ "label": "C",
+ "t": 25.799999237060547,
+ "frame_t": 25.8,
+ "clip_sim": 0.25550127029418945,
+ "p_yes": 0.32082130082460697,
+ "logit_diff": -0.75,
+ "yes_logit": 22.375,
+ "no_logit": 23.125,
+ "argmax_token": " No",
+ "n_input_tokens": 96,
+ "decode_s": 0.04401777080001921,
+ "proc_s": 0.018674615999998423,
+ "fwd_s": 0.6015121359999966
+}

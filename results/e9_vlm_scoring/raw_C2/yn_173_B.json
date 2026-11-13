@@ -1,0 +1,19 @@
+{
+ "req_sha": "baa74538cf462d3a",
+ "qid": 173,
+ "kind": "pos",
+ "vid": "VCYH8",
+ "label": "B",
+ "t": 16.191699981689453,
+ "frame_t": 16.192,
+ "clip_sim": 0.2905225157737732,
+ "p_yes": 0.5621765008857981,
+ "logit_diff": 0.25,
+ "yes_logit": 24.125,
+ "no_logit": 23.875,
+ "argmax_token": " Yes",
+ "n_input_tokens": 97,
+ "decode_s": 0.04646272799999451,
+ "proc_s": 0.027458905999992567,
+ "fwd_s": 0.7614026049998301
+}

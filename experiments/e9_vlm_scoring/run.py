@@ -96,19 +96,24 @@ def load_local():
     m = importlib.util.module_from_spec(spec); sys.modules["e8_local_vlm"] = m; spec.loader.exec_module(m)
     return m
 
-def build_plans(limit: int | None):
-    """Same queries and candidates as the E8 local runs: first N positives + first M negatives of the seed-8 sample, condition C1K1."""
+E8_COND = {"C1": ("full_5fps", {}), "C2": ("cos_last_drop", {"tau": 0.95})}      # E9 candidate condition -> E8 pruning method
+DS_POS = {"C1": "C1K1", "C2": "C2K3"}      # DeepSeek condition compared against on positives
+DS_NEG = {"C1": "C1K3"}                    # E8 only has negatives with K=3 (C1K1 had none)
+
+def build_plans(limit: int | None, n_pos: int = N_POS, n_neg: int = N_NEG, cond: str = "C1"):
+    """Same queries and candidates as E8: first n_pos positives + first n_neg negatives of the seed-8 sample (the E8 local runs used 100 + 50)."""
     from sseval import data
     e8 = load_e8()
-    e8.CONDITIONS = {"C1K1": (*e8.CONDITIONS["C1K1"][:3], True)}      # only the full-5FPS index is needed (and negatives are included)
+    method, params = E8_COND[cond]
+    e8.CONDITIONS = {cond: (method, params, 1, True)}      # only this index is built; K only affects the (unused here) E8 prompt
     df = data.load_annotations(); QE = data.load_query_emb(df)
     vids = data.load_videos(data.select_videos(df))
     items_all = e8.sample_queries(df, QE, list(vids), 8)
-    n_pos, n_neg = (limit, max(1, limit // 3)) if limit else (N_POS, N_NEG)
+    if limit: n_pos, n_neg = limit, max(1, limit // 3)
     pos = [x for x in items_all if x["kind"] == "pos"][:n_pos]; neg = [x for x in items_all if x["kind"] == "neg"][:n_neg]
     items = pos + neg
     plans = e8.prepare(items, vids)
-    return e8, items, {q["qid"]: plans[("C1K1", q["qid"])] for q in items}
+    return e8, items, {q["qid"]: plans[(cond, q["qid"])] for q in items}
 
 def sha(*parts) -> str:
     return hashlib.sha256(json.dumps(parts, sort_keys=True, default=str).encode()).hexdigest()[:16]
@@ -128,7 +133,7 @@ def read_cached(p: Path, key: str):
     return None
 
 # ------------------------------------------------------------------------------------------------------------ method 1: yes/no scoring
-def score_query(proc, model, e8, plan, yes_ids, no_ids, outdir: Path) -> int:
+def score_query(proc, model, e8, plan, yes_ids, no_ids, rawdir: Path, fallback: Path | None = None) -> int:
     """Run (uncached) yes/no forward passes for the 5 candidates of one query. Returns the number of forward passes executed."""
     import torch
     from PIL import Image
@@ -136,8 +141,15 @@ def score_query(proc, model, e8, plan, yes_ids, no_ids, outdir: Path) -> int:
     todo = []
     for c in cands:
         key = sha("yn", MODEL_ID, LONGEST_EDGE, YN_PROMPT, q["caption"], round(c["t"], 3), yes_ids, no_ids)
-        if read_cached(outdir / "raw" / f"yn_{q['qid']}_{c['label']}.json", key) is None:
-            todo.append((c, key))
+        if read_cached(rawdir / f"yn_{q['qid']}_{c['label']}.json", key) is None:
+            hit = None                                   # C2: the same (query, time) may already be scored under C1 (different label)
+            for pth in (fallback.glob(f"yn_{q['qid']}_*.json") if fallback else []):
+                hit = read_cached(pth, key)
+                if hit is not None: break
+            if hit is not None:
+                write_json(rawdir / f"yn_{q['qid']}_{c['label']}.json", dict(hit, label=c["label"], reused_from=str(fallback.name)))
+            else:
+                todo.append((c, key))
     if not todo:
         return 0
     t0 = time.perf_counter()
@@ -160,7 +172,7 @@ def score_query(proc, model, e8, plan, yes_ids, no_ids, outdir: Path) -> int:
         lg = out.logits[0, -1].float().numpy()
         p, d = yes_no_prob(lg, yes_ids, no_ids)
         top = int(lg.argmax())
-        write_json(outdir / "raw" / f"yn_{q['qid']}_{c['label']}.json", dict(
+        write_json(rawdir / f"yn_{q['qid']}_{c['label']}.json", dict(
             req_sha=key, qid=q["qid"], kind=q["kind"], vid=q["vid"], label=c["label"], t=c["t"], frame_t=ft, clip_sim=c["sim"],
             p_yes=p, logit_diff=d, yes_logit=float(lg[yes_ids].max()), no_logit=float(lg[no_ids].max()), argmax_token=proc.tokenizer.decode([top]),
             n_input_tokens=int(inp["input_ids"].shape[1]), decode_s=dec, proc_s=t2 - t1, fwd_s=t3 - t2))
@@ -194,90 +206,105 @@ def posbias_query(local, e8, proc, model, plan, outdir: Path) -> bool:
     return True
 
 # ------------------------------------------------------------------------------------------------------------ aggregation
-def aggregate(out: Path, e8, items, plans):
+def aggregate(out: Path, e8, items, plans, cond: str = "C1"):
+    """All metrics on the full sample (set='full') and, if it is larger, on the first 100 pos / 50 neg that the first E9 pass used (set='first100')."""
     from sseval.metrics import bootstrap_indices, bootstrap_ci, auroc
+    rawdir = out / ("raw" if cond == "C1" else f"raw_{cond}"); sfx = "" if cond == "C1" else f"_{cond}"
     ci = lambda x, idx: bootstrap_ci(np.asarray(x, dtype=float), idx)
-    rows = []                                           # long-format summary: section, name, metric, n, value, lo, hi
-    def add(section, name, metric, n, v, lo=np.nan, hi=np.nan, **extra):
-        rows.append(dict(section=section, name=name, metric=metric, n=n, value=v, lo=lo, hi=hi, **extra))
-    # ---- load yes/no scores
+    rows = []                                           # long-format summary: cond, set, section, name, metric, n, value, lo, hi
+    def _add(tag, section, name, metric, n, v, lo=np.nan, hi=np.nan):
+        rows.append(dict(cond=cond, set=tag, section=section, name=name, metric=metric, n=n, value=v, lo=lo, hi=hi))
+    add = lambda *a, **k: _add("full", *a, **k)
     recs = {}
     for q in items:
         pl = plans[q["qid"]]; ok = True; per = []
         for c in pl["cands"]:
             key = sha("yn", MODEL_ID, LONGEST_EDGE, YN_PROMPT, q["caption"], round(c["t"], 3), *YN_IDS)
-            r = read_cached(out / "raw" / f"yn_{q['qid']}_{c['label']}.json", key)
+            r = read_cached(rawdir / f"yn_{q['qid']}_{c['label']}.json", key)
             if r is None: ok = False; break
             per.append(r)
         if ok: recs[q["qid"]] = per
     P = [q for q in items if q["kind"] == "pos" and q["qid"] in recs]; N = [q for q in items if q["kind"] == "neg" and q["qid"] in recs]
     if not P:
         print("[e9] no complete positives cached"); return None
-    def mat(qs, f):            # [n, 5]; NaN where a query has fewer than 5 candidates (5 of 150 queries have 4)
+    def mat(qs, f):            # [n, 5]; NaN where a query has fewer than 5 candidates
         m = np.full((len(qs), N_CAND), np.nan)
         for i, q in enumerate(qs):
             for j, r in enumerate(recs[q["qid"]]): m[i, j] = f(r)
         return m
-    clipP, lgP, pyP = mat(P, lambda r: r["clip_sim"]), mat(P, lambda r: r["logit_diff"]), mat(P, lambda r: r["p_yes"])
-    hitP = np.zeros((len(P), N_CAND), bool)
-    for i, q in enumerate(P):
-        for j, c in enumerate(plans[q["qid"]]["cands"]): hitP[i, j] = q["gs"] <= c["t"] <= q["ge"]
-    add("diag", "candidates", "queries_with_fewer_than_5_candidates", len(P), int(np.isnan(clipP).any(axis=1).sum()))
-    n = len(P); ar = np.arange(n); idx = bootstrap_indices(n)
-    # sanity: candidates identical to E8's C1K1 run
-    ds = pd.read_csv(e8.C.RESULTS_DIR / "e8_slowpath" / "per_query.csv"); ds = ds[(ds.cond == "C1K1")].set_index("qid")
-    bad = [q["qid"] for q in P if q["qid"] in ds.index and ds.loc[q["qid"], "cand_times"] != ";".join(f"{c['t']:.2f}" for c in plans[q["qid"]]["cands"])]
-    if bad: print(f"[e9] WARNING: candidates differ from E8 for qids {bad[:5]}")
-    # ---- rankings
-    sys_hit = {"fast_top1": hitP[:, 0].astype(float), "vlm_only": hitP[ar, argmax_nan(lgP)].astype(float)}
-    for w in W_GRID:
-        sys_hit[f"fusion_w{w:g}"] = hitP[ar, fuse_choice(clipP, lgP, w)].astype(float)
-    cv_hit, cv_w = pick_w_cv(clipP, lgP, hitP, W_GRID, seed=0)
-    sys_hit["fusion_cv"] = cv_hit
-    reps = [pick_w_cv(clipP, lgP, hitP, W_GRID, seed=s) for s in range(CV_REPEATS)]
-    cv_rep_mean = float(np.mean([h.mean() for h, _ in reps]))
-    w_counts = pd.Series([w for _, ws in reps for w in ws]).value_counts().sort_index()
-    ds_hit = np.array([float(ds.loc[q["qid"], "slow_hit1"]) if q["qid"] in ds.index else np.nan for q in P])
-    sys_hit["deepseek_C1K1"] = ds_hit
-    sys_hit["oracle_best_of_5"] = hitP.any(axis=1).astype(float)
-    fast = sys_hit["fast_top1"]
-    for name, h in sys_hit.items():
-        lo, hi = ci(h, idx); add("ranking", name, "hit1", n, h.mean(), lo, hi)
-        if name != "fast_top1":
-            d = h - fast; lo, hi = ci(d, idx); add("ranking", name, "hit1_minus_fast", n, d.mean(), lo, hi)
-    d = sys_hit["fusion_cv"] - sys_hit["vlm_only"]; lo, hi = ci(d, idx); add("ranking", "fusion_cv", "hit1_minus_vlm_only", n, d.mean(), lo, hi)
-    d = sys_hit["deepseek_C1K1"] - sys_hit["vlm_only"]; lo, hi = ci(d, idx); add("ranking", "deepseek_C1K1", "hit1_minus_vlm_only", n, d.mean(), lo, hi)
-    d = sys_hit["fusion_cv"] - sys_hit["deepseek_C1K1"]; lo, hi = ci(d, idx); add("ranking", "fusion_cv", "hit1_minus_deepseek", n, d.mean(), lo, hi)
-    add("cv", "fusion_cv", "chosen_w_fold1", n, cv_w[0]); add("cv", "fusion_cv", "chosen_w_fold2", n, cv_w[1])
-    add("cv", "fusion_cv", "hit1_mean_over_20_random_splits", n, cv_rep_mean)
-    for w, c in w_counts.items(): add("cv", f"w={w:g}", "times_chosen_in_40_folds", n, int(c))
-    best_w = max(W_GRID, key=lambda w: (sys_hit[f"fusion_w{w:g}"].mean(), -w)); add("cv", f"w={best_w:g}", "best_in_sample_w", n, sys_hit[f"fusion_w{best_w:g}"].mean())
-    # VLM ties / diagnostics
-    ties = float(np.mean([(lgP[i] == np.nanmax(lgP[i])).sum() > 1 for i in range(n)]))
-    add("diag", "vlm", "frac_queries_with_tied_max_logit", n, ties)
-    add("diag", "vlm", "mean_p_yes_correct_cands", int(hitP.sum()), float(pyP[hitP].mean())); add("diag", "vlm", "mean_p_yes_wrong_cands", int((~hitP & ~np.isnan(pyP)).sum()), float(np.nanmean(np.where(hitP, np.nan, pyP))))
-    add("diag", "vlm", "pairwise_auc_correct_vs_wrong_cands_within_query_(p_yes)", n, float(np.nanmean([
-        np.mean([(a > b) + 0.5 * (a == b) for a in lgP[i][hitP[i]] for b in lgP[i][~hitP[i] & ~np.isnan(lgP[i])]]) if hitP[i].any() and (~hitP[i] & ~np.isnan(lgP[i])).any() else np.nan for i in range(n)])))
-    add("diag", "clip", "pairwise_auc_correct_vs_wrong_cands_within_query", n, float(np.nanmean([
-        np.mean([(a > b) + 0.5 * (a == b) for a in clipP[i][hitP[i]] for b in clipP[i][~hitP[i] & ~np.isnan(clipP[i])]]) if hitP[i].any() and (~hitP[i] & ~np.isnan(clipP[i])).any() else np.nan for i in range(n)])))
-    # ---- absent events
-    if N:
-        clipN, lgN, pyN = mat(N, lambda r: r["clip_sim"]), mat(N, lambda r: r["logit_diff"]), mat(N, lambda r: r["p_yes"])
-        nN = len(N); ip, inn = bootstrap_indices(n, seed=1), bootstrap_indices(nN, seed=2)
-        for name, sp, sn in (("max_p_yes", np.nanmax(pyP, 1), np.nanmax(pyN, 1)), ("max_clip", np.nanmax(clipP, 1), np.nanmax(clipN, 1))):
-            a = auroc(sp, sn)
-            boots = [auroc(sp[ip[b]], sn[inn[b]]) for b in range(len(ip))]
-            add("absent", name, "auroc_pos_vs_neg", f"{n}/{nN}", a, float(np.percentile(boots, 2.5)), float(np.percentile(boots, 97.5)))
-            th = none_threshold(sp, 0.05)
-            add("absent", name, "none_threshold_(in_sample)", f"{n}/{nN}", th)
-            add("absent", name, "none_rate_on_pos", n, float((sp <= th).mean()), *ci(sp <= th, ip))
-            add("absent", name, "true_none_rate_on_neg", nN, float((sn <= th).mean()), *ci(sn <= th, inn))
-    # ---- per-query table
+    def hits(qs):
+        h = np.zeros((len(qs), N_CAND), bool)
+        for i, q in enumerate(qs):
+            for j, c in enumerate(plans[q["qid"]]["cands"]): h[i, j] = q["gs"] <= c["t"] <= q["ge"]
+        return h
+    # DeepSeek reference (E8) on the same queries
+    dsa = pd.read_csv(e8.C.RESULTS_DIR / "e8_slowpath" / "per_query.csv")
+    dsP = dsa[(dsa.cond == DS_POS[cond]) & (dsa.kind == "pos")].set_index("qid")
+    dsN = dsa[(dsa.cond == DS_NEG.get(cond, "-")) & (dsa.kind == "neg")].set_index("qid")
+    ctimes = lambda q: ";".join(f"{c['t']:.2f}" for c in plans[q["qid"]]["cands"])
+    bad = [q["qid"] for q in P if q["qid"] in dsP.index and dsP.loc[q["qid"], "cand_times"] != ctimes(q)]
+    bad += [q["qid"] for q in N if q["qid"] in dsN.index and dsN.loc[q["qid"], "cand_times"] != ctimes(q)]
+    print(f"[e9] {cond}: candidate times differ from E8 for {len(bad)} queries" + (f" {bad[:5]}" if bad else " (none)"))
+    DS = f"deepseek_{DS_POS[cond]}"
+
+    def analyse(tag, P, N):
+        add = lambda *a, **k: _add(tag, *a, **k)
+        clipP, lgP, pyP = mat(P, lambda r: r["clip_sim"]), mat(P, lambda r: r["logit_diff"]), mat(P, lambda r: r["p_yes"])
+        hitP = hits(P); n = len(P); ar = np.arange(n); idx = bootstrap_indices(n)
+        add("diag", "candidates", "queries_with_fewer_than_5_candidates", n, int(np.isnan(clipP).any(axis=1).sum()))
+        sys_hit = {"fast_top1": hitP[:, 0].astype(float), "vlm_only": hitP[ar, argmax_nan(lgP)].astype(float)}
+        for w in W_GRID:
+            sys_hit[f"fusion_w{w:g}"] = hitP[ar, fuse_choice(clipP, lgP, w)].astype(float)
+        cv_hit, cv_w = pick_w_cv(clipP, lgP, hitP, W_GRID, seed=0)
+        sys_hit["fusion_cv"] = cv_hit
+        reps = [pick_w_cv(clipP, lgP, hitP, W_GRID, seed=s) for s in range(CV_REPEATS)]
+        w_counts = pd.Series([w for _, ws in reps for w in ws]).value_counts().sort_index()
+        sys_hit[DS] = np.array([float(dsP.loc[q["qid"], "slow_hit1"]) if q["qid"] in dsP.index else np.nan for q in P])
+        sys_hit["oracle_best_of_5"] = hitP.any(axis=1).astype(float)
+        fast = sys_hit["fast_top1"]
+        for name, h in sys_hit.items():
+            lo, hi = ci(h, idx); add("ranking", name, "hit1", n, np.mean(h), lo, hi)
+            if name != "fast_top1":
+                d = h - fast; lo, hi = ci(d, idx); add("ranking", name, "hit1_minus_fast", n, d.mean(), lo, hi)
+            if name not in ("fast_top1", DS, "oracle_best_of_5"):
+                d = h - sys_hit[DS]; lo, hi = ci(d, idx); add("ranking", name, "hit1_minus_deepseek", n, d.mean(), lo, hi)
+        d = sys_hit["fusion_cv"] - sys_hit["vlm_only"]; lo, hi = ci(d, idx); add("ranking", "fusion_cv", "hit1_minus_vlm_only", n, d.mean(), lo, hi)
+        add("cv", "fusion_cv", "chosen_w_fold1", n, cv_w[0]); add("cv", "fusion_cv", "chosen_w_fold2", n, cv_w[1])
+        add("cv", "fusion_cv", "hit1_mean_over_20_random_splits", n, float(np.mean([h.mean() for h, _ in reps])))
+        for w, c in w_counts.items(): add("cv", f"w={w:g}", "times_chosen_in_40_folds", n, int(c))
+        best_w = max(W_GRID, key=lambda w: (sys_hit[f"fusion_w{w:g}"].mean(), -w)); add("cv", f"w={best_w:g}", "best_in_sample_w", n, sys_hit[f"fusion_w{best_w:g}"].mean())
+        add("diag", "vlm", "frac_queries_with_tied_max_logit", n, float(np.mean([(lgP[i] == np.nanmax(lgP[i])).sum() > 1 for i in range(n)])))
+        add("diag", "vlm", "mean_p_yes_correct_cands", int(hitP.sum()), float(pyP[hitP].mean()))
+        add("diag", "vlm", "mean_p_yes_wrong_cands", int((~hitP & ~np.isnan(pyP)).sum()), float(np.nanmean(np.where(hitP, np.nan, pyP))))
+        for nm, M in (("vlm", lgP), ("clip", clipP)):
+            add("diag", nm, "pairwise_auc_correct_vs_wrong_cands_within_query", n, float(np.nanmean([
+                np.mean([(a > b) + 0.5 * (a == b) for a in M[i][hitP[i]] for b in M[i][~hitP[i] & ~np.isnan(M[i])]]) if hitP[i].any() and (~hitP[i] & ~np.isnan(M[i])).any() else np.nan for i in range(n)])))
+        dn = (dsP.reindex([q["qid"] for q in P]).choice == "NONE").dropna()
+        if len(dn): add("absent", DS, "none_rate_on_pos", len(dn), float(dn.mean()), *ci(dn.values, bootstrap_indices(len(dn), seed=1)))
+        if N:
+            clipN, pyN = mat(N, lambda r: r["clip_sim"]), mat(N, lambda r: r["p_yes"])
+            nN = len(N); ip, inn = bootstrap_indices(n, seed=1), bootstrap_indices(nN, seed=2)
+            for name, sp, sn in (("max_p_yes", np.nanmax(pyP, 1), np.nanmax(pyN, 1)), ("max_clip", np.nanmax(clipP, 1), np.nanmax(clipN, 1))):
+                boots = [auroc(sp[ip[b]], sn[inn[b]]) for b in range(len(ip))]
+                add("absent", name, "auroc_pos_vs_neg", f"{n}/{nN}", auroc(sp, sn), float(np.percentile(boots, 2.5)), float(np.percentile(boots, 97.5)))
+                th = none_threshold(sp, 0.05)
+                add("absent", name, "none_threshold_(in_sample)", f"{n}/{nN}", th)
+                add("absent", name, "none_rate_on_pos", n, float((sp <= th).mean()), *ci(sp <= th, ip))
+                add("absent", name, "true_none_rate_on_neg", nN, float((sn <= th).mean()), *ci(sn <= th, inn))
+            dd = (dsN.reindex([q["qid"] for q in N]).choice == "NONE").dropna()
+            if len(dd): add("absent", f"deepseek_{DS_NEG[cond]}", "true_none_rate_on_neg", len(dd), float(dd.mean()), *ci(dd.values, bootstrap_indices(len(dd), seed=2)))
+        return sys_hit, cv_w, w_counts, clipP, lgP, hitP
+
+    res_full = analyse("full", P, N)
+    if len(P) > N_POS:
+        analyse("first100", P[:N_POS], N[:N_NEG])
+    sys_hit = res_full[0]
+    # ---- per-query table (full sample)
     pq = []
-    for q in P + N:
+    for k, q in enumerate(P + N):
         pl = plans[q["qid"]]; r = recs[q["qid"]]; cl = np.array([[x["clip_sim"] for x in r]]); lg = np.array([[x["logit_diff"] for x in r]])
-        row = dict(qid=q["qid"], kind=q["kind"], vid=q["vid"], caption=q["caption"], gt_s=q["gs"], gt_e=q["ge"],
-                   cand_times=";".join(f"{c['t']:.2f}" for c in pl["cands"]), clip_sims=";".join(f"{x:.4f}" for x in cl[0]),
+        row = dict(qid=q["qid"], kind=q["kind"], in_first100=(q in P[:N_POS] or q in N[:N_NEG]), vid=q["vid"], caption=q["caption"], gt_s=q["gs"], gt_e=q["ge"],
+                   cand_times=ctimes(q), clip_sims=";".join(f"{x:.4f}" for x in cl[0]),
                    p_yes=";".join(f"{x['p_yes']:.4f}" for x in r), logit_diff=";".join(f"{x['logit_diff']:.3f}" for x in r),
                    max_p_yes=max(x["p_yes"] for x in r), max_clip=float(cl.max()), vlm_choice=LETTERS[int(np.argmax(lg))])
         if q["kind"] == "pos":
@@ -285,23 +312,26 @@ def aggregate(out: Path, e8, items, plans):
             row.update(correct_cands="".join(LETTERS[i] for i, x in enumerate(h) if x), fast_hit1=h[0], vlm_hit1=h[int(np.argmax(lg))])
             for w in W_GRID: row[f"fusion_w{w:g}_hit1"] = h[int(fuse_choice(cl, lg, w)[0])]
             row["fusion_cv_hit1"] = bool(sys_hit["fusion_cv"][P.index(q)])
-            row["deepseek_choice"] = ds.loc[q["qid"], "choice"] if q["qid"] in ds.index else None
-            row["deepseek_hit1"] = bool(ds.loc[q["qid"], "slow_hit1"]) if q["qid"] in ds.index else None
+            row["deepseek_choice"] = dsP.loc[q["qid"], "choice"] if q["qid"] in dsP.index else None
+            row["deepseek_hit1"] = bool(dsP.loc[q["qid"], "slow_hit1"]) if q["qid"] in dsP.index else None
+        elif q["qid"] in dsN.index:
+            row["deepseek_choice"] = dsN.loc[q["qid"], "choice"]
         pq.append(row)
-    pd.DataFrame(pq).to_csv(out / "per_query.csv", index=False)
-    # ---- timing
-    fw = [sum(x["fwd_s"] for x in recs[q["qid"]]) for q in P + N]; tot = [sum(x["fwd_s"] + x["proc_s"] for x in recs[q["qid"]]) for q in P + N]
-    dec = [sum(x["decode_s"] for x in recs[q["qid"]]) for q in P + N]
+    pd.DataFrame(pq).to_csv(out / f"per_query{sfx}.csv", index=False)
+    # ---- timing (full sample; forward passes only, in whichever run they were measured)
+    allq = P + N
+    fw = [sum(x["fwd_s"] for x in recs[q["qid"]]) for q in allq]; tot = [sum(x["fwd_s"] + x["proc_s"] for x in recs[q["qid"]]) for q in allq]
+    dec = [sum(x["decode_s"] for x in recs[q["qid"]]) for q in allq]
     add("timing", "yes_no_scoring", "forward_s_per_query_(5 passes)", len(fw), float(np.mean(fw)), float(np.percentile(fw, 5)), float(np.percentile(fw, 95)))
     add("timing", "yes_no_scoring", "forward_plus_preprocess_s_per_query", len(tot), float(np.mean(tot)))
     add("timing", "yes_no_scoring", "frame_decode_s_per_query_(not in the above)", len(dec), float(np.mean(dec)))
-    add("timing", "yes_no_scoring", "input_tokens_per_pass", len(fw), float(np.mean([x["n_input_tokens"] for q in P + N for x in recs[q["qid"]]])))
+    add("timing", "yes_no_scoring", "input_tokens_per_pass", len(fw), float(np.mean([x["n_input_tokens"] for q in allq for x in recs[q["qid"]]])))
     rss = out / "peak_rss_gb.txt"
     if rss.exists(): add("timing", "process", "peak_rss_gb", 1, float(rss.read_text().split()[0]))
-    # ---- position bias
-    pb = aggregate_posbias(out, e8, plans, P, add, ds)
-    sm = pd.DataFrame(rows); sm.to_csv(out / "summary.csv", index=False)
-    return sm, sys_hit, cv_w, w_counts
+    if cond == "C1":
+        aggregate_posbias(out, e8, plans, P[:N_POS], add, dsP)       # position-bias rerun exists for the first 100 positives only
+    sm = pd.DataFrame(rows); sm.to_csv(out / f"summary{sfx}.csv", index=False)
+    return sm
 
 def aggregate_posbias(out, e8, plans, P, add, ds):
     from sseval.metrics import bootstrap_indices, bootstrap_ci
@@ -338,23 +368,28 @@ def aggregate_posbias(out, e8, plans, P, add, ds):
             add("posbias_unshuffled_E8", "smolvlm2_500m_mc", "picked_first_shown(A)", len(u), float((u.choice == "A").mean()))
     return d
 
-def make_figure(sm: pd.DataFrame, path: Path):
+def make_figure(out: Path, path: Path):
     import matplotlib; matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    r = sm[(sm.section == "ranking") & (sm.metric == "hit1")].set_index("name")
-    items = [("fast_top1", "Fast path\n(CLIP top-1)", "#9aa0a6"), ("vlm_only", "SmolVLM2-500M\nyes/no only", "#E69F00"),
-             ("fusion_cv", "Fusion CLIP + VLM\n(w by 2-fold CV)", "#0072B2"), ("deepseek_C1K1", "DeepSeek\n(E8, K=1)", "#009E73"),
-             ("oracle_best_of_5", "Oracle\nbest of 5", "#d8d8d8")]
-    items = [i for i in items if i[0] in r.index]
-    fig, ax = plt.subplots(figsize=(8.2, 4.8))
-    for k, (name, lab, c) in enumerate(items):
-        v, lo, hi = 100 * r.loc[name, "value"], 100 * r.loc[name, "lo"], 100 * r.loc[name, "hi"]
-        ax.bar(k, v, 0.62, color=c, yerr=[[v - lo], [hi - v]], capsize=4, error_kw=dict(lw=1, color="#333"))
-        ax.text(k, hi + 1.5, f"{v:.0f}", ha="center", fontsize=9)
-    ax.set_xticks(range(len(items))); ax.set_xticklabels([i[1] for i in items], fontsize=9)
-    n = int(r.iloc[0]["n"]); ax.set_ylim(0, 105); ax.set_ylabel(f"Hit@1 (%), {n} positive queries, 95% bootstrap CI")
-    ax.grid(axis="y", alpha=0.25); ax.spines[["top", "right"]].set_visible(False)
-    ax.set_title("E9: small local VLM as a per-clip scorer (5 candidates, K=1 frame)", fontsize=11)
+    panels = []
+    for cond, f in (("C1", out / "summary.csv"), ("C2", out / "summary_C2.csv")):
+        if f.exists():
+            sm = pd.read_csv(f); sm = sm[(sm.set == "full") & (sm.section == "ranking") & (sm.metric == "hit1")]
+            if len(sm): panels.append((cond, sm.set_index("name")))
+    if not panels: return
+    spec = [("fast_top1", "Fast path\n(CLIP top-1)", "#9aa0a6"), ("vlm_only", "SmolVLM2-500M\nyes/no only", "#E69F00"),
+            ("fusion_cv", "Fusion CLIP+VLM\n(w by CV)", "#0072B2"), ("deepseek", "DeepSeek\n(E8)", "#009E73"), ("oracle_best_of_5", "Oracle\nbest of 5", "#d8d8d8")]
+    fig, axes = plt.subplots(1, len(panels), figsize=(6.6 * len(panels), 4.8), squeeze=False, sharey=True)
+    for ax, (cond, r) in zip(axes[0], panels):
+        r = r.rename(index=lambda x: "deepseek" if str(x).startswith("deepseek_") else x)
+        for k, (name, lab, c) in enumerate(spec):
+            v, lo, hi = 100 * r.loc[name, "value"], 100 * r.loc[name, "lo"], 100 * r.loc[name, "hi"]
+            ax.bar(k, v, 0.62, color=c, yerr=[[v - lo], [hi - v]], capsize=4, error_kw=dict(lw=1, color="#333")); ax.text(k, hi + 1.5, f"{v:.0f}", ha="center", fontsize=9)
+        ax.set_xticks(range(len(spec))); ax.set_xticklabels([x[1] for x in spec], fontsize=8); ax.set_ylim(0, 105)
+        ax.set_title(f"{cond}: {'full 5 FPS index' if cond == 'C1' else 'pruned index (cos_last_drop tau 0.95)'}, n={int(r.iloc[0]['n'])} positives", fontsize=10)
+        ax.grid(axis="y", alpha=0.25); ax.spines[["top", "right"]].set_visible(False)
+    axes[0][0].set_ylabel("Hit@1 (%), 95% bootstrap CI")
+    fig.suptitle("E9: SmolVLM2-500M as a per-clip yes/no scorer (5 candidates, K=1 frame) vs DeepSeek", fontsize=11)
     fig.tight_layout(); fig.savefig(path, dpi=150); plt.close(fig)
 
 # ------------------------------------------------------------------------------------------------------------ main
@@ -363,15 +398,17 @@ YN_IDS: tuple = ()
 def main():
     global YN_IDS
     ap = argparse.ArgumentParser(description="E9 VLM per-clip scoring")
-    ap.add_argument("--limit", type=int, default=None, help="N positives (and N//3 negatives)")
+    ap.add_argument("--limit", type=int, default=None, help="N positives (and N//3 negatives); overrides --n-pos/--n-neg")
+    ap.add_argument("--n-pos", type=int, default=N_POS); ap.add_argument("--n-neg", type=int, default=N_NEG)
+    ap.add_argument("--cond", choices=list(E8_COND), default="C1", help="candidate index: C1 full 5 FPS, C2 pruned cos_last_drop tau .95")
     ap.add_argument("--skip-posbias", action="store_true"); ap.add_argument("--aggregate-only", action="store_true")
     ap.add_argument("--out", type=Path, default=None); ap.add_argument("--no-figure", action="store_true")
     a = ap.parse_args()
     from sseval import config as C, runutil
     out = a.out or C.results_dir(EXP); out.mkdir(parents=True, exist_ok=True)
-    e8, items, plans = build_plans(a.limit)
-    print(f"[e9] {sum(i['kind'] == 'pos' for i in items)} pos / {sum(i['kind'] == 'neg' for i in items)} neg; out={out}", flush=True)
-    # token ids (needs only the tokenizer)
+    rawdir = out / ("raw" if a.cond == "C1" else f"raw_{a.cond}")
+    e8, items, plans = build_plans(a.limit, a.n_pos, a.n_neg, a.cond)
+    print(f"[e9] {a.cond}: {sum(i['kind'] == 'pos' for i in items)} pos / {sum(i['kind'] == 'neg' for i in items)} neg; out={out}", flush=True)
     from transformers import AutoProcessor
     tok = AutoProcessor.from_pretrained(MODEL_ID).tokenizer
     yes_ids, no_ids = single_token_ids(tok, YES_WORDS), single_token_ids(tok, NO_WORDS)
@@ -382,28 +419,26 @@ def main():
         proc, model = local.load_model("500M", LONGEST_EDGE)
         t0 = time.time(); n_fw = 0
         for i, q in enumerate(items, 1):
-            n_fw += score_query(proc, model, e8, plans[q["qid"]], yes_ids, no_ids, out)
-            if i <= 3 or i % 10 == 0:
+            n_fw += score_query(proc, model, e8, plans[q["qid"]], yes_ids, no_ids, rawdir, out / "raw" if a.cond != "C1" else None)
+            if i % 20 == 0 or i == len(items):
                 print(f"  [score {i}/{len(items)}] qid={q['qid']} forwards so far={n_fw} peakRSS={resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1e6:.2f}GB ({time.time() - t0:.0f}s)", flush=True)
         if not a.skip_posbias:
             t0 = time.time(); n_mc = 0
             for i, q in enumerate([x for x in items if x["kind"] == "pos"], 1):
                 n_mc += posbias_query(local, e8, proc, model, plans[q["qid"]], out)
-                if i <= 3 or i % 10 == 0:
-                    print(f"  [posbias {i}] calls so far={n_mc} ({time.time() - t0:.0f}s)", flush=True)
+                if i % 10 == 0: print(f"  [posbias {i}] calls so far={n_mc} ({time.time() - t0:.0f}s)", flush=True)
         rss = out / "peak_rss_gb.txt"
         new = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1e6
         old = float(rss.read_text().split()[0]) if rss.exists() else 0.0
         rss.write_text(f"{max(new, old):.2f}\n")
-    res = aggregate(out, e8, items, plans)
-    if res is None: return
-    sm = res[0]
+    sm = aggregate(out, e8, items, plans, a.cond)
+    if sm is None: return
     if not a.no_figure:
         fig = C.RESULTS_DIR / "figures"; fig.mkdir(parents=True, exist_ok=True)
-        make_figure(sm, out / "e9_vlm_scoring.png" if a.out else fig / "e9_vlm_scoring.png")
-    runutil.write_meta(out, limit=a.limit, model=MODEL_ID, w_grid=list(W_GRID))
-    with pd.option_context("display.width", 250, "display.max_rows", 200, "display.max_colwidth", 60):
-        print(sm.round(4).to_string(index=False))
+        make_figure(out, out / "e9_vlm_scoring.png" if a.out else fig / "e9_vlm_scoring.png")
+    runutil.write_meta(out, limit=a.limit, model=MODEL_ID, w_grid=list(W_GRID), cond=a.cond, n_pos=a.n_pos, n_neg=a.n_neg)
+    with pd.option_context("display.width", 250, "display.max_rows", 300, "display.max_colwidth", 60):
+        print(sm[sm.set == "full"].round(4).to_string(index=False))
 
 if __name__ == "__main__":
     main()

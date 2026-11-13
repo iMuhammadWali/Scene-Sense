@@ -1,0 +1,19 @@
+{
+ "req_sha": "b7b4da1ff91a2576",
+ "qid": 955,
+ "kind": "pos",
+ "vid": "KZS5M",
+ "label": "A",
+ "t": 35.572601318359375,
+ "frame_t": 35.573,
+ "clip_sim": 0.2856384813785553,
+ "p_yes": 0.9525741268224334,
+ "logit_diff": 3.0,
+ "yes_logit": 25.375,
+ "no_logit": 22.375,
+ "argmax_token": " Yes",
+ "n_input_tokens": 92,
+ "decode_s": 0.13184289049991094,
+ "proc_s": 0.0198320459999195,
+ "fwd_s": 0.6239357020001535
+}

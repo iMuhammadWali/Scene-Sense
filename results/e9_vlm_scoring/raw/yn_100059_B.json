@@ -1,0 +1,19 @@
+{
+ "req_sha": "af436fc7b9c07ba5",
+ "qid": 100059,
+ "kind": "neg",
+ "vid": "SW5TC",
+ "label": "B",
+ "t": 21.21190071105957,
+ "frame_t": 21.212,
+ "clip_sim": 0.24044032394886017,
+ "p_yes": 0.04742587317756679,
+ "logit_diff": -3.0,
+ "yes_logit": 23.75,
+ "no_logit": 26.75,
+ "argmax_token": " No",
+ "n_input_tokens": 92,
+ "decode_s": 0.055899425799998424,
+ "proc_s": 0.027106421999974373,
+ "fwd_s": 0.5725331280000319
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "69537057f42c238f",
+ "qid": 100072,
+ "kind": "neg",
+ "vid": "BLLCM",
+ "label": "B",
+ "t": 20.0,
+ "frame_t": 20.0,
+ "clip_sim": 0.26203274726867676,
+ "p_yes": 0.1480471980316895,
+ "logit_diff": -1.75,
+ "yes_logit": 21.625,
+ "no_logit": 23.375,
+ "argmax_token": " No",
+ "n_input_tokens": 93,
+ "decode_s": 0.07920175160002145,
+ "proc_s": 0.01920264299997143,
+ "fwd_s": 0.6337573780000412
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "6b6962afab27d0ec",
+ "qid": 2085,
+ "kind": "pos",
+ "vid": "C10FA",
+ "label": "A",
+ "t": 9.609600067138672,
+ "frame_t": 9.61,
+ "clip_sim": 0.26392287015914917,
+ "p_yes": 0.7057850278370112,
+ "logit_diff": 0.875,
+ "yes_logit": 23.875,
+ "no_logit": 23.0,
+ "argmax_token": " Yes",
+ "n_input_tokens": 96,
+ "decode_s": 0.025908010000023296,
+ "proc_s": 0.01703628299992488,
+ "fwd_s": 0.6013590489999388
+}

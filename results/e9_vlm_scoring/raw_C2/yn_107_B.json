@@ -1,0 +1,20 @@
+{
+ "req_sha": "1c4a428eeb038515",
+ "qid": 107,
+ "kind": "pos",
+ "vid": "YSE1G",
+ "label": "B",
+ "t": 24.20829963684082,
+ "frame_t": 24.208,
+ "clip_sim": 0.2361164540052414,
+ "p_yes": 0.5312093733737563,
+ "logit_diff": 0.125,
+ "yes_logit": 23.5,
+ "no_logit": 23.375,
+ "argmax_token": " Yes",
+ "n_input_tokens": 92,
+ "decode_s": 0.06746547980001197,
+ "proc_s": 0.019750403999978516,
+ "fwd_s": 0.8170816399999694,
+ "reused_from": "raw"
+}

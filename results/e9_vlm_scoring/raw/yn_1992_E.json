@@ -1,0 +1,19 @@
+{
+ "req_sha": "3f52598f0adfe641",
+ "qid": 1992,
+ "kind": "pos",
+ "vid": "QMHK8",
+ "label": "E",
+ "t": 40.202301025390625,
+ "frame_t": 40.202,
+ "clip_sim": 0.26663148403167725,
+ "p_yes": 0.5621765008857981,
+ "logit_diff": 0.25,
+ "yes_logit": 23.375,
+ "no_logit": 23.125,
+ "argmax_token": " Yes",
+ "n_input_tokens": 96,
+ "decode_s": 0.07752320580000287,
+ "proc_s": 0.02197922799996377,
+ "fwd_s": 0.8702498590000687
+}

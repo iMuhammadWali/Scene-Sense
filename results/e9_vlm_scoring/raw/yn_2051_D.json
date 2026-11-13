@@ -1,0 +1,19 @@
+{
+ "req_sha": "11c273ecfa7c1e0b",
+ "qid": 2051,
+ "kind": "pos",
+ "vid": "UR5TU",
+ "label": "D",
+ "t": 10.996500015258789,
+ "frame_t": 10.997,
+ "clip_sim": 0.3018336594104767,
+ "p_yes": 0.9669140216112958,
+ "logit_diff": 3.375,
+ "yes_logit": 25.5,
+ "no_logit": 22.125,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.044046509800000425,
+ "proc_s": 0.018050389999984873,
+ "fwd_s": 0.5252528330000814
+}

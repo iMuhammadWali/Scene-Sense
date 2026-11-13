@@ -1,0 +1,20 @@
+{
+ "req_sha": "ecb60a887fd4ae66",
+ "qid": 1423,
+ "kind": "pos",
+ "vid": "KO2MY",
+ "label": "E",
+ "t": 13.82289981842041,
+ "frame_t": 13.823,
+ "clip_sim": 0.24301201105117798,
+ "p_yes": 0.02297736991002561,
+ "logit_diff": -3.75,
+ "yes_logit": 22.5,
+ "no_logit": 26.25,
+ "argmax_token": " No",
+ "n_input_tokens": 97,
+ "decode_s": 0.0594334867999919,
+ "proc_s": 0.018393262000017785,
+ "fwd_s": 0.5916933489999678,
+ "reused_from": "raw"
+}

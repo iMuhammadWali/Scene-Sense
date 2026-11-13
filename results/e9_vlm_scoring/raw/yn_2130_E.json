@@ -1,0 +1,19 @@
+{
+ "req_sha": "bfa896a1cb16974c",
+ "qid": 2130,
+ "kind": "pos",
+ "vid": "BW2OT",
+ "label": "E",
+ "t": 30.8125,
+ "frame_t": 30.812,
+ "clip_sim": 0.23239001631736755,
+ "p_yes": 0.053403329799824234,
+ "logit_diff": -2.875,
+ "yes_logit": 20.5,
+ "no_logit": 23.375,
+ "argmax_token": " No",
+ "n_input_tokens": 92,
+ "decode_s": 0.05137237260000802,
+ "proc_s": 0.027003994999972747,
+ "fwd_s": 0.81100127600007
+}

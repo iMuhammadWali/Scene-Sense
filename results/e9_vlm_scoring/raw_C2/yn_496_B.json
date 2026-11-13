@@ -1,0 +1,19 @@
+{
+ "req_sha": "567c2ca5e1203f8e",
+ "qid": 496,
+ "kind": "pos",
+ "vid": "8UCK1",
+ "label": "B",
+ "t": 8.399999618530273,
+ "frame_t": 8.4,
+ "clip_sim": 0.29897958040237427,
+ "p_yes": 0.7549149868676283,
+ "logit_diff": 1.125,
+ "yes_logit": 23.875,
+ "no_logit": 22.75,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.0573412685000676,
+ "proc_s": 0.018244051000010586,
+ "fwd_s": 0.659612172999914
+}

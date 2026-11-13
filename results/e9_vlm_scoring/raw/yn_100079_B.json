@@ -1,0 +1,19 @@
+{
+ "req_sha": "690c142e113375e7",
+ "qid": 100079,
+ "kind": "neg",
+ "vid": "NDDHA",
+ "label": "B",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.27442479133605957,
+ "p_yes": 0.0009110511944006454,
+ "logit_diff": -7.0,
+ "yes_logit": 19.125,
+ "no_logit": 26.125,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.06446561079999355,
+ "proc_s": 0.019318283999950836,
+ "fwd_s": 0.5414713440000014
+}

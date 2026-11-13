@@ -1,0 +1,19 @@
+{
+ "req_sha": "63fc2106bd01438f",
+ "qid": 1078,
+ "kind": "pos",
+ "vid": "ODM20",
+ "label": "C",
+ "t": 8.0,
+ "frame_t": 8.0,
+ "clip_sim": 0.2918713092803955,
+ "p_yes": 0.8933094060543487,
+ "logit_diff": 2.125,
+ "yes_logit": 24.125,
+ "no_logit": 22.0,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.05599883400001696,
+ "proc_s": 0.02198807400009173,
+ "fwd_s": 0.5438069140000152
+}

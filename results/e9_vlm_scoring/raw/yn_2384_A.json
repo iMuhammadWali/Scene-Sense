@@ -1,0 +1,19 @@
+{
+ "req_sha": "5a17760c4481ceab",
+ "qid": 2384,
+ "kind": "pos",
+ "vid": "Y44TV",
+ "label": "A",
+ "t": 16.200000762939453,
+ "frame_t": 16.2,
+ "clip_sim": 0.2677878141403198,
+ "p_yes": 0.9465966702001757,
+ "logit_diff": 2.875,
+ "yes_logit": 26.375,
+ "no_logit": 23.5,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.08257558039999821,
+ "proc_s": 0.019342046999952345,
+ "fwd_s": 0.5441878900000461
+}

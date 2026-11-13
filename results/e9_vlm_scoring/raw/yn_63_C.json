@@ -1,0 +1,19 @@
+{
+ "req_sha": "cd12a2a53b814502",
+ "qid": 63,
+ "kind": "pos",
+ "vid": "JVLAZ",
+ "label": "C",
+ "t": 2.799999952316284,
+ "frame_t": 3.0,
+ "clip_sim": 0.2873087525367737,
+ "p_yes": 0.4073334000459302,
+ "logit_diff": -0.375,
+ "yes_logit": 22.75,
+ "no_logit": 23.125,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.07052224020000039,
+ "proc_s": 0.018847539999967466,
+ "fwd_s": 0.5068469470000423
+}

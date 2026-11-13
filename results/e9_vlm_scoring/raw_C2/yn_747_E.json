@@ -1,0 +1,19 @@
+{
+ "req_sha": "da844106cc74d3ae",
+ "qid": 747,
+ "kind": "pos",
+ "vid": "M9NAG",
+ "label": "E",
+ "t": 22.600000381469727,
+ "frame_t": 22.6,
+ "clip_sim": 0.25658583641052246,
+ "p_yes": 0.37754066879814546,
+ "logit_diff": -0.5,
+ "yes_logit": 23.375,
+ "no_logit": 23.875,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.027277375000039683,
+ "proc_s": 0.017423567000150797,
+ "fwd_s": 0.5456572900000083
+}

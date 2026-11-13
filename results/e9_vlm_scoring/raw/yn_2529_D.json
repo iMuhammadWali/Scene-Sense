@@ -1,0 +1,19 @@
+{
+ "req_sha": "5c3a3c540caf893f",
+ "qid": 2529,
+ "kind": "pos",
+ "vid": "LLRKS",
+ "label": "D",
+ "t": 17.600000381469727,
+ "frame_t": 17.6,
+ "clip_sim": 0.27088701725006104,
+ "p_yes": 0.11920292202211755,
+ "logit_diff": -2.0,
+ "yes_logit": 22.25,
+ "no_logit": 24.25,
+ "argmax_token": " No",
+ "n_input_tokens": 96,
+ "decode_s": 0.03956318840000676,
+ "proc_s": 0.019131376000018463,
+ "fwd_s": 0.6146161369999845
+}

@@ -1,0 +1,20 @@
+{
+ "req_sha": "2a10865396c2f9db",
+ "qid": 2099,
+ "kind": "pos",
+ "vid": "MXATD",
+ "label": "C",
+ "t": 7.400000095367432,
+ "frame_t": 7.4,
+ "clip_sim": 0.27215859293937683,
+ "p_yes": 0.24508501313237172,
+ "logit_diff": -1.125,
+ "yes_logit": 22.0,
+ "no_logit": 23.125,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.045533614750013385,
+ "proc_s": 0.022964146000049368,
+ "fwd_s": 0.5910756409999749,
+ "reused_from": "raw"
+}

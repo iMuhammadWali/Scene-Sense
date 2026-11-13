@@ -1,0 +1,19 @@
+{
+ "req_sha": "4c6915afe61ea116",
+ "qid": 2253,
+ "kind": "pos",
+ "vid": "JBFPI",
+ "label": "A",
+ "t": 26.793399810791016,
+ "frame_t": 26.793,
+ "clip_sim": 0.26421070098876953,
+ "p_yes": 0.8933094060543487,
+ "logit_diff": 2.125,
+ "yes_logit": 25.375,
+ "no_logit": 23.25,
+ "argmax_token": " Yes",
+ "n_input_tokens": 98,
+ "decode_s": 0.04453008924997448,
+ "proc_s": 0.02137216799997077,
+ "fwd_s": 0.6376905970000735
+}

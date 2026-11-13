@@ -1,0 +1,20 @@
+{
+ "req_sha": "5941b6220ea55ae8",
+ "qid": 492,
+ "kind": "pos",
+ "vid": "WD35N",
+ "label": "A",
+ "t": 10.593899726867676,
+ "frame_t": 10.594,
+ "clip_sim": 0.27723267674446106,
+ "p_yes": 0.4378234991142019,
+ "logit_diff": -0.25,
+ "yes_logit": 23.0,
+ "no_logit": 23.25,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.08233822519998739,
+ "proc_s": 0.01831277099995532,
+ "fwd_s": 0.5758181460000742,
+ "reused_from": "raw"
+}

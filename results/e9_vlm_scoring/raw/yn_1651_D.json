@@ -1,0 +1,19 @@
+{
+ "req_sha": "18deddf15918a9d5",
+ "qid": 1651,
+ "kind": "pos",
+ "vid": "WRCO6",
+ "label": "D",
+ "t": 10.399999618530273,
+ "frame_t": 10.4,
+ "clip_sim": 0.22634385526180267,
+ "p_yes": 0.1480471980316895,
+ "logit_diff": -1.75,
+ "yes_logit": 22.625,
+ "no_logit": 24.375,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.100774367249997,
+ "proc_s": 0.020240813000015123,
+ "fwd_s": 0.5864122090000023
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "c0cfba6216c8560d",
+ "qid": 2690,
+ "kind": "pos",
+ "vid": "EOUCM",
+ "label": "A",
+ "t": 23.18779945373535,
+ "frame_t": 23.188,
+ "clip_sim": 0.26593342423439026,
+ "p_yes": 0.24508501313237172,
+ "logit_diff": -1.125,
+ "yes_logit": 22.375,
+ "no_logit": 23.5,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.07878412180000396,
+ "proc_s": 0.025215419999994992,
+ "fwd_s": 0.5905377670000007
+}

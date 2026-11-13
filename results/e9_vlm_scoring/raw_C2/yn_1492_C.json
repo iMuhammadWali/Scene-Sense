@@ -1,0 +1,20 @@
+{
+ "req_sha": "406b8ac424f13f17",
+ "qid": 1492,
+ "kind": "pos",
+ "vid": "R971Z",
+ "label": "C",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.2426692098379135,
+ "p_yes": 0.5312093733737563,
+ "logit_diff": 0.125,
+ "yes_logit": 23.0,
+ "no_logit": 22.875,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.048362894199999576,
+ "proc_s": 0.019365268999990803,
+ "fwd_s": 0.5764985870000601,
+ "reused_from": "raw"
+}

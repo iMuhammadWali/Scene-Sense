@@ -1,0 +1,20 @@
+{
+ "req_sha": "303dac28fc3ff8fa",
+ "qid": 2539,
+ "kind": "pos",
+ "vid": "TIWRY",
+ "label": "B",
+ "t": 4.400000095367432,
+ "frame_t": 4.0,
+ "clip_sim": 0.2825896143913269,
+ "p_yes": 0.1480471980316895,
+ "logit_diff": -1.75,
+ "yes_logit": 21.375,
+ "no_logit": 23.125,
+ "argmax_token": " No",
+ "n_input_tokens": 93,
+ "decode_s": 0.0311005066000007,
+ "proc_s": 0.018228265000061583,
+ "fwd_s": 0.7245900209999263,
+ "reused_from": "raw"
+}

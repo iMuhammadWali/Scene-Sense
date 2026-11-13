@@ -1,0 +1,19 @@
+{
+ "req_sha": "37eb258939ad45e0",
+ "qid": 3363,
+ "kind": "pos",
+ "vid": "OGLCO",
+ "label": "A",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.26449716091156006,
+ "p_yes": 0.11920292202211755,
+ "logit_diff": -2.0,
+ "yes_logit": 21.75,
+ "no_logit": 23.75,
+ "argmax_token": " No",
+ "n_input_tokens": 96,
+ "decode_s": 0.03217937399995208,
+ "proc_s": 0.018121548999943116,
+ "fwd_s": 0.6204843360001178
+}

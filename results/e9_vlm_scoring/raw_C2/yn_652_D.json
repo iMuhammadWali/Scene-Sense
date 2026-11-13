@@ -1,0 +1,20 @@
+{
+ "req_sha": "ea4b921ddea99622",
+ "qid": 652,
+ "kind": "pos",
+ "vid": "7XCAP",
+ "label": "D",
+ "t": 8.1673002243042,
+ "frame_t": 8.167,
+ "clip_sim": 0.21584801375865936,
+ "p_yes": 0.020332353342658753,
+ "logit_diff": -3.875,
+ "yes_logit": 22.75,
+ "no_logit": 26.625,
+ "argmax_token": " No",
+ "n_input_tokens": 92,
+ "decode_s": 0.07958816019997812,
+ "proc_s": 0.01881780099995467,
+ "fwd_s": 0.6376135170000907,
+ "reused_from": "raw"
+}

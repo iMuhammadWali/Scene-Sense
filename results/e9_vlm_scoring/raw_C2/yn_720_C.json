@@ -1,0 +1,19 @@
+{
+ "req_sha": "b0f2309cada525d4",
+ "qid": 720,
+ "kind": "pos",
+ "vid": "SW8VM",
+ "label": "C",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.2385903000831604,
+ "p_yes": 0.2689414213699951,
+ "logit_diff": -1.0,
+ "yes_logit": 24.125,
+ "no_logit": 25.125,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.04266012666668454,
+ "proc_s": 0.01840109299996584,
+ "fwd_s": 0.5279852189999019
+}

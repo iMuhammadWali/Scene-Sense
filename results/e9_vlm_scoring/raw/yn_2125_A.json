@@ -1,0 +1,19 @@
+{
+ "req_sha": "dd27db6cfad23296",
+ "qid": 2125,
+ "kind": "pos",
+ "vid": "X37P1",
+ "label": "A",
+ "t": 16.0,
+ "frame_t": 16.0,
+ "clip_sim": 0.27698254585266113,
+ "p_yes": 0.5621765008857981,
+ "logit_diff": 0.25,
+ "yes_logit": 23.125,
+ "no_logit": 22.875,
+ "argmax_token": " Yes",
+ "n_input_tokens": 96,
+ "decode_s": 0.095061452799996,
+ "proc_s": 0.01872516399998858,
+ "fwd_s": 0.6652017799999612
+}

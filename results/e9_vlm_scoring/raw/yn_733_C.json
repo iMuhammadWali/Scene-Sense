@@ -1,0 +1,19 @@
+{
+ "req_sha": "e760ee49368cf67d",
+ "qid": 733,
+ "kind": "pos",
+ "vid": "NBMH9",
+ "label": "C",
+ "t": 14.806500434875488,
+ "frame_t": 14.807,
+ "clip_sim": 0.25910210609436035,
+ "p_yes": 0.5,
+ "logit_diff": 0.0,
+ "yes_logit": 22.625,
+ "no_logit": 22.625,
+ "argmax_token": " No",
+ "n_input_tokens": 92,
+ "decode_s": 0.06532378919998791,
+ "proc_s": 0.019344298999953935,
+ "fwd_s": 0.6216809430000012
+}

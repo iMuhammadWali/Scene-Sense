@@ -1,0 +1,20 @@
+{
+ "req_sha": "672dcd7bfa05e01e",
+ "qid": 712,
+ "kind": "pos",
+ "vid": "W8CWW",
+ "label": "D",
+ "t": 10.127400398254395,
+ "frame_t": 10.127,
+ "clip_sim": 0.2386503517627716,
+ "p_yes": 0.20181322226037882,
+ "logit_diff": -1.375,
+ "yes_logit": 24.125,
+ "no_logit": 25.5,
+ "argmax_token": " No",
+ "n_input_tokens": 93,
+ "decode_s": 0.025153825600000346,
+ "proc_s": 0.018436903000008442,
+ "fwd_s": 0.5085488739999846,
+ "reused_from": "raw"
+}

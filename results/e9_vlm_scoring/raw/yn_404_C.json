@@ -1,0 +1,19 @@
+{
+ "req_sha": "32aae256b089ed2d",
+ "qid": 404,
+ "kind": "pos",
+ "vid": "FXGQI",
+ "label": "C",
+ "t": 7.0100998878479,
+ "frame_t": 7.01,
+ "clip_sim": 0.2810576558113098,
+ "p_yes": 0.7057850278370112,
+ "logit_diff": 0.875,
+ "yes_logit": 25.25,
+ "no_logit": 24.375,
+ "argmax_token": " Yes",
+ "n_input_tokens": 96,
+ "decode_s": 0.049144526999998564,
+ "proc_s": 0.026977108999972188,
+ "fwd_s": 0.6378179270000146
+}

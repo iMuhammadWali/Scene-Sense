@@ -1,0 +1,19 @@
+{
+ "req_sha": "1cde126fa4e32185",
+ "qid": 2628,
+ "kind": "pos",
+ "vid": "AK9PN",
+ "label": "D",
+ "t": 10.410400390625,
+ "frame_t": 10.41,
+ "clip_sim": 0.23039038479328156,
+ "p_yes": 0.5,
+ "logit_diff": 0.0,
+ "yes_logit": 24.25,
+ "no_logit": 24.25,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.04892880459997286,
+ "proc_s": 0.018024615000058475,
+ "fwd_s": 0.6689170889999332
+}

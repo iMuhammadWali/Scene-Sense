@@ -1,0 +1,19 @@
+{
+ "req_sha": "e3575ea5da884e73",
+ "qid": 1141,
+ "kind": "pos",
+ "vid": "NACLT",
+ "label": "A",
+ "t": 10.0,
+ "frame_t": 10.0,
+ "clip_sim": 0.2752211391925812,
+ "p_yes": 0.24508501313237172,
+ "logit_diff": -1.125,
+ "yes_logit": 23.375,
+ "no_logit": 24.5,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.06297297119999712,
+ "proc_s": 0.018403525999929116,
+ "fwd_s": 0.5062660040000537
+}

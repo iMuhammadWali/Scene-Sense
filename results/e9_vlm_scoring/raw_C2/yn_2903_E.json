@@ -1,0 +1,19 @@
+{
+ "req_sha": "d3401f3a724cb177",
+ "qid": 2903,
+ "kind": "pos",
+ "vid": "T8VDU",
+ "label": "E",
+ "t": 32.400001525878906,
+ "frame_t": 32.4,
+ "clip_sim": 0.25095680356025696,
+ "p_yes": 0.9046505351008906,
+ "logit_diff": 2.25,
+ "yes_logit": 25.625,
+ "no_logit": 23.375,
+ "argmax_token": " Yes",
+ "n_input_tokens": 97,
+ "decode_s": 0.05324727639999764,
+ "proc_s": 0.017463208999970448,
+ "fwd_s": 0.5227192340000784
+}

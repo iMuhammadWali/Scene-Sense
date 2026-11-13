@@ -1,0 +1,19 @@
+{
+ "req_sha": "bd7a44fdf67fd263",
+ "qid": 836,
+ "kind": "pos",
+ "vid": "MSACP",
+ "label": "B",
+ "t": 9.395500183105469,
+ "frame_t": 9.396,
+ "clip_sim": 0.20715247094631195,
+ "p_yes": 0.5926665999540697,
+ "logit_diff": 0.375,
+ "yes_logit": 24.0,
+ "no_logit": 23.625,
+ "argmax_token": " Yes",
+ "n_input_tokens": 97,
+ "decode_s": 0.05589972739999212,
+ "proc_s": 0.018376470000021072,
+ "fwd_s": 0.528756175999888
+}

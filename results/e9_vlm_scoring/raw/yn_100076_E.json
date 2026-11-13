@@ -1,0 +1,19 @@
+{
+ "req_sha": "bf3e21241c47e1ba",
+ "qid": 100076,
+ "kind": "neg",
+ "vid": "IWTWJ",
+ "label": "E",
+ "t": 19.200000762939453,
+ "frame_t": 19.2,
+ "clip_sim": 0.26276150345802307,
+ "p_yes": 0.037326887344129464,
+ "logit_diff": -3.25,
+ "yes_logit": 21.25,
+ "no_logit": 24.5,
+ "argmax_token": " No",
+ "n_input_tokens": 96,
+ "decode_s": 0.03580714839999928,
+ "proc_s": 0.01724462799995763,
+ "fwd_s": 0.5197926219999545
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "5f6ce15dc233ba50",
+ "qid": 100075,
+ "kind": "neg",
+ "vid": "YE6UZ",
+ "label": "A",
+ "t": 0.20090000331401825,
+ "frame_t": 0.0,
+ "clip_sim": 0.23416125774383545,
+ "p_yes": 0.037326887344129464,
+ "logit_diff": -3.25,
+ "yes_logit": 20.25,
+ "no_logit": 23.5,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.033824587999993126,
+ "proc_s": 0.018141577999926994,
+ "fwd_s": 0.5756785230000787
+}

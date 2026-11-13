@@ -1,0 +1,19 @@
+{
+ "req_sha": "4ac42ed486c974d7",
+ "qid": 1930,
+ "kind": "pos",
+ "vid": "FQS5V",
+ "label": "E",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.20892570912837982,
+ "p_yes": 0.06008665017400762,
+ "logit_diff": -2.75,
+ "yes_logit": 20.875,
+ "no_logit": 23.625,
+ "argmax_token": " No",
+ "n_input_tokens": 92,
+ "decode_s": 0.06707229924995772,
+ "proc_s": 0.01879210300012346,
+ "fwd_s": 0.5211241709998831
+}

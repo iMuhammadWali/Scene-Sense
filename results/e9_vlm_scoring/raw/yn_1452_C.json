@@ -1,0 +1,19 @@
+{
+ "req_sha": "dff14996ac4e1f35",
+ "qid": 1452,
+ "kind": "pos",
+ "vid": "SAO1A",
+ "label": "C",
+ "t": 12.974800109863281,
+ "frame_t": 12.975,
+ "clip_sim": 0.24440202116966248,
+ "p_yes": 0.29421497216298875,
+ "logit_diff": -0.875,
+ "yes_logit": 23.0,
+ "no_logit": 23.875,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.03891261574999305,
+ "proc_s": 0.01736011100001633,
+ "fwd_s": 0.6383776280000006
+}

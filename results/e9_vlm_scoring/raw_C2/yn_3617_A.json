@@ -1,0 +1,20 @@
+{
+ "req_sha": "82d4a972239b4405",
+ "qid": 3617,
+ "kind": "pos",
+ "vid": "WZZPC",
+ "label": "A",
+ "t": 0.6000000238418579,
+ "frame_t": 1.0,
+ "clip_sim": 0.26397186517715454,
+ "p_yes": 0.6224593312018546,
+ "logit_diff": 0.5,
+ "yes_logit": 23.0,
+ "no_logit": 22.5,
+ "argmax_token": " Yes",
+ "n_input_tokens": 95,
+ "decode_s": 0.022337359999994533,
+ "proc_s": 0.017336237999984405,
+ "fwd_s": 0.5925119349999477,
+ "reused_from": "raw"
+}

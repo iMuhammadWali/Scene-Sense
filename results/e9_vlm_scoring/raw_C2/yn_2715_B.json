@@ -1,0 +1,20 @@
+{
+ "req_sha": "f9723d51fcb1a988",
+ "qid": 2715,
+ "kind": "pos",
+ "vid": "K64GM",
+ "label": "B",
+ "t": 13.985699653625488,
+ "frame_t": 13.986,
+ "clip_sim": 0.30717313289642334,
+ "p_yes": 0.34864513533394575,
+ "logit_diff": -0.625,
+ "yes_logit": 23.5,
+ "no_logit": 24.125,
+ "argmax_token": " No",
+ "n_input_tokens": 96,
+ "decode_s": 0.03591449239997928,
+ "proc_s": 0.019084602000020823,
+ "fwd_s": 0.6256705439998314,
+ "reused_from": "raw"
+}

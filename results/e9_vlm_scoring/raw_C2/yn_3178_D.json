@@ -1,0 +1,20 @@
+{
+ "req_sha": "f883144d20b0b49c",
+ "qid": 3178,
+ "kind": "pos",
+ "vid": "NHH8N",
+ "label": "D",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.26973792910575867,
+ "p_yes": 0.0675466911396291,
+ "logit_diff": -2.625,
+ "yes_logit": 21.375,
+ "no_logit": 24.0,
+ "argmax_token": " No",
+ "n_input_tokens": 93,
+ "decode_s": 0.06914626459999909,
+ "proc_s": 0.019820035999941865,
+ "fwd_s": 0.6592358139999988,
+ "reused_from": "raw"
+}

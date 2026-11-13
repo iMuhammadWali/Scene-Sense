@@ -1,0 +1,20 @@
+{
+ "req_sha": "2550e5b947934ee1",
+ "qid": 400,
+ "kind": "pos",
+ "vid": "4H64T",
+ "label": "B",
+ "t": 41.964900970458984,
+ "frame_t": 41.965,
+ "clip_sim": 0.3066929876804352,
+ "p_yes": 0.8519528019683106,
+ "logit_diff": 1.75,
+ "yes_logit": 25.125,
+ "no_logit": 23.375,
+ "argmax_token": " Yes",
+ "n_input_tokens": 92,
+ "decode_s": 0.057154378599989286,
+ "proc_s": 0.018372692000070856,
+ "fwd_s": 0.6373022499999479,
+ "reused_from": "raw"
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "1b2cd02b1dd5d17a",
+ "qid": 3688,
+ "kind": "pos",
+ "vid": "RFH6M",
+ "label": "E",
+ "t": 6.784299850463867,
+ "frame_t": 6.784,
+ "clip_sim": 0.3474009037017822,
+ "p_yes": 0.9669140216112958,
+ "logit_diff": 3.375,
+ "yes_logit": 26.625,
+ "no_logit": 23.25,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.0410517021999965,
+ "proc_s": 0.021563520000000835,
+ "fwd_s": 0.5277795850000189
+}

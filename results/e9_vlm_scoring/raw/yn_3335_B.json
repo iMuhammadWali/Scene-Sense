@@ -1,0 +1,19 @@
+{
+ "req_sha": "423fc4d66087ccdb",
+ "qid": 3335,
+ "kind": "pos",
+ "vid": "UEVVN",
+ "label": "B",
+ "t": 7.199999809265137,
+ "frame_t": 7.2,
+ "clip_sim": 0.32138657569885254,
+ "p_yes": 0.7772998611746911,
+ "logit_diff": 1.25,
+ "yes_logit": 25.75,
+ "no_logit": 24.5,
+ "argmax_token": " Yes",
+ "n_input_tokens": 95,
+ "decode_s": 0.08524817374998861,
+ "proc_s": 0.01816384799997195,
+ "fwd_s": 0.7009790630000907
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "a9e3e1e8d92880e2",
+ "qid": 488,
+ "kind": "pos",
+ "vid": "MUWG4",
+ "label": "A",
+ "t": 40.58219909667969,
+ "frame_t": 40.582,
+ "clip_sim": 0.2546823024749756,
+ "p_yes": 0.4378234991142019,
+ "logit_diff": -0.25,
+ "yes_logit": 23.25,
+ "no_logit": 23.5,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.05061632360000203,
+ "proc_s": 0.027381504999993922,
+ "fwd_s": 0.6012879859999885
+}

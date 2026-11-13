@@ -1,0 +1,20 @@
+{
+ "req_sha": "ce79f41cdefcf37b",
+ "qid": 286,
+ "kind": "pos",
+ "vid": "LKNZD",
+ "label": "A",
+ "t": 32.99129867553711,
+ "frame_t": 32.991,
+ "clip_sim": 0.2624577283859253,
+ "p_yes": 0.1645164628965632,
+ "logit_diff": -1.625,
+ "yes_logit": 22.5,
+ "no_logit": 24.125,
+ "argmax_token": " No",
+ "n_input_tokens": 96,
+ "decode_s": 0.052210214600017936,
+ "proc_s": 0.02142197099999521,
+ "fwd_s": 0.5321596969999973,
+ "reused_from": "raw"
+}

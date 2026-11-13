@@ -1,0 +1,19 @@
+{
+ "req_sha": "90e2da789c8aabe8",
+ "qid": 313,
+ "kind": "pos",
+ "vid": "DJ87X",
+ "label": "E",
+ "t": 27.805700302124023,
+ "frame_t": 27.806,
+ "clip_sim": 0.2443314790725708,
+ "p_yes": 0.02595735719779685,
+ "logit_diff": -3.625,
+ "yes_logit": 22.25,
+ "no_logit": 25.875,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.04297946619999493,
+ "proc_s": 0.018408502000056615,
+ "fwd_s": 0.5483950899999854
+}

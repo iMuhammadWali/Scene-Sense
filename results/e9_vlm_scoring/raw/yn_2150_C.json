@@ -1,0 +1,19 @@
+{
+ "req_sha": "b4b7b4d37fbaba32",
+ "qid": 2150,
+ "kind": "pos",
+ "vid": "4PEL7",
+ "label": "C",
+ "t": 14.998200416564941,
+ "frame_t": 14.998,
+ "clip_sim": 0.25713682174682617,
+ "p_yes": 0.0021827164453451808,
+ "logit_diff": -6.125,
+ "yes_logit": 20.0,
+ "no_logit": 26.125,
+ "argmax_token": " No",
+ "n_input_tokens": 93,
+ "decode_s": 0.06503669660000924,
+ "proc_s": 0.025338745999988532,
+ "fwd_s": 0.786826603999998
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "6b5ba67a1c95ae0e",
+ "qid": 371,
+ "kind": "pos",
+ "vid": "NI15V",
+ "label": "C",
+ "t": 17.600000381469727,
+ "frame_t": 17.6,
+ "clip_sim": 0.26247233152389526,
+ "p_yes": 0.4073334000459302,
+ "logit_diff": -0.375,
+ "yes_logit": 23.0,
+ "no_logit": 23.375,
+ "argmax_token": " No",
+ "n_input_tokens": 98,
+ "decode_s": 0.06585279840001021,
+ "proc_s": 0.019801768999968772,
+ "fwd_s": 0.6506495820000282
+}

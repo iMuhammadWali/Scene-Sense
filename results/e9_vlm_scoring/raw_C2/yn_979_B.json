@@ -1,0 +1,19 @@
+{
+ "req_sha": "aa76b42e44d3a755",
+ "qid": 979,
+ "kind": "pos",
+ "vid": "5R7VN",
+ "label": "B",
+ "t": 25.625600814819336,
+ "frame_t": 25.626,
+ "clip_sim": 0.2946911156177521,
+ "p_yes": 0.8354835371034369,
+ "logit_diff": 1.625,
+ "yes_logit": 23.75,
+ "no_logit": 22.125,
+ "argmax_token": " Yes",
+ "n_input_tokens": 92,
+ "decode_s": 0.03416866566666007,
+ "proc_s": 0.018221018000076583,
+ "fwd_s": 0.5572987349999039
+}

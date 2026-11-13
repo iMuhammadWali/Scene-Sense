@@ -1,0 +1,20 @@
+{
+ "req_sha": "3bf9c91916c0e269",
+ "qid": 2982,
+ "kind": "pos",
+ "vid": "KJRR9",
+ "label": "E",
+ "t": 12.217900276184082,
+ "frame_t": 12.218,
+ "clip_sim": 0.2822784185409546,
+ "p_yes": 0.8670357598021706,
+ "logit_diff": 1.875,
+ "yes_logit": 25.375,
+ "no_logit": 23.5,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.05005949640001291,
+ "proc_s": 0.02416306899999654,
+ "fwd_s": 0.7673289909999994,
+ "reused_from": "raw"
+}

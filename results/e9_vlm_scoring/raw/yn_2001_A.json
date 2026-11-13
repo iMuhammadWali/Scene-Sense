@@ -1,0 +1,19 @@
+{
+ "req_sha": "f73743e9cb81c17d",
+ "qid": 2001,
+ "kind": "pos",
+ "vid": "RSFGZ",
+ "label": "A",
+ "t": 8.815299987792969,
+ "frame_t": 8.815,
+ "clip_sim": 0.26013869047164917,
+ "p_yes": 0.2689414213699951,
+ "logit_diff": -1.0,
+ "yes_logit": 22.25,
+ "no_logit": 23.25,
+ "argmax_token": " No",
+ "n_input_tokens": 98,
+ "decode_s": 0.05387745079999604,
+ "proc_s": 0.023079833999986477,
+ "fwd_s": 0.6775029309999923
+}

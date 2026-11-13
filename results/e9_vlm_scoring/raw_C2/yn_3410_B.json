@@ -1,0 +1,20 @@
+{
+ "req_sha": "a6a94fa627be57c2",
+ "qid": 3410,
+ "kind": "pos",
+ "vid": "5P284",
+ "label": "B",
+ "t": 1.187600016593933,
+ "frame_t": 1.0,
+ "clip_sim": 0.27619466185569763,
+ "p_yes": 0.7549149868676283,
+ "logit_diff": 1.125,
+ "yes_logit": 24.0,
+ "no_logit": 22.875,
+ "argmax_token": " Yes",
+ "n_input_tokens": 92,
+ "decode_s": 0.04281584420000399,
+ "proc_s": 0.016728435000004538,
+ "fwd_s": 0.5994235769999818,
+ "reused_from": "raw"
+}

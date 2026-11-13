@@ -1,0 +1,19 @@
+{
+ "req_sha": "8153f1559dd870ef",
+ "qid": 3051,
+ "kind": "pos",
+ "vid": "EDSUD",
+ "label": "B",
+ "t": 14.180800437927246,
+ "frame_t": 14.181,
+ "clip_sim": 0.26252442598342896,
+ "p_yes": 0.679178699175393,
+ "logit_diff": 0.75,
+ "yes_logit": 24.375,
+ "no_logit": 23.625,
+ "argmax_token": " Yes",
+ "n_input_tokens": 98,
+ "decode_s": 0.04323587540000062,
+ "proc_s": 0.018003956000029575,
+ "fwd_s": 0.5439570830000093
+}

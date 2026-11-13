@@ -1,0 +1,19 @@
+{
+ "req_sha": "08599a2d8a00723a",
+ "qid": 2117,
+ "kind": "pos",
+ "vid": "ICQZX",
+ "label": "C",
+ "t": 11.183699607849121,
+ "frame_t": 11.184,
+ "clip_sim": 0.30986419320106506,
+ "p_yes": 0.8519528019683106,
+ "logit_diff": 1.75,
+ "yes_logit": 24.5,
+ "no_logit": 22.75,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.04217467379999107,
+ "proc_s": 0.01694170000007489,
+ "fwd_s": 0.5758568079999122
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "9ac3f4f282409c35",
+ "qid": 2091,
+ "kind": "pos",
+ "vid": "PXY5Q",
+ "label": "D",
+ "t": 26.0,
+ "frame_t": 26.0,
+ "clip_sim": 0.2953299880027771,
+ "p_yes": 0.9046505351008906,
+ "logit_diff": 2.25,
+ "yes_logit": 25.0,
+ "no_logit": 22.75,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.04675773199999185,
+ "proc_s": 0.018418972999938887,
+ "fwd_s": 0.564044865000028
+}

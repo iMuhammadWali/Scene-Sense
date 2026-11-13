@@ -1,0 +1,19 @@
+{
+ "req_sha": "9ec3ace36bc2c150",
+ "qid": 100054,
+ "kind": "neg",
+ "vid": "TK1VC",
+ "label": "B",
+ "t": 10.199999809265137,
+ "frame_t": 10.2,
+ "clip_sim": 0.2261226624250412,
+ "p_yes": 0.053403329799824234,
+ "logit_diff": -2.875,
+ "yes_logit": 22.5,
+ "no_logit": 25.375,
+ "argmax_token": " No",
+ "n_input_tokens": 96,
+ "decode_s": 0.08173649099999239,
+ "proc_s": 0.018148023999970064,
+ "fwd_s": 0.5376623220000738
+}

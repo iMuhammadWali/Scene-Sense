@@ -1,0 +1,19 @@
+{
+ "req_sha": "5fe8aaeace99a9fa",
+ "qid": 1673,
+ "kind": "pos",
+ "vid": "AEKYE",
+ "label": "D",
+ "t": 4.20419979095459,
+ "frame_t": 4.0,
+ "clip_sim": 0.3064446449279785,
+ "p_yes": 0.9399133498259924,
+ "logit_diff": 2.75,
+ "yes_logit": 25.625,
+ "no_logit": 22.875,
+ "argmax_token": " Yes",
+ "n_input_tokens": 95,
+ "decode_s": 0.043831912600001036,
+ "proc_s": 0.01918805100001464,
+ "fwd_s": 0.5578936199999589
+}

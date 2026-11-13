@@ -1,0 +1,19 @@
+{
+ "req_sha": "a0cf834cca1bab20",
+ "qid": 263,
+ "kind": "pos",
+ "vid": "BFCU9",
+ "label": "C",
+ "t": 3.799999952316284,
+ "frame_t": 4.0,
+ "clip_sim": 0.2453802078962326,
+ "p_yes": 0.679178699175393,
+ "logit_diff": 0.75,
+ "yes_logit": 24.375,
+ "no_logit": 23.625,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.04214764149998018,
+ "proc_s": 0.018365534000167827,
+ "fwd_s": 0.6399893569998767
+}

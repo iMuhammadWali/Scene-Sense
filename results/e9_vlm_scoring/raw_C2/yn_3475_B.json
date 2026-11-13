@@ -1,0 +1,20 @@
+{
+ "req_sha": "cc19f5016228ed21",
+ "qid": 3475,
+ "kind": "pos",
+ "vid": "DGHSW",
+ "label": "B",
+ "t": 17.185400009155273,
+ "frame_t": 17.185,
+ "clip_sim": 0.31133291125297546,
+ "p_yes": 0.7057850278370112,
+ "logit_diff": 0.875,
+ "yes_logit": 24.5,
+ "no_logit": 23.625,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.05349793640000371,
+ "proc_s": 0.017718367000043145,
+ "fwd_s": 0.658972695999978,
+ "reused_from": "raw"
+}

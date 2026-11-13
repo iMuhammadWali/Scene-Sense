@@ -1,0 +1,19 @@
+{
+ "req_sha": "70ba46adcca7d149",
+ "qid": 3519,
+ "kind": "pos",
+ "vid": "GA7SB",
+ "label": "B",
+ "t": 19.77120018005371,
+ "frame_t": 19.771,
+ "clip_sim": 0.3371407985687256,
+ "p_yes": 0.6513548646660542,
+ "logit_diff": 0.625,
+ "yes_logit": 24.625,
+ "no_logit": 24.0,
+ "argmax_token": " Yes",
+ "n_input_tokens": 99,
+ "decode_s": 0.05394383840000501,
+ "proc_s": 0.01805913199996212,
+ "fwd_s": 0.5787167960000374
+}

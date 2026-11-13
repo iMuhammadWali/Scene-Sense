@@ -1,0 +1,19 @@
+{
+ "req_sha": "b47d618b19b47de0",
+ "qid": 3409,
+ "kind": "pos",
+ "vid": "QLFR5",
+ "label": "A",
+ "t": 0.4000000059604645,
+ "frame_t": 0.0,
+ "clip_sim": 0.24982205033302307,
+ "p_yes": 0.5621765008857981,
+ "logit_diff": 0.25,
+ "yes_logit": 23.125,
+ "no_logit": 22.875,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.03572354660000201,
+ "proc_s": 0.01791386699994746,
+ "fwd_s": 0.5976124290000371
+}

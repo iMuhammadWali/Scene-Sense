@@ -1,0 +1,20 @@
+{
+ "req_sha": "a08750a99145b546",
+ "qid": 2481,
+ "kind": "pos",
+ "vid": "580G0",
+ "label": "B",
+ "t": 1.7662999629974365,
+ "frame_t": 2.0,
+ "clip_sim": 0.19309532642364502,
+ "p_yes": 0.22270013882530884,
+ "logit_diff": -1.25,
+ "yes_logit": 21.75,
+ "no_logit": 23.0,
+ "argmax_token": " No",
+ "n_input_tokens": 93,
+ "decode_s": 0.04702321820000179,
+ "proc_s": 0.02593010900000081,
+ "fwd_s": 0.6328617440000244,
+ "reused_from": "raw"
+}

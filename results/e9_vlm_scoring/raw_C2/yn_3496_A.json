@@ -1,0 +1,20 @@
+{
+ "req_sha": "09b2e702bccc72b7",
+ "qid": 3496,
+ "kind": "pos",
+ "vid": "O76GM",
+ "label": "A",
+ "t": 10.399999618530273,
+ "frame_t": 10.4,
+ "clip_sim": 0.32054603099823,
+ "p_yes": 0.9324533088603709,
+ "logit_diff": 2.625,
+ "yes_logit": 25.375,
+ "no_logit": 22.75,
+ "argmax_token": " Yes",
+ "n_input_tokens": 97,
+ "decode_s": 0.06327425179999864,
+ "proc_s": 0.02206257000000278,
+ "fwd_s": 0.6708464299999832,
+ "reused_from": "raw"
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "a42f2bb11562a9a0",
+ "qid": 22,
+ "kind": "pos",
+ "vid": "F7TG5",
+ "label": "B",
+ "t": 1.7999999523162842,
+ "frame_t": 2.0,
+ "clip_sim": 0.3306886553764343,
+ "p_yes": 0.10669059394565118,
+ "logit_diff": -2.125,
+ "yes_logit": 21.625,
+ "no_logit": 23.75,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.06071226620000516,
+ "proc_s": 0.01847967499998049,
+ "fwd_s": 0.7052256439999951
+}

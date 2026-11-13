@@ -1,0 +1,19 @@
+{
+ "req_sha": "0f583c73e8640fe3",
+ "qid": 116,
+ "kind": "pos",
+ "vid": "XE19C",
+ "label": "E",
+ "t": 4.41349983215332,
+ "frame_t": 4.0,
+ "clip_sim": 0.25819236040115356,
+ "p_yes": 0.7310585786300049,
+ "logit_diff": 1.0,
+ "yes_logit": 24.5,
+ "no_logit": 23.5,
+ "argmax_token": " Yes",
+ "n_input_tokens": 92,
+ "decode_s": 0.06445577060000005,
+ "proc_s": 0.018563712000002397,
+ "fwd_s": 0.5085993249999774
+}

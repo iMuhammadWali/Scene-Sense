@@ -1,0 +1,20 @@
+{
+ "req_sha": "7bcf8b5fd1cd0f88",
+ "qid": 251,
+ "kind": "pos",
+ "vid": "IOGR7",
+ "label": "C",
+ "t": 30.19260025024414,
+ "frame_t": 30.193,
+ "clip_sim": 0.23262807726860046,
+ "p_yes": 0.5926665999540697,
+ "logit_diff": 0.375,
+ "yes_logit": 23.625,
+ "no_logit": 23.25,
+ "argmax_token": " Yes",
+ "n_input_tokens": 92,
+ "decode_s": 0.050008069399996205,
+ "proc_s": 0.02611383900000419,
+ "fwd_s": 0.7026807990000066,
+ "reused_from": "raw"
+}

@@ -1,0 +1,20 @@
+{
+ "req_sha": "e20b4c5fa29f1b16",
+ "qid": 3637,
+ "kind": "pos",
+ "vid": "ZFT06",
+ "label": "B",
+ "t": 15.203499794006348,
+ "frame_t": 15.203,
+ "clip_sim": 0.31880104541778564,
+ "p_yes": 0.1645164628965632,
+ "logit_diff": -1.625,
+ "yes_logit": 24.375,
+ "no_logit": 26.0,
+ "argmax_token": " No",
+ "n_input_tokens": 97,
+ "decode_s": 0.06215519600000334,
+ "proc_s": 0.018695522000029996,
+ "fwd_s": 0.5666737110000213,
+ "reused_from": "raw"
+}

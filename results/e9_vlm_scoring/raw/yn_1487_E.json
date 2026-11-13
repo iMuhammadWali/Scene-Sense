@@ -1,0 +1,19 @@
+{
+ "req_sha": "40f5f5c08bac0693",
+ "qid": 1487,
+ "kind": "pos",
+ "vid": "FVINY",
+ "label": "E",
+ "t": 4.199999809265137,
+ "frame_t": 4.0,
+ "clip_sim": 0.2887662649154663,
+ "p_yes": 0.8670357598021706,
+ "logit_diff": 1.875,
+ "yes_logit": 24.625,
+ "no_logit": 22.75,
+ "argmax_token": " Yes",
+ "n_input_tokens": 97,
+ "decode_s": 0.06482906200000116,
+ "proc_s": 0.0180855400000155,
+ "fwd_s": 0.49159095900000693
+}

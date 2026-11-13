@@ -1,0 +1,19 @@
+{
+ "req_sha": "e70c2afee644d74f",
+ "qid": 201,
+ "kind": "pos",
+ "vid": "DCV2M",
+ "label": "B",
+ "t": 15.600000381469727,
+ "frame_t": 15.6,
+ "clip_sim": 0.24569399654865265,
+ "p_yes": 0.07585818002124356,
+ "logit_diff": -2.5,
+ "yes_logit": 20.875,
+ "no_logit": 23.375,
+ "argmax_token": " No",
+ "n_input_tokens": 92,
+ "decode_s": 0.07172996500003137,
+ "proc_s": 0.018395964000092135,
+ "fwd_s": 0.5070944550000149
+}

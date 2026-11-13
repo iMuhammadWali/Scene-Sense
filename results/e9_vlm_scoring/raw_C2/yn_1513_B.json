@@ -1,0 +1,19 @@
+{
+ "req_sha": "f331137edb3c6ba4",
+ "qid": 1513,
+ "kind": "pos",
+ "vid": "E89S9",
+ "label": "B",
+ "t": 7.027400016784668,
+ "frame_t": 7.027,
+ "clip_sim": 0.270679235458374,
+ "p_yes": 0.9706877692486436,
+ "logit_diff": 3.5,
+ "yes_logit": 26.25,
+ "no_logit": 22.75,
+ "argmax_token": " Yes",
+ "n_input_tokens": 95,
+ "decode_s": 0.06053323933330527,
+ "proc_s": 0.028184105000036652,
+ "fwd_s": 0.7351716079999733
+}

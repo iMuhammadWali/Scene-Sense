@@ -1,0 +1,19 @@
+{
+ "req_sha": "a6506e063026fc65",
+ "qid": 279,
+ "kind": "pos",
+ "vid": "RXELU",
+ "label": "B",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.22651469707489014,
+ "p_yes": 0.13296424019782924,
+ "logit_diff": -1.875,
+ "yes_logit": 22.625,
+ "no_logit": 24.5,
+ "argmax_token": " No",
+ "n_input_tokens": 96,
+ "decode_s": 0.028678576999936922,
+ "proc_s": 0.025054788000034023,
+ "fwd_s": 0.7398985059999177
+}

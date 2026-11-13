@@ -1,0 +1,19 @@
+{
+ "req_sha": "d1a9ab404a82d6bb",
+ "qid": 2122,
+ "kind": "pos",
+ "vid": "BFH78",
+ "label": "A",
+ "t": 30.200000762939453,
+ "frame_t": 30.2,
+ "clip_sim": 0.21713973581790924,
+ "p_yes": 0.2689414213699951,
+ "logit_diff": -1.0,
+ "yes_logit": 22.5,
+ "no_logit": 23.5,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.11156402975001356,
+ "proc_s": 0.0336833100000149,
+ "fwd_s": 0.6812247540001408
+}

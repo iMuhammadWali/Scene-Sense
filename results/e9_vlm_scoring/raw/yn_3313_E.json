@@ -1,0 +1,19 @@
+{
+ "req_sha": "5fe87ec72e7b7796",
+ "qid": 3313,
+ "kind": "pos",
+ "vid": "WSKTN",
+ "label": "E",
+ "t": 15.994099617004395,
+ "frame_t": 15.994,
+ "clip_sim": 0.2696513235569,
+ "p_yes": 0.8175744761936437,
+ "logit_diff": 1.5,
+ "yes_logit": 24.5,
+ "no_logit": 23.0,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.05988142120002067,
+ "proc_s": 0.01857870899993941,
+ "fwd_s": 0.6746728010000425
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "40f2347661cbdcaf",
+ "qid": 2489,
+ "kind": "pos",
+ "vid": "JP5NM",
+ "label": "E",
+ "t": 22.451499938964844,
+ "frame_t": 22.451,
+ "clip_sim": 0.27824780344963074,
+ "p_yes": 0.18242552380635632,
+ "logit_diff": -1.5,
+ "yes_logit": 23.375,
+ "no_logit": 24.875,
+ "argmax_token": " No",
+ "n_input_tokens": 98,
+ "decode_s": 0.05427554839999971,
+ "proc_s": 0.017986963999987893,
+ "fwd_s": 0.5115702710000107
+}

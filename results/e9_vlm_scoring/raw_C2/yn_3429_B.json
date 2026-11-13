@@ -1,0 +1,19 @@
+{
+ "req_sha": "28613689ab4f3cd1",
+ "qid": 3429,
+ "kind": "pos",
+ "vid": "C4MUA",
+ "label": "B",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.28835055232048035,
+ "p_yes": 0.8519528019683106,
+ "logit_diff": 1.75,
+ "yes_logit": 25.125,
+ "no_logit": 23.375,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.030333584333296432,
+ "proc_s": 0.01697965999983353,
+ "fwd_s": 0.47869680500002687
+}

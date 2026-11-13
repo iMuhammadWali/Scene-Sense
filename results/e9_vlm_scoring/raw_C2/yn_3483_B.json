@@ -1,0 +1,19 @@
+{
+ "req_sha": "fdf34af7691e09a8",
+ "qid": 3483,
+ "kind": "pos",
+ "vid": "QZ1BS",
+ "label": "B",
+ "t": 27.179899215698242,
+ "frame_t": 27.18,
+ "clip_sim": 0.26767465472221375,
+ "p_yes": 0.0035936025814200896,
+ "logit_diff": -5.625,
+ "yes_logit": 19.875,
+ "no_logit": 25.5,
+ "argmax_token": " No",
+ "n_input_tokens": 98,
+ "decode_s": 0.0998388050000661,
+ "proc_s": 0.025735507000035795,
+ "fwd_s": 0.6254581379998854
+}

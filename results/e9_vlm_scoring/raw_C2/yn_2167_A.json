@@ -1,0 +1,20 @@
+{
+ "req_sha": "58e3b071f8524e2a",
+ "qid": 2167,
+ "kind": "pos",
+ "vid": "LIQS5",
+ "label": "A",
+ "t": 3.4000000953674316,
+ "frame_t": 3.0,
+ "clip_sim": 0.3047564625740051,
+ "p_yes": 0.8519528019683106,
+ "logit_diff": 1.75,
+ "yes_logit": 24.0,
+ "no_logit": 22.25,
+ "argmax_token": " Yes",
+ "n_input_tokens": 96,
+ "decode_s": 0.10916331900000387,
+ "proc_s": 0.02142809600002238,
+ "fwd_s": 0.6271191319999616,
+ "reused_from": "raw"
+}

@@ -1,0 +1,20 @@
+{
+ "req_sha": "34cd246b5c8e9f6d",
+ "qid": 2918,
+ "kind": "pos",
+ "vid": "FMZOY",
+ "label": "B",
+ "t": 8.399999618530273,
+ "frame_t": 8.4,
+ "clip_sim": 0.2937364876270294,
+ "p_yes": 0.22270013882530884,
+ "logit_diff": -1.25,
+ "yes_logit": 22.125,
+ "no_logit": 23.375,
+ "argmax_token": " No",
+ "n_input_tokens": 92,
+ "decode_s": 0.038983853199999884,
+ "proc_s": 0.017101082000010592,
+ "fwd_s": 0.5071665180000196,
+ "reused_from": "raw"
+}

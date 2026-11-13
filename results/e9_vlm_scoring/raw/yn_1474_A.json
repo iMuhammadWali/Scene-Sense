@@ -1,0 +1,19 @@
+{
+ "req_sha": "d69ac12936dc9c0d",
+ "qid": 1474,
+ "kind": "pos",
+ "vid": "OVFVJ",
+ "label": "A",
+ "t": 16.967300415039062,
+ "frame_t": 16.967,
+ "clip_sim": 0.33123552799224854,
+ "p_yes": 0.9626731126558706,
+ "logit_diff": 3.25,
+ "yes_logit": 27.0,
+ "no_logit": 23.75,
+ "argmax_token": " Yes",
+ "n_input_tokens": 95,
+ "decode_s": 0.03677859900000158,
+ "proc_s": 0.01804091500002869,
+ "fwd_s": 0.6124712129999921
+}

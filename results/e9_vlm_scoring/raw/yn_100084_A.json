@@ -1,0 +1,19 @@
+{
+ "req_sha": "249b6feade6cce0b",
+ "qid": 100084,
+ "kind": "neg",
+ "vid": "FORXE",
+ "label": "A",
+ "t": 14.421299934387207,
+ "frame_t": 14.421,
+ "clip_sim": 0.3285033106803894,
+ "p_yes": 0.7981867777396212,
+ "logit_diff": 1.375,
+ "yes_logit": 23.625,
+ "no_logit": 22.25,
+ "argmax_token": " Yes",
+ "n_input_tokens": 92,
+ "decode_s": 0.07311264499999197,
+ "proc_s": 0.019929906000015762,
+ "fwd_s": 0.586519171999953
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "ef235045d17e79cc",
+ "qid": 539,
+ "kind": "pos",
+ "vid": "KZ36U",
+ "label": "B",
+ "t": 25.19179916381836,
+ "frame_t": 25.192,
+ "clip_sim": 0.28922802209854126,
+ "p_yes": 0.6224593312018546,
+ "logit_diff": 0.5,
+ "yes_logit": 25.375,
+ "no_logit": 24.875,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.07909258700000237,
+ "proc_s": 0.01817483499996797,
+ "fwd_s": 0.6412232170000038
+}

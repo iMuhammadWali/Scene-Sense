@@ -1,0 +1,19 @@
+{
+ "req_sha": "59b02044fcbbafd2",
+ "qid": 100088,
+ "kind": "neg",
+ "vid": "96ATI",
+ "label": "B",
+ "t": 32.0,
+ "frame_t": 32.0,
+ "clip_sim": 0.26304173469543457,
+ "p_yes": 0.10669059394565118,
+ "logit_diff": -2.125,
+ "yes_logit": 21.625,
+ "no_logit": 23.75,
+ "argmax_token": " No",
+ "n_input_tokens": 92,
+ "decode_s": 0.05320663359998434,
+ "proc_s": 0.026045564000014565,
+ "fwd_s": 0.5807561000000305
+}

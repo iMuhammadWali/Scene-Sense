@@ -1,0 +1,19 @@
+{
+ "req_sha": "8b59a249bb4200a5",
+ "qid": 100060,
+ "kind": "neg",
+ "vid": "MYBRN",
+ "label": "A",
+ "t": 1.8027000427246094,
+ "frame_t": 2.0,
+ "clip_sim": 0.21256878972053528,
+ "p_yes": 0.2689414213699951,
+ "logit_diff": -1.0,
+ "yes_logit": 23.625,
+ "no_logit": 24.625,
+ "argmax_token": " No",
+ "n_input_tokens": 97,
+ "decode_s": 0.0642791761999888,
+ "proc_s": 0.027800083999977687,
+ "fwd_s": 0.6520761430000448
+}

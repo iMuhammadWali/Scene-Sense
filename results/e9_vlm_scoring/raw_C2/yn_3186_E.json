@@ -1,0 +1,19 @@
+{
+ "req_sha": "ebdccdd811eb53ac",
+ "qid": 3186,
+ "kind": "pos",
+ "vid": "DOYQE",
+ "label": "E",
+ "t": 15.199999809265137,
+ "frame_t": 15.2,
+ "clip_sim": 0.20312634110450745,
+ "p_yes": 0.18242552380635632,
+ "logit_diff": -1.5,
+ "yes_logit": 21.875,
+ "no_logit": 23.375,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.07925239199994394,
+ "proc_s": 0.02106969300007222,
+ "fwd_s": 0.8872258779999811
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "7c506db2db9d7565",
+ "qid": 1909,
+ "kind": "pos",
+ "vid": "EURF2",
+ "label": "C",
+ "t": 28.410999298095703,
+ "frame_t": 28.411,
+ "clip_sim": 0.3099438548088074,
+ "p_yes": 0.4378234991142019,
+ "logit_diff": -0.25,
+ "yes_logit": 22.5,
+ "no_logit": 22.75,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.07999166140000398,
+ "proc_s": 0.01759037800002261,
+ "fwd_s": 0.683845797999993
+}

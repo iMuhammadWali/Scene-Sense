@@ -1,0 +1,19 @@
+{
+ "req_sha": "0668a0a712ae4e65",
+ "qid": 3021,
+ "kind": "pos",
+ "vid": "CEZ4D",
+ "label": "C",
+ "t": 26.816600799560547,
+ "frame_t": 26.817,
+ "clip_sim": 0.2741137742996216,
+ "p_yes": 0.7772998611746911,
+ "logit_diff": 1.25,
+ "yes_logit": 24.5,
+ "no_logit": 23.25,
+ "argmax_token": " Yes",
+ "n_input_tokens": 96,
+ "decode_s": 0.06376165766672177,
+ "proc_s": 0.018096939999850292,
+ "fwd_s": 0.5980085610001424
+}

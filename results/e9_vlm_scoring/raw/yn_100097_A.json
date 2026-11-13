@@ -1,0 +1,19 @@
+{
+ "req_sha": "634a52cbe777d7c0",
+ "qid": 100097,
+ "kind": "neg",
+ "vid": "V6RRM",
+ "label": "A",
+ "t": 4.584199905395508,
+ "frame_t": 5.0,
+ "clip_sim": 0.2801497280597687,
+ "p_yes": 0.04742587317756679,
+ "logit_diff": -3.0,
+ "yes_logit": 21.375,
+ "no_logit": 24.375,
+ "argmax_token": " No",
+ "n_input_tokens": 98,
+ "decode_s": 0.041546778000019914,
+ "proc_s": 0.0174304879999454,
+ "fwd_s": 0.5345717659999991
+}

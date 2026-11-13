@@ -1,0 +1,19 @@
+{
+ "req_sha": "6cdd8e5809bbaa1c",
+ "qid": 760,
+ "kind": "pos",
+ "vid": "FYHTC",
+ "label": "D",
+ "t": 17.784400939941406,
+ "frame_t": 17.784,
+ "clip_sim": 0.2660274803638458,
+ "p_yes": 0.9324533088603709,
+ "logit_diff": 2.625,
+ "yes_logit": 24.625,
+ "no_logit": 22.0,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.019006389750018116,
+ "proc_s": 0.0172893369999656,
+ "fwd_s": 0.6179916650000905
+}

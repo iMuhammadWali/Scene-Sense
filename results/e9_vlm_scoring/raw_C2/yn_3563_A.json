@@ -1,0 +1,20 @@
+{
+ "req_sha": "d6b9a3a69a218ccf",
+ "qid": 3563,
+ "kind": "pos",
+ "vid": "Y50QF",
+ "label": "A",
+ "t": 0.9782000184059143,
+ "frame_t": 1.0,
+ "clip_sim": 0.32310640811920166,
+ "p_yes": 0.29421497216298875,
+ "logit_diff": -0.875,
+ "yes_logit": 23.5,
+ "no_logit": 24.375,
+ "argmax_token": " No",
+ "n_input_tokens": 96,
+ "decode_s": 0.04883991899999955,
+ "proc_s": 0.019145842000000357,
+ "fwd_s": 0.5550814799999557,
+ "reused_from": "raw"
+}

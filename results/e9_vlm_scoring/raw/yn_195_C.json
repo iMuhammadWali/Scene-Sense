@@ -1,0 +1,19 @@
+{
+ "req_sha": "d7bad009b02cf2f6",
+ "qid": 195,
+ "kind": "pos",
+ "vid": "GHC5X",
+ "label": "C",
+ "t": 20.603900909423828,
+ "frame_t": 20.604,
+ "clip_sim": 0.22173075377941132,
+ "p_yes": 0.5926665999540697,
+ "logit_diff": 0.375,
+ "yes_logit": 25.25,
+ "no_logit": 24.875,
+ "argmax_token": " Yes",
+ "n_input_tokens": 95,
+ "decode_s": 0.048819446200002406,
+ "proc_s": 0.018900352999992265,
+ "fwd_s": 0.5848508670000001
+}

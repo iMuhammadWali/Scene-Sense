@@ -1,0 +1,19 @@
+{
+ "req_sha": "19615e88e3e38ff5",
+ "qid": 3371,
+ "kind": "pos",
+ "vid": "KOQGE",
+ "label": "C",
+ "t": 16.0,
+ "frame_t": 16.0,
+ "clip_sim": 0.22983716428279877,
+ "p_yes": 0.10669059394565118,
+ "logit_diff": -2.125,
+ "yes_logit": 22.25,
+ "no_logit": 24.375,
+ "argmax_token": " No",
+ "n_input_tokens": 96,
+ "decode_s": 0.09166632400000481,
+ "proc_s": 0.018925504999970144,
+ "fwd_s": 0.5965663420000169
+}

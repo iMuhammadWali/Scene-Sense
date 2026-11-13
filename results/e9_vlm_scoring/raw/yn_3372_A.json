@@ -1,0 +1,19 @@
+{
+ "req_sha": "38eddbcadcfd4350",
+ "qid": 3372,
+ "kind": "pos",
+ "vid": "6IL0C",
+ "label": "A",
+ "t": 3.200000047683716,
+ "frame_t": 3.0,
+ "clip_sim": 0.2723294198513031,
+ "p_yes": 0.1480471980316895,
+ "logit_diff": -1.75,
+ "yes_logit": 21.0,
+ "no_logit": 22.75,
+ "argmax_token": " No",
+ "n_input_tokens": 91,
+ "decode_s": 0.04306045460000405,
+ "proc_s": 0.022986699999989924,
+ "fwd_s": 0.721542678999981
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "f2bd27d217fe4b89",
+ "qid": 137,
+ "kind": "pos",
+ "vid": "Q7IQI",
+ "label": "A",
+ "t": 4.386499881744385,
+ "frame_t": 4.0,
+ "clip_sim": 0.22244608402252197,
+ "p_yes": 0.5,
+ "logit_diff": 0.0,
+ "yes_logit": 24.125,
+ "no_logit": 24.125,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.06724345750001248,
+ "proc_s": 0.01965979600004175,
+ "fwd_s": 0.6708658469999591
+}

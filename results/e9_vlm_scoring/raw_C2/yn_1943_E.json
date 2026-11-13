@@ -1,0 +1,19 @@
+{
+ "req_sha": "847da4edc3e0e935",
+ "qid": 1943,
+ "kind": "pos",
+ "vid": "OY3LS",
+ "label": "E",
+ "t": 8.18179988861084,
+ "frame_t": 8.182,
+ "clip_sim": 0.28482308983802795,
+ "p_yes": 0.4378234991142019,
+ "logit_diff": -0.25,
+ "yes_logit": 24.0,
+ "no_logit": 24.25,
+ "argmax_token": " No",
+ "n_input_tokens": 98,
+ "decode_s": 0.12943507333329762,
+ "proc_s": 0.018416635999983555,
+ "fwd_s": 0.6408349460000409
+}

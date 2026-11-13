@@ -1,0 +1,19 @@
+{
+ "req_sha": "4ae6bb1969a9b039",
+ "qid": 1843,
+ "kind": "pos",
+ "vid": "MKMFK",
+ "label": "A",
+ "t": 22.399999618530273,
+ "frame_t": 22.4,
+ "clip_sim": 0.2547145485877991,
+ "p_yes": 0.10669059394565118,
+ "logit_diff": -2.125,
+ "yes_logit": 23.375,
+ "no_logit": 25.5,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.05143790975000684,
+ "proc_s": 0.019633166999938112,
+ "fwd_s": 0.7201405150001392
+}

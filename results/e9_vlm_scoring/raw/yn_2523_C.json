@@ -1,0 +1,19 @@
+{
+ "req_sha": "8103f62ea2a117c1",
+ "qid": 2523,
+ "kind": "pos",
+ "vid": "PLJIZ",
+ "label": "C",
+ "t": 30.6156005859375,
+ "frame_t": 30.616,
+ "clip_sim": 0.29583606123924255,
+ "p_yes": 0.7772998611746911,
+ "logit_diff": 1.25,
+ "yes_logit": 24.75,
+ "no_logit": 23.5,
+ "argmax_token": " Yes",
+ "n_input_tokens": 92,
+ "decode_s": 0.068303484199987,
+ "proc_s": 0.021955092999974113,
+ "fwd_s": 0.5589023259999522
+}

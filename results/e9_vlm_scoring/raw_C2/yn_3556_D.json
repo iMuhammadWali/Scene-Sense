@@ -1,0 +1,19 @@
+{
+ "req_sha": "2f2197b14794929f",
+ "qid": 3556,
+ "kind": "pos",
+ "vid": "SUE5L",
+ "label": "D",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.24373459815979004,
+ "p_yes": 0.1645164628965632,
+ "logit_diff": -1.625,
+ "yes_logit": 22.625,
+ "no_logit": 24.25,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.02472007639998992,
+ "proc_s": 0.018185227999993003,
+ "fwd_s": 0.7198224559999744
+}

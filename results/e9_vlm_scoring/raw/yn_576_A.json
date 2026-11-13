@@ -1,0 +1,19 @@
+{
+ "req_sha": "c0f03df248dc0f07",
+ "qid": 576,
+ "kind": "pos",
+ "vid": "BM9NZ",
+ "label": "A",
+ "t": 13.411800384521484,
+ "frame_t": 13.412,
+ "clip_sim": 0.26964014768600464,
+ "p_yes": 0.37754066879814546,
+ "logit_diff": -0.5,
+ "yes_logit": 22.625,
+ "no_logit": 23.125,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.04477260340001976,
+ "proc_s": 0.02749316799997814,
+ "fwd_s": 0.6394284479999897
+}

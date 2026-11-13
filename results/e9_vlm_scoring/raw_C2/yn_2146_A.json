@@ -1,0 +1,19 @@
+{
+ "req_sha": "c59f3bbbb4da82db",
+ "qid": 2146,
+ "kind": "pos",
+ "vid": "GFPDD",
+ "label": "A",
+ "t": 12.399999618530273,
+ "frame_t": 12.4,
+ "clip_sim": 0.3260001838207245,
+ "p_yes": 0.679178699175393,
+ "logit_diff": 0.75,
+ "yes_logit": 25.25,
+ "no_logit": 24.5,
+ "argmax_token": " Yes",
+ "n_input_tokens": 97,
+ "decode_s": 0.07399059224997018,
+ "proc_s": 0.02007437099996423,
+ "fwd_s": 0.9020736590000524
+}

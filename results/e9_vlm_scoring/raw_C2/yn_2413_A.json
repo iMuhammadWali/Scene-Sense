@@ -1,0 +1,20 @@
+{
+ "req_sha": "f64e185c2590669d",
+ "qid": 2413,
+ "kind": "pos",
+ "vid": "UQJ5W",
+ "label": "A",
+ "t": 15.44629955291748,
+ "frame_t": 15.446,
+ "clip_sim": 0.2933417558670044,
+ "p_yes": 0.0031726828424851893,
+ "logit_diff": -5.75,
+ "yes_logit": 19.25,
+ "no_logit": 25.0,
+ "argmax_token": " No",
+ "n_input_tokens": 92,
+ "decode_s": 0.040328148999992666,
+ "proc_s": 0.018663946000060605,
+ "fwd_s": 0.5600310169999148,
+ "reused_from": "raw"
+}

@@ -1,0 +1,20 @@
+{
+ "req_sha": "9e1466681294f721",
+ "qid": 417,
+ "kind": "pos",
+ "vid": "HRASP",
+ "label": "D",
+ "t": 25.34869956970215,
+ "frame_t": 25.349,
+ "clip_sim": 0.2727920413017273,
+ "p_yes": 0.1480471980316895,
+ "logit_diff": -1.75,
+ "yes_logit": 22.25,
+ "no_logit": 24.0,
+ "argmax_token": " No",
+ "n_input_tokens": 93,
+ "decode_s": 0.040420641400010025,
+ "proc_s": 0.019049236000000747,
+ "fwd_s": 0.5387201089999962,
+ "reused_from": "raw"
+}

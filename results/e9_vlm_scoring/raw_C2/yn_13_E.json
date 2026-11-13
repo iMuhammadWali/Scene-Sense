@@ -1,0 +1,19 @@
+{
+ "req_sha": "4e55ab0bb990c161",
+ "qid": 13,
+ "kind": "pos",
+ "vid": "E6DLK",
+ "label": "E",
+ "t": 15.815799713134766,
+ "frame_t": 15.816,
+ "clip_sim": 0.24708043038845062,
+ "p_yes": 0.020332353342658753,
+ "logit_diff": -3.875,
+ "yes_logit": 21.5,
+ "no_logit": 25.375,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.04764520550003226,
+ "proc_s": 0.01796360299999833,
+ "fwd_s": 0.6419232519999696
+}

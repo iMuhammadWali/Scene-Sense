@@ -1,0 +1,19 @@
+{
+ "req_sha": "4814a1af5589d7a3",
+ "qid": 388,
+ "kind": "pos",
+ "vid": "36T5X",
+ "label": "E",
+ "t": 32.0,
+ "frame_t": 32.0,
+ "clip_sim": 0.24487487971782684,
+ "p_yes": 0.1645164628965632,
+ "logit_diff": -1.625,
+ "yes_logit": 21.75,
+ "no_logit": 23.375,
+ "argmax_token": " No",
+ "n_input_tokens": 97,
+ "decode_s": 0.08220357766663255,
+ "proc_s": 0.02008480600011353,
+ "fwd_s": 0.6709778379999989
+}

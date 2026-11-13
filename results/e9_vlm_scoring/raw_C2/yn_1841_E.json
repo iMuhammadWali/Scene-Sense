@@ -1,0 +1,19 @@
+{
+ "req_sha": "2fa5e16f1fb9c9cb",
+ "qid": 1841,
+ "kind": "pos",
+ "vid": "F9VSQ",
+ "label": "E",
+ "t": 21.616100311279297,
+ "frame_t": 21.616,
+ "clip_sim": 0.26117604970932007,
+ "p_yes": 0.34864513533394575,
+ "logit_diff": -0.625,
+ "yes_logit": 24.875,
+ "no_logit": 25.5,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.041852372249991276,
+ "proc_s": 0.019465930000023945,
+ "fwd_s": 0.8386260649999713
+}

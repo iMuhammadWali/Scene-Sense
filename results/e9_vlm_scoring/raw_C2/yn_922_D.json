@@ -1,0 +1,19 @@
+{
+ "req_sha": "2ed98578cea620dd",
+ "qid": 922,
+ "kind": "pos",
+ "vid": "SLT0S",
+ "label": "D",
+ "t": 1.801800012588501,
+ "frame_t": 2.0,
+ "clip_sim": 0.2176337093114853,
+ "p_yes": 0.8807970779778823,
+ "logit_diff": 2.0,
+ "yes_logit": 25.125,
+ "no_logit": 23.125,
+ "argmax_token": " Yes",
+ "n_input_tokens": 98,
+ "decode_s": 0.04774288219996379,
+ "proc_s": 0.01756200400018315,
+ "fwd_s": 0.5866578489999483
+}

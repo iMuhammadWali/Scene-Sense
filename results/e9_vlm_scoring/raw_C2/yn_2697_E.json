@@ -1,0 +1,19 @@
+{
+ "req_sha": "8e3ef7ba6fa13dcc",
+ "qid": 2697,
+ "kind": "pos",
+ "vid": "NF45F",
+ "label": "E",
+ "t": 25.001699447631836,
+ "frame_t": 25.002,
+ "clip_sim": 0.2569795250892639,
+ "p_yes": 0.2689414213699951,
+ "logit_diff": -1.0,
+ "yes_logit": 22.375,
+ "no_logit": 23.375,
+ "argmax_token": " No",
+ "n_input_tokens": 93,
+ "decode_s": 0.040434838500004844,
+ "proc_s": 0.01740998600007515,
+ "fwd_s": 0.7430515650000871
+}

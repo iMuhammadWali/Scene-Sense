@@ -1,0 +1,19 @@
+{
+ "req_sha": "f97f8d2bddd020f5",
+ "qid": 3118,
+ "kind": "pos",
+ "vid": "ZSAQG",
+ "label": "E",
+ "t": 14.0,
+ "frame_t": 14.0,
+ "clip_sim": 0.27442026138305664,
+ "p_yes": 0.1480471980316895,
+ "logit_diff": -1.75,
+ "yes_logit": 22.0,
+ "no_logit": 23.75,
+ "argmax_token": " No",
+ "n_input_tokens": 96,
+ "decode_s": 0.08161577400005626,
+ "proc_s": 0.0273637579998649,
+ "fwd_s": 0.66980321799997
+}

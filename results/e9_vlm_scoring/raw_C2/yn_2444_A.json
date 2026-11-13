@@ -1,0 +1,20 @@
+{
+ "req_sha": "4976cb139929e79a",
+ "qid": 2444,
+ "kind": "pos",
+ "vid": "PIJRH",
+ "label": "A",
+ "t": 2.0,
+ "frame_t": 2.0,
+ "clip_sim": 0.2639341354370117,
+ "p_yes": 0.9840936082881853,
+ "logit_diff": 4.125,
+ "yes_logit": 26.375,
+ "no_logit": 22.25,
+ "argmax_token": " Yes",
+ "n_input_tokens": 92,
+ "decode_s": 0.08897282539999196,
+ "proc_s": 0.019260862000010093,
+ "fwd_s": 0.7106291280000505,
+ "reused_from": "raw"
+}

@@ -1,0 +1,20 @@
+{
+ "req_sha": "c961a754a1a67721",
+ "qid": 824,
+ "kind": "pos",
+ "vid": "LLQBB",
+ "label": "D",
+ "t": 23.0,
+ "frame_t": 23.0,
+ "clip_sim": 0.26270461082458496,
+ "p_yes": 0.9525741268224334,
+ "logit_diff": 3.0,
+ "yes_logit": 26.25,
+ "no_logit": 23.25,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.04732023640001444,
+ "proc_s": 0.017998267000052692,
+ "fwd_s": 0.7222287839999808,
+ "reused_from": "raw"
+}

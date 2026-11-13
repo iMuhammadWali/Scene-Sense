@@ -1,0 +1,19 @@
+{
+ "req_sha": "c5fdf3548674256a",
+ "qid": 3602,
+ "kind": "pos",
+ "vid": "VINM0",
+ "label": "A",
+ "t": 0.8008000254631042,
+ "frame_t": 1.0,
+ "clip_sim": 0.2657577693462372,
+ "p_yes": 0.7057850278370112,
+ "logit_diff": 0.875,
+ "yes_logit": 24.5,
+ "no_logit": 23.625,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.043082681999999296,
+ "proc_s": 0.016928551999967567,
+ "fwd_s": 0.5445021040000029
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "01fd0ea0240a3bd1",
+ "qid": 78,
+ "kind": "pos",
+ "vid": "ZHRPD",
+ "label": "E",
+ "t": 5.0,
+ "frame_t": 5.0,
+ "clip_sim": 0.22212986648082733,
+ "p_yes": 0.07585818002124356,
+ "logit_diff": -2.5,
+ "yes_logit": 22.875,
+ "no_logit": 25.375,
+ "argmax_token": " No",
+ "n_input_tokens": 93,
+ "decode_s": 0.12082054539998807,
+ "proc_s": 0.019024349999995138,
+ "fwd_s": 0.6680587109999578
+}

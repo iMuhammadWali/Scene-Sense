@@ -1,0 +1,19 @@
+{
+ "req_sha": "ec0f8cc189176077",
+ "qid": 100066,
+ "kind": "neg",
+ "vid": "KB916",
+ "label": "C",
+ "t": 19.0,
+ "frame_t": 19.0,
+ "clip_sim": 0.21252098679542542,
+ "p_yes": 0.004609572179374208,
+ "logit_diff": -5.375,
+ "yes_logit": 19.125,
+ "no_logit": 24.5,
+ "argmax_token": " No",
+ "n_input_tokens": 99,
+ "decode_s": 0.038001264600006836,
+ "proc_s": 0.01811713899996903,
+ "fwd_s": 0.5407871840000098
+}

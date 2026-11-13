@@ -1,0 +1,19 @@
+{
+ "req_sha": "a92d2d2c55d55c0f",
+ "qid": 1472,
+ "kind": "pos",
+ "vid": "QVBTC",
+ "label": "A",
+ "t": 4.004000186920166,
+ "frame_t": 4.0,
+ "clip_sim": 0.2485205978155136,
+ "p_yes": 0.11920292202211755,
+ "logit_diff": -2.0,
+ "yes_logit": 22.75,
+ "no_logit": 24.75,
+ "argmax_token": " No",
+ "n_input_tokens": 98,
+ "decode_s": 0.052060274250038674,
+ "proc_s": 0.02208366600007139,
+ "fwd_s": 0.7427762360000543
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "f7b8be6df23cc676",
+ "qid": 2182,
+ "kind": "pos",
+ "vid": "ZZ4GP",
+ "label": "B",
+ "t": 9.40939998626709,
+ "frame_t": 9.409,
+ "clip_sim": 0.29357627034187317,
+ "p_yes": 0.679178699175393,
+ "logit_diff": 0.75,
+ "yes_logit": 23.875,
+ "no_logit": 23.125,
+ "argmax_token": " Yes",
+ "n_input_tokens": 95,
+ "decode_s": 0.040161984799988205,
+ "proc_s": 0.022205850000091232,
+ "fwd_s": 0.6537489130000722
+}

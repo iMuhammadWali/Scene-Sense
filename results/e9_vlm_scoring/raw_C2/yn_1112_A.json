@@ -1,0 +1,19 @@
+{
+ "req_sha": "d41c90ea31a2de4a",
+ "qid": 1112,
+ "kind": "pos",
+ "vid": "VD58Y",
+ "label": "A",
+ "t": 9.960800170898438,
+ "frame_t": 9.961,
+ "clip_sim": 0.2744118273258209,
+ "p_yes": 0.4378234991142019,
+ "logit_diff": -0.25,
+ "yes_logit": 23.0,
+ "no_logit": 23.25,
+ "argmax_token": " No",
+ "n_input_tokens": 93,
+ "decode_s": 0.03234365674995843,
+ "proc_s": 0.02293091999990793,
+ "fwd_s": 0.6285116439999001
+}

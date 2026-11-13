@@ -1,0 +1,19 @@
+{
+ "req_sha": "fad4b0032d2c0fd7",
+ "qid": 805,
+ "kind": "pos",
+ "vid": "JR6VG",
+ "label": "B",
+ "t": 14.399999618530273,
+ "frame_t": 14.4,
+ "clip_sim": 0.2659750282764435,
+ "p_yes": 0.5926665999540697,
+ "logit_diff": 0.375,
+ "yes_logit": 24.125,
+ "no_logit": 23.75,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.02067203799992967,
+ "proc_s": 0.01875732199982849,
+ "fwd_s": 0.6887353100000837
+}

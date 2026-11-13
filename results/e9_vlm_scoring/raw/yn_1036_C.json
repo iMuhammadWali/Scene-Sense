@@ -1,0 +1,19 @@
+{
+ "req_sha": "da14a47c8e400b0e",
+ "qid": 1036,
+ "kind": "pos",
+ "vid": "XGS3K",
+ "label": "C",
+ "t": 6.606800079345703,
+ "frame_t": 6.607,
+ "clip_sim": 0.25296223163604736,
+ "p_yes": 0.6224593312018546,
+ "logit_diff": 0.5,
+ "yes_logit": 24.875,
+ "no_logit": 24.375,
+ "argmax_token": " Yes",
+ "n_input_tokens": 97,
+ "decode_s": 0.05548648100000264,
+ "proc_s": 0.0181630629999745,
+ "fwd_s": 0.6261039710000205
+}

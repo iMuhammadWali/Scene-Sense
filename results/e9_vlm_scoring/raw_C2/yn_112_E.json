@@ -1,0 +1,20 @@
+{
+ "req_sha": "b553080552bd5a96",
+ "qid": 112,
+ "kind": "pos",
+ "vid": "QLEN3",
+ "label": "E",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.25710758566856384,
+ "p_yes": 0.0675466911396291,
+ "logit_diff": -2.625,
+ "yes_logit": 22.0,
+ "no_logit": 24.625,
+ "argmax_token": " No",
+ "n_input_tokens": 92,
+ "decode_s": 0.03568727460001355,
+ "proc_s": 0.019772631000023466,
+ "fwd_s": 0.5858957460000056,
+ "reused_from": "raw"
+}

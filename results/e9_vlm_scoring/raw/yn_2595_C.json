@@ -1,0 +1,19 @@
+{
+ "req_sha": "997dd8ea4a535fba",
+ "qid": 2595,
+ "kind": "pos",
+ "vid": "TBEV0",
+ "label": "C",
+ "t": 27.19379997253418,
+ "frame_t": 27.194,
+ "clip_sim": 0.2520470917224884,
+ "p_yes": 0.34864513533394575,
+ "logit_diff": -0.625,
+ "yes_logit": 22.75,
+ "no_logit": 23.375,
+ "argmax_token": " No",
+ "n_input_tokens": 93,
+ "decode_s": 0.04004959439999993,
+ "proc_s": 0.01827717800000528,
+ "fwd_s": 0.5911519370000065
+}

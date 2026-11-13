@@ -1,0 +1,20 @@
+{
+ "req_sha": "98c0040ac6a9aa58",
+ "qid": 1712,
+ "kind": "pos",
+ "vid": "TRVEA",
+ "label": "C",
+ "t": 28.781700134277344,
+ "frame_t": 28.782,
+ "clip_sim": 0.2702685594558716,
+ "p_yes": 0.7772998611746911,
+ "logit_diff": 1.25,
+ "yes_logit": 25.625,
+ "no_logit": 24.375,
+ "argmax_token": " Yes",
+ "n_input_tokens": 97,
+ "decode_s": 0.04387966199999482,
+ "proc_s": 0.02306073199997627,
+ "fwd_s": 0.5963698440000371,
+ "reused_from": "raw"
+}

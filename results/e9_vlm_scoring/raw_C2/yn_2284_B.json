@@ -1,0 +1,20 @@
+{
+ "req_sha": "dde9c424340e4b98",
+ "qid": 2284,
+ "kind": "pos",
+ "vid": "YK49T",
+ "label": "B",
+ "t": 4.404399871826172,
+ "frame_t": 4.0,
+ "clip_sim": 0.2405901998281479,
+ "p_yes": 0.5621765008857981,
+ "logit_diff": 0.25,
+ "yes_logit": 22.5,
+ "no_logit": 22.25,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.04308639140000423,
+ "proc_s": 0.020569007999995392,
+ "fwd_s": 0.5543903699999646,
+ "reused_from": "raw"
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "e2e802f46c62ac8e",
+ "qid": 749,
+ "kind": "pos",
+ "vid": "MS4GA",
+ "label": "D",
+ "t": 4.004000186920166,
+ "frame_t": 4.0,
+ "clip_sim": 0.2824270725250244,
+ "p_yes": 0.8175744761936437,
+ "logit_diff": 1.5,
+ "yes_logit": 24.625,
+ "no_logit": 23.125,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.035744183399992836,
+ "proc_s": 0.017057950999969762,
+ "fwd_s": 0.6691490700000031
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "3a09d4cba3a4c915",
+ "qid": 1887,
+ "kind": "pos",
+ "vid": "FJYWX",
+ "label": "D",
+ "t": 32.599998474121094,
+ "frame_t": 32.6,
+ "clip_sim": 0.23720572888851166,
+ "p_yes": 0.2689414213699951,
+ "logit_diff": -1.0,
+ "yes_logit": 21.875,
+ "no_logit": 22.875,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.06767778166666479,
+ "proc_s": 0.01838692399996944,
+ "fwd_s": 0.6707709509998949
+}

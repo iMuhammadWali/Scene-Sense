@@ -1,0 +1,20 @@
+{
+ "req_sha": "8b6b0349ec3bad59",
+ "qid": 3421,
+ "kind": "pos",
+ "vid": "STHIK",
+ "label": "A",
+ "t": 5.589799880981445,
+ "frame_t": 5.59,
+ "clip_sim": 0.26676031947135925,
+ "p_yes": 0.07585818002124356,
+ "logit_diff": -2.5,
+ "yes_logit": 21.625,
+ "no_logit": 24.125,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.04276271999999608,
+ "proc_s": 0.017507143999978325,
+ "fwd_s": 0.6139995790000512,
+ "reused_from": "raw"
+}

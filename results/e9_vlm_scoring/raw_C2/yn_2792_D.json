@@ -1,0 +1,19 @@
+{
+ "req_sha": "4866649f2ff847b9",
+ "qid": 2792,
+ "kind": "pos",
+ "vid": "LSKA2",
+ "label": "D",
+ "t": 8.0,
+ "frame_t": 8.0,
+ "clip_sim": 0.23915371298789978,
+ "p_yes": 0.10669059394565118,
+ "logit_diff": -2.125,
+ "yes_logit": 21.0,
+ "no_logit": 23.125,
+ "argmax_token": " No",
+ "n_input_tokens": 93,
+ "decode_s": 0.15330425450008534,
+ "proc_s": 0.018943071999956373,
+ "fwd_s": 0.6444480200000271
+}

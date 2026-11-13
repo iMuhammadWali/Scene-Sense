@@ -1,0 +1,19 @@
+{
+ "req_sha": "f797bcdbbae50daa",
+ "qid": 2381,
+ "kind": "pos",
+ "vid": "BYP85",
+ "label": "D",
+ "t": 22.0,
+ "frame_t": 22.0,
+ "clip_sim": 0.21832233667373657,
+ "p_yes": 0.18242552380635632,
+ "logit_diff": -1.5,
+ "yes_logit": 21.625,
+ "no_logit": 23.125,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.07124271059999501,
+ "proc_s": 0.017107754999983626,
+ "fwd_s": 0.6660258809999959
+}

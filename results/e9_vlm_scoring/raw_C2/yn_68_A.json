@@ -1,0 +1,20 @@
+{
+ "req_sha": "8dd09f52c2df6a07",
+ "qid": 68,
+ "kind": "pos",
+ "vid": "N3U9S",
+ "label": "A",
+ "t": 6.584199905395508,
+ "frame_t": 6.584,
+ "clip_sim": 0.2844705581665039,
+ "p_yes": 0.5621765008857981,
+ "logit_diff": 0.25,
+ "yes_logit": 23.0,
+ "no_logit": 22.75,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.05369242433331086,
+ "proc_s": 0.01802059999999983,
+ "fwd_s": 0.6718491549999044,
+ "reused_from": "raw"
+}

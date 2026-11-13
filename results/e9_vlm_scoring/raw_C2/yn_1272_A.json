@@ -1,0 +1,20 @@
+{
+ "req_sha": "aa533810f344c18b",
+ "qid": 1272,
+ "kind": "pos",
+ "vid": "AGGSE",
+ "label": "A",
+ "t": 19.252700805664062,
+ "frame_t": 19.253,
+ "clip_sim": 0.2511221468448639,
+ "p_yes": 0.37754066879814546,
+ "logit_diff": -0.5,
+ "yes_logit": 23.875,
+ "no_logit": 24.375,
+ "argmax_token": " No",
+ "n_input_tokens": 92,
+ "decode_s": 0.06374723639999047,
+ "proc_s": 0.019979978999913328,
+ "fwd_s": 0.5810183990000723,
+ "reused_from": "raw"
+}

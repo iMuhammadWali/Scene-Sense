@@ -1,0 +1,19 @@
+{
+ "req_sha": "ac92f35ce32cb00f",
+ "qid": 3658,
+ "kind": "pos",
+ "vid": "WC5QK",
+ "label": "D",
+ "t": 23.82379913330078,
+ "frame_t": 23.824,
+ "clip_sim": 0.24625828862190247,
+ "p_yes": 0.6513548646660542,
+ "logit_diff": 0.625,
+ "yes_logit": 23.5,
+ "no_logit": 22.875,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.059318959199998744,
+ "proc_s": 0.02401013499999749,
+ "fwd_s": 0.5602410460000158
+}

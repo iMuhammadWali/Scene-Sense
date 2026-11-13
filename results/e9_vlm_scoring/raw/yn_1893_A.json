@@ -1,0 +1,19 @@
+{
+ "req_sha": "a5897ade0d13e771",
+ "qid": 1893,
+ "kind": "pos",
+ "vid": "LGPWK",
+ "label": "A",
+ "t": 28.580799102783203,
+ "frame_t": 28.581,
+ "clip_sim": 0.2606772780418396,
+ "p_yes": 0.6224593312018546,
+ "logit_diff": 0.5,
+ "yes_logit": 24.0,
+ "no_logit": 23.5,
+ "argmax_token": " Yes",
+ "n_input_tokens": 95,
+ "decode_s": 0.08786120580000442,
+ "proc_s": 0.019803228000000672,
+ "fwd_s": 0.6362239890000865
+}

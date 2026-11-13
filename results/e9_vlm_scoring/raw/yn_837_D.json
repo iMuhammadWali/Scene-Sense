@@ -1,0 +1,19 @@
+{
+ "req_sha": "cf62aae0f0bdd379",
+ "qid": 837,
+ "kind": "pos",
+ "vid": "VIN5T",
+ "label": "D",
+ "t": 12.593400001525879,
+ "frame_t": 12.593,
+ "clip_sim": 0.3026002049446106,
+ "p_yes": 0.1480471980316895,
+ "logit_diff": -1.75,
+ "yes_logit": 22.375,
+ "no_logit": 24.125,
+ "argmax_token": " No",
+ "n_input_tokens": 98,
+ "decode_s": 0.046935176199986016,
+ "proc_s": 0.019152945999962867,
+ "fwd_s": 0.692019948000052
+}

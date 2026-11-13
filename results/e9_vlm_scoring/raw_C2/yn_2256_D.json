@@ -1,0 +1,19 @@
+{
+ "req_sha": "846726ca7dfb9a74",
+ "qid": 2256,
+ "kind": "pos",
+ "vid": "VU996",
+ "label": "D",
+ "t": 22.00149917602539,
+ "frame_t": 22.001,
+ "clip_sim": 0.286470890045166,
+ "p_yes": 0.7772998611746911,
+ "logit_diff": 1.25,
+ "yes_logit": 24.25,
+ "no_logit": 23.0,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.07760235159998956,
+ "proc_s": 0.020435202000044228,
+ "fwd_s": 0.6516622189999453
+}

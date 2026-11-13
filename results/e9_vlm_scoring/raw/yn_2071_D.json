@@ -1,0 +1,19 @@
+{
+ "req_sha": "edeb9d92338ac3a4",
+ "qid": 2071,
+ "kind": "pos",
+ "vid": "JFBTV",
+ "label": "D",
+ "t": 12.003499984741211,
+ "frame_t": 12.003,
+ "clip_sim": 0.27026036381721497,
+ "p_yes": 0.7772998611746911,
+ "logit_diff": 1.25,
+ "yes_logit": 24.125,
+ "no_logit": 22.875,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.05006297679999534,
+ "proc_s": 0.019426076999991437,
+ "fwd_s": 0.6238018220000185
+}

@@ -1,0 +1,20 @@
+{
+ "req_sha": "b4c3dccbce6eb916",
+ "qid": 2749,
+ "kind": "pos",
+ "vid": "HVFXT",
+ "label": "A",
+ "t": 21.588199615478516,
+ "frame_t": 21.588,
+ "clip_sim": 0.2838194668292999,
+ "p_yes": 0.8175744761936437,
+ "logit_diff": 1.5,
+ "yes_logit": 24.5,
+ "no_logit": 23.0,
+ "argmax_token": " Yes",
+ "n_input_tokens": 92,
+ "decode_s": 0.06428151720001551,
+ "proc_s": 0.018641723999962778,
+ "fwd_s": 0.6639110739999978,
+ "reused_from": "raw"
+}

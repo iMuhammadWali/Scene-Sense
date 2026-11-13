@@ -1,0 +1,19 @@
+{
+ "req_sha": "ec0cabe95b0e6475",
+ "qid": 1613,
+ "kind": "pos",
+ "vid": "AF5BS",
+ "label": "C",
+ "t": 7.807799816131592,
+ "frame_t": 7.808,
+ "clip_sim": 0.23724094033241272,
+ "p_yes": 0.6513548646660542,
+ "logit_diff": 0.625,
+ "yes_logit": 22.75,
+ "no_logit": 22.125,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.04648122600004475,
+ "proc_s": 0.0180233160001535,
+ "fwd_s": 0.563523676999921
+}

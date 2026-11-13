@@ -1,0 +1,19 @@
+{
+ "req_sha": "b5c7e2361a6da7bc",
+ "qid": 3530,
+ "kind": "pos",
+ "vid": "SSPMK",
+ "label": "B",
+ "t": 15.803400039672852,
+ "frame_t": 15.803,
+ "clip_sim": 0.27134430408477783,
+ "p_yes": 0.7310585786300049,
+ "logit_diff": 1.0,
+ "yes_logit": 23.375,
+ "no_logit": 22.375,
+ "argmax_token": " Yes",
+ "n_input_tokens": 95,
+ "decode_s": 0.09494582279999123,
+ "proc_s": 0.02103039000002127,
+ "fwd_s": 0.651454254999976
+}

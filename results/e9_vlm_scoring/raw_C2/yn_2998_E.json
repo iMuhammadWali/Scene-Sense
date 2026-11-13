@@ -1,0 +1,19 @@
+{
+ "req_sha": "e91c809060ce2f93",
+ "qid": 2998,
+ "kind": "pos",
+ "vid": "IBWAW",
+ "label": "E",
+ "t": 11.199999809265137,
+ "frame_t": 11.2,
+ "clip_sim": 0.21666277945041656,
+ "p_yes": 0.22270013882530884,
+ "logit_diff": -1.25,
+ "yes_logit": 22.375,
+ "no_logit": 23.625,
+ "argmax_token": " No",
+ "n_input_tokens": 96,
+ "decode_s": 0.08422838533336592,
+ "proc_s": 0.01915799399989737,
+ "fwd_s": 0.589410431000033
+}

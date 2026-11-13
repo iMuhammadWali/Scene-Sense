@@ -1,0 +1,20 @@
+{
+ "req_sha": "1a9ebbd5767ac566",
+ "qid": 2017,
+ "kind": "pos",
+ "vid": "4K0BP",
+ "label": "B",
+ "t": 13.413399696350098,
+ "frame_t": 13.413,
+ "clip_sim": 0.2501264214515686,
+ "p_yes": 0.08509904500702024,
+ "logit_diff": -2.375,
+ "yes_logit": 22.0,
+ "no_logit": 24.375,
+ "argmax_token": " No",
+ "n_input_tokens": 97,
+ "decode_s": 0.040732049799999004,
+ "proc_s": 0.02535729000004494,
+ "fwd_s": 0.5630740559999481,
+ "reused_from": "raw"
+}

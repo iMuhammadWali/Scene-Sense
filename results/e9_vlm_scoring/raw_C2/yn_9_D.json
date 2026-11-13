@@ -1,0 +1,19 @@
+{
+ "req_sha": "01d9db85ce6875ce",
+ "qid": 9,
+ "kind": "pos",
+ "vid": "GBD1Y",
+ "label": "D",
+ "t": 19.58329963684082,
+ "frame_t": 19.583,
+ "clip_sim": 0.28061965107917786,
+ "p_yes": 0.7057850278370112,
+ "logit_diff": 0.875,
+ "yes_logit": 23.25,
+ "no_logit": 22.375,
+ "argmax_token": " Yes",
+ "n_input_tokens": 92,
+ "decode_s": 0.049627226749976217,
+ "proc_s": 0.01931996899998012,
+ "fwd_s": 0.6109254309999415
+}

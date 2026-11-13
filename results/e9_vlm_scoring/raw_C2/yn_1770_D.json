@@ -1,0 +1,19 @@
+{
+ "req_sha": "a2d9eb03d4b81f1d",
+ "qid": 1770,
+ "kind": "pos",
+ "vid": "MZZK2",
+ "label": "D",
+ "t": 13.968700408935547,
+ "frame_t": 13.969,
+ "clip_sim": 0.2786566913127899,
+ "p_yes": 0.5621765008857981,
+ "logit_diff": 0.25,
+ "yes_logit": 23.0,
+ "no_logit": 22.75,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.0619899970000688,
+ "proc_s": 0.01809885500006203,
+ "fwd_s": 0.555350720999968
+}

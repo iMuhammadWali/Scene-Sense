@@ -1,0 +1,19 @@
+{
+ "req_sha": "a500dbe2f75ebffa",
+ "qid": 3037,
+ "kind": "pos",
+ "vid": "T42A2",
+ "label": "A",
+ "t": 31.200000762939453,
+ "frame_t": 31.2,
+ "clip_sim": 0.29444098472595215,
+ "p_yes": 0.07585818002124356,
+ "logit_diff": -2.5,
+ "yes_logit": 22.375,
+ "no_logit": 24.875,
+ "argmax_token": " No",
+ "n_input_tokens": 98,
+ "decode_s": 0.058040472799996225,
+ "proc_s": 0.01829447000000073,
+ "fwd_s": 0.5154494419999764
+}

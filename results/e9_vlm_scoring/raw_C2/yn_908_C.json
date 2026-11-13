@@ -1,0 +1,20 @@
+{
+ "req_sha": "4519e15ae90de367",
+ "qid": 908,
+ "kind": "pos",
+ "vid": "Q38XP",
+ "label": "C",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.2574949860572815,
+ "p_yes": 0.01098694263059318,
+ "logit_diff": -4.5,
+ "yes_logit": 19.375,
+ "no_logit": 23.875,
+ "argmax_token": " No",
+ "n_input_tokens": 91,
+ "decode_s": 0.060063577999994774,
+ "proc_s": 0.01928702999998677,
+ "fwd_s": 0.7977837439999576,
+ "reused_from": "raw"
+}

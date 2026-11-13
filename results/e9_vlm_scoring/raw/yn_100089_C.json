@@ -1,0 +1,19 @@
+{
+ "req_sha": "0c8ebe889ee11a00",
+ "qid": 100089,
+ "kind": "neg",
+ "vid": "DHDCF",
+ "label": "C",
+ "t": 23.600000381469727,
+ "frame_t": 23.6,
+ "clip_sim": 0.2526971697807312,
+ "p_yes": 0.006692850924284856,
+ "logit_diff": -5.0,
+ "yes_logit": 20.5,
+ "no_logit": 25.5,
+ "argmax_token": " No",
+ "n_input_tokens": 96,
+ "decode_s": 0.028254508400004853,
+ "proc_s": 0.017349147999993875,
+ "fwd_s": 0.5718950809999797
+}

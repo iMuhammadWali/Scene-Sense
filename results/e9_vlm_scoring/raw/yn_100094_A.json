@@ -1,0 +1,19 @@
+{
+ "req_sha": "bf7960a0c7089e4b",
+ "qid": 100094,
+ "kind": "neg",
+ "vid": "KQDX6",
+ "label": "A",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.26600009202957153,
+ "p_yes": 0.6224593312018546,
+ "logit_diff": 0.5,
+ "yes_logit": 24.25,
+ "no_logit": 23.75,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.048943963400006396,
+ "proc_s": 0.018190086999993582,
+ "fwd_s": 0.6106235100000958
+}

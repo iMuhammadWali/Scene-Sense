@@ -1,0 +1,19 @@
+{
+ "req_sha": "4cb4318b6cf95c98",
+ "qid": 1404,
+ "kind": "pos",
+ "vid": "SR8IK",
+ "label": "D",
+ "t": 3.805999994277954,
+ "frame_t": 4.0,
+ "clip_sim": 0.2402539700269699,
+ "p_yes": 0.13296424019782924,
+ "logit_diff": -1.875,
+ "yes_logit": 22.5,
+ "no_logit": 24.375,
+ "argmax_token": " No",
+ "n_input_tokens": 98,
+ "decode_s": 0.060045209999998406,
+ "proc_s": 0.019331089000161228,
+ "fwd_s": 0.5371141480000006
+}

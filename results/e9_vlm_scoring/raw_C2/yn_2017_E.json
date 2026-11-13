@@ -1,0 +1,19 @@
+{
+ "req_sha": "ea45586ddccedcab",
+ "qid": 2017,
+ "kind": "pos",
+ "vid": "4K0BP",
+ "label": "E",
+ "t": 16.81679916381836,
+ "frame_t": 16.817,
+ "clip_sim": 0.23882213234901428,
+ "p_yes": 0.6513548646660542,
+ "logit_diff": 0.625,
+ "yes_logit": 23.5,
+ "no_logit": 22.875,
+ "argmax_token": " Yes",
+ "n_input_tokens": 97,
+ "decode_s": 0.06287170033328948,
+ "proc_s": 0.018173971000123856,
+ "fwd_s": 0.5421214799998779
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "9599fa560c2e69a1",
+ "qid": 652,
+ "kind": "pos",
+ "vid": "7XCAP",
+ "label": "A",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.23328833281993866,
+ "p_yes": 0.0675466911396291,
+ "logit_diff": -2.625,
+ "yes_logit": 23.75,
+ "no_logit": 26.375,
+ "argmax_token": " No",
+ "n_input_tokens": 92,
+ "decode_s": 0.07958816019997812,
+ "proc_s": 0.019425033000061376,
+ "fwd_s": 0.5921945729999152
+}

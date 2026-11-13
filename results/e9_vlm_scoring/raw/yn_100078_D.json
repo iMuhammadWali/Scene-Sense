@@ -1,0 +1,19 @@
+{
+ "req_sha": "dbe17a1604af0326",
+ "qid": 100078,
+ "kind": "neg",
+ "vid": "LFPWI",
+ "label": "D",
+ "t": 9.203300476074219,
+ "frame_t": 9.203,
+ "clip_sim": 0.19313031435012817,
+ "p_yes": 0.29421497216298875,
+ "logit_diff": -0.875,
+ "yes_logit": 22.5,
+ "no_logit": 23.375,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.04450194199998805,
+ "proc_s": 0.01711767400001918,
+ "fwd_s": 0.6127861859999939
+}

@@ -1,0 +1,20 @@
+{
+ "req_sha": "794b7cfed8586de8",
+ "qid": 2976,
+ "kind": "pos",
+ "vid": "VXEXI",
+ "label": "A",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.24268358945846558,
+ "p_yes": 0.11920292202211755,
+ "logit_diff": -2.0,
+ "yes_logit": 22.625,
+ "no_logit": 24.625,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.06363584959999571,
+ "proc_s": 0.01930133099995146,
+ "fwd_s": 0.5846776730001011,
+ "reused_from": "raw"
+}

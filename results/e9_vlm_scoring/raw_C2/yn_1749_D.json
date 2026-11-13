@@ -1,0 +1,19 @@
+{
+ "req_sha": "a8caa36ff31e2dbf",
+ "qid": 1749,
+ "kind": "pos",
+ "vid": "SM4AO",
+ "label": "D",
+ "t": 9.791399955749512,
+ "frame_t": 9.791,
+ "clip_sim": 0.2540645897388458,
+ "p_yes": 0.29421497216298875,
+ "logit_diff": -0.875,
+ "yes_logit": 24.0,
+ "no_logit": 24.875,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.0952908460000496,
+ "proc_s": 0.019677599999795348,
+ "fwd_s": 0.6057534120000128
+}

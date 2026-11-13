@@ -1,0 +1,19 @@
+{
+ "req_sha": "b1f80197e77a6a5c",
+ "qid": 1826,
+ "kind": "pos",
+ "vid": "CDULZ",
+ "label": "D",
+ "t": 10.19789981842041,
+ "frame_t": 10.198,
+ "clip_sim": 0.2782684564590454,
+ "p_yes": 0.34864513533394575,
+ "logit_diff": -0.625,
+ "yes_logit": 23.75,
+ "no_logit": 24.375,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.05486357639999824,
+ "proc_s": 0.02520253599999478,
+ "fwd_s": 0.6853998920000208
+}

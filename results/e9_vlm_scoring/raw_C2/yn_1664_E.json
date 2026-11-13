@@ -1,0 +1,19 @@
+{
+ "req_sha": "e6b3442c2d2731ee",
+ "qid": 1664,
+ "kind": "pos",
+ "vid": "OHOFG",
+ "label": "E",
+ "t": 14.371299743652344,
+ "frame_t": 14.371,
+ "clip_sim": 0.2558240294456482,
+ "p_yes": 0.9046505351008906,
+ "logit_diff": 2.25,
+ "yes_logit": 24.625,
+ "no_logit": 22.375,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.06841594325004507,
+ "proc_s": 0.024526981000008163,
+ "fwd_s": 0.7094605130000673
+}

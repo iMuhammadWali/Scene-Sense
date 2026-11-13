@@ -1,0 +1,19 @@
+{
+ "req_sha": "a7899a9bab15e1b7",
+ "qid": 100098,
+ "kind": "neg",
+ "vid": "WEW2E",
+ "label": "B",
+ "t": 5.789100170135498,
+ "frame_t": 5.789,
+ "clip_sim": 0.24232123792171478,
+ "p_yes": 0.07585818002124356,
+ "logit_diff": -2.5,
+ "yes_logit": 21.375,
+ "no_logit": 23.875,
+ "argmax_token": " No",
+ "n_input_tokens": 93,
+ "decode_s": 0.07570659920002072,
+ "proc_s": 0.020110962999979165,
+ "fwd_s": 0.6351361189999807
+}

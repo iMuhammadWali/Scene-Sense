@@ -1,0 +1,19 @@
+{
+ "req_sha": "46aeac87291e5cfe",
+ "qid": 108,
+ "kind": "pos",
+ "vid": "XMYXI",
+ "label": "E",
+ "t": 38.400001525878906,
+ "frame_t": 38.4,
+ "clip_sim": 0.2721182703971863,
+ "p_yes": 0.4073334000459302,
+ "logit_diff": -0.375,
+ "yes_logit": 23.75,
+ "no_logit": 24.125,
+ "argmax_token": " No",
+ "n_input_tokens": 94,
+ "decode_s": 0.030282001600005513,
+ "proc_s": 0.021752520000006825,
+ "fwd_s": 0.5823491360000048
+}

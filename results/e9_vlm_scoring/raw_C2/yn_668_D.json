@@ -1,0 +1,19 @@
+{
+ "req_sha": "69fcabd54a3c685e",
+ "qid": 668,
+ "kind": "pos",
+ "vid": "QJM3B",
+ "label": "D",
+ "t": 16.799999237060547,
+ "frame_t": 16.8,
+ "clip_sim": 0.23988984525203705,
+ "p_yes": 0.07585818002124356,
+ "logit_diff": -2.5,
+ "yes_logit": 21.0,
+ "no_logit": 23.5,
+ "argmax_token": " No",
+ "n_input_tokens": 92,
+ "decode_s": 0.04209617020001133,
+ "proc_s": 0.018649628000048324,
+ "fwd_s": 0.6156067439999333
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "d7417066970a1472",
+ "qid": 199,
+ "kind": "pos",
+ "vid": "OP2SS",
+ "label": "A",
+ "t": 24.0,
+ "frame_t": 24.0,
+ "clip_sim": 0.27336323261260986,
+ "p_yes": 0.9241418199787566,
+ "logit_diff": 2.5,
+ "yes_logit": 25.25,
+ "no_logit": 22.75,
+ "argmax_token": " Yes",
+ "n_input_tokens": 94,
+ "decode_s": 0.042015822999996996,
+ "proc_s": 0.02231185200002983,
+ "fwd_s": 0.7286289059999262
+}

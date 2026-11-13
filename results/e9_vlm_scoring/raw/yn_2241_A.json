@@ -1,0 +1,19 @@
+{
+ "req_sha": "6dfcfe72959e067d",
+ "qid": 2241,
+ "kind": "pos",
+ "vid": "AFIRW",
+ "label": "A",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.3011937141418457,
+ "p_yes": 0.5312093733737563,
+ "logit_diff": 0.125,
+ "yes_logit": 22.625,
+ "no_logit": 22.5,
+ "argmax_token": " Yes",
+ "n_input_tokens": 92,
+ "decode_s": 0.03611941200000501,
+ "proc_s": 0.01716386599997577,
+ "fwd_s": 0.510797000000025
+}

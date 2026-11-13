@@ -1,0 +1,19 @@
+{
+ "req_sha": "afa358ba43d9742b",
+ "qid": 1825,
+ "kind": "pos",
+ "vid": "OVFR0",
+ "label": "E",
+ "t": 14.80210018157959,
+ "frame_t": 14.802,
+ "clip_sim": 0.24642573297023773,
+ "p_yes": 0.32082130082460697,
+ "logit_diff": -0.75,
+ "yes_logit": 24.5,
+ "no_logit": 25.25,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.030485323199997083,
+ "proc_s": 0.018409317999982022,
+ "fwd_s": 0.508401579000008
+}

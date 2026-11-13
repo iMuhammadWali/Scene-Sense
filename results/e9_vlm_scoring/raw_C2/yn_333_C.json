@@ -1,0 +1,19 @@
+{
+ "req_sha": "0d277b736c757f4a",
+ "qid": 333,
+ "kind": "pos",
+ "vid": "TDAY1",
+ "label": "C",
+ "t": 8.0,
+ "frame_t": 8.0,
+ "clip_sim": 0.31345099210739136,
+ "p_yes": 0.8807970779778823,
+ "logit_diff": 2.0,
+ "yes_logit": 24.125,
+ "no_logit": 22.125,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.1022891970000425,
+ "proc_s": 0.01954207900007532,
+ "fwd_s": 0.5823662479999712
+}

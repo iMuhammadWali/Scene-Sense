@@ -1,0 +1,19 @@
+{
+ "req_sha": "dfca097130cdfa08",
+ "qid": 1730,
+ "kind": "pos",
+ "vid": "HNPX7",
+ "label": "D",
+ "t": 8.608599662780762,
+ "frame_t": 8.609,
+ "clip_sim": 0.2552192211151123,
+ "p_yes": 0.7310585786300049,
+ "logit_diff": 1.0,
+ "yes_logit": 23.0,
+ "no_logit": 22.0,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.036224014200001875,
+ "proc_s": 0.016740235000042958,
+ "fwd_s": 0.5839046149999376
+}

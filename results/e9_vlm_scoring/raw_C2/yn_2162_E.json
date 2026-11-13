@@ -1,0 +1,19 @@
+{
+ "req_sha": "56e221fdec189cdd",
+ "qid": 2162,
+ "kind": "pos",
+ "vid": "UUF84",
+ "label": "E",
+ "t": 10.0,
+ "frame_t": 10.0,
+ "clip_sim": 0.26599758863449097,
+ "p_yes": 0.5312093733737563,
+ "logit_diff": 0.125,
+ "yes_logit": 24.125,
+ "no_logit": 24.0,
+ "argmax_token": " Yes",
+ "n_input_tokens": 96,
+ "decode_s": 0.04138742933332651,
+ "proc_s": 0.018243703000052847,
+ "fwd_s": 0.5777576110001519
+}

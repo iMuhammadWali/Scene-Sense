@@ -1,0 +1,19 @@
+{
+ "req_sha": "51b5a5528e8cd8e1",
+ "qid": 203,
+ "kind": "pos",
+ "vid": "TEV5K",
+ "label": "D",
+ "t": 14.068400382995605,
+ "frame_t": 14.068,
+ "clip_sim": 0.267252653837204,
+ "p_yes": 0.2689414213699951,
+ "logit_diff": -1.0,
+ "yes_logit": 22.5,
+ "no_logit": 23.5,
+ "argmax_token": " No",
+ "n_input_tokens": 97,
+ "decode_s": 0.11921925724999483,
+ "proc_s": 0.018530274999875473,
+ "fwd_s": 0.6175852829999258
+}

@@ -1,0 +1,19 @@
+{
+ "req_sha": "04187de9336eda2f",
+ "qid": 1583,
+ "kind": "pos",
+ "vid": "BIJYC",
+ "label": "E",
+ "t": 0.0,
+ "frame_t": 0.0,
+ "clip_sim": 0.2787572741508484,
+ "p_yes": 0.053403329799824234,
+ "logit_diff": -2.875,
+ "yes_logit": 21.625,
+ "no_logit": 24.5,
+ "argmax_token": " No",
+ "n_input_tokens": 96,
+ "decode_s": 0.055622054333298365,
+ "proc_s": 0.018946527999787577,
+ "fwd_s": 0.596500707000132
+}

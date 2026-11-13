@@ -1,0 +1,19 @@
+{
+ "req_sha": "fc5c4f8be2f74e4a",
+ "qid": 3596,
+ "kind": "pos",
+ "vid": "Q948H",
+ "label": "A",
+ "t": 1.0,
+ "frame_t": 1.0,
+ "clip_sim": 0.2079196274280548,
+ "p_yes": 0.29421497216298875,
+ "logit_diff": -0.875,
+ "yes_logit": 22.0,
+ "no_logit": 22.875,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.0404446527500113,
+ "proc_s": 0.017954007000071215,
+ "fwd_s": 0.6325835960001314
+}

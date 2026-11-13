@@ -1,0 +1,20 @@
+{
+ "req_sha": "a2aa261b66cb2d77",
+ "qid": 1368,
+ "kind": "pos",
+ "vid": "ICOX1",
+ "label": "A",
+ "t": 10.994199752807617,
+ "frame_t": 10.994,
+ "clip_sim": 0.2797502875328064,
+ "p_yes": 0.0953494648991095,
+ "logit_diff": -2.25,
+ "yes_logit": 21.625,
+ "no_logit": 23.875,
+ "argmax_token": " No",
+ "n_input_tokens": 100,
+ "decode_s": 0.056986125000003086,
+ "proc_s": 0.01908333300002596,
+ "fwd_s": 0.5437286359999689,
+ "reused_from": "raw"
+}

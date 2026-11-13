@@ -1,0 +1,19 @@
+{
+ "req_sha": "4ab5dfecd742820b",
+ "qid": 2427,
+ "kind": "pos",
+ "vid": "AHBE8",
+ "label": "D",
+ "t": 2.006999969482422,
+ "frame_t": 2.0,
+ "clip_sim": 0.242925226688385,
+ "p_yes": 0.7310585786300049,
+ "logit_diff": 1.0,
+ "yes_logit": 24.5,
+ "no_logit": 23.5,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.041621157666668296,
+ "proc_s": 0.024529211000071882,
+ "fwd_s": 0.5614438279999376
+}

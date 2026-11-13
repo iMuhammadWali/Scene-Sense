@@ -1,0 +1,20 @@
+{
+ "req_sha": "acb75ba4b6c2c4d6",
+ "qid": 436,
+ "kind": "pos",
+ "vid": "G8NEV",
+ "label": "B",
+ "t": 25.61520004272461,
+ "frame_t": 25.615,
+ "clip_sim": 0.22997194528579712,
+ "p_yes": 0.2689414213699951,
+ "logit_diff": -1.0,
+ "yes_logit": 21.875,
+ "no_logit": 22.875,
+ "argmax_token": " No",
+ "n_input_tokens": 95,
+ "decode_s": 0.07136311899998873,
+ "proc_s": 0.024916557999858924,
+ "fwd_s": 0.6342190400000618,
+ "reused_from": "raw"
+}

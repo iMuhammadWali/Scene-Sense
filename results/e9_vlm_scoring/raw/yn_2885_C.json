@@ -1,0 +1,19 @@
+{
+ "req_sha": "93ff4cff131dbe8b",
+ "qid": 2885,
+ "kind": "pos",
+ "vid": "1GGRY",
+ "label": "C",
+ "t": 3.6082000732421875,
+ "frame_t": 4.0,
+ "clip_sim": 0.2640881836414337,
+ "p_yes": 0.7981867777396212,
+ "logit_diff": 1.375,
+ "yes_logit": 24.125,
+ "no_logit": 22.75,
+ "argmax_token": " Yes",
+ "n_input_tokens": 93,
+ "decode_s": 0.034458749200007334,
+ "proc_s": 0.017805436999992708,
+ "fwd_s": 0.5776563900000156
+}
