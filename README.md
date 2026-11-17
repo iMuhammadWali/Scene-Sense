@@ -23,3 +23,7 @@ python -m pytest tests -q           # unit tests
 ```
 Each step writes `results/<id>/DONE` and resumes from shards on rerun. Set `SSEVAL_TEAM_TEXT=1` to use the team's `encode_text`
 unchanged (double text projection under transformers 4.57 - see `src/sseval/data.py`).
+
+## Dataset
+
+Charades-STA (test split). Download links and a 2.1 GB selective download script: [docs/DATASET.md](docs/DATASET.md).
