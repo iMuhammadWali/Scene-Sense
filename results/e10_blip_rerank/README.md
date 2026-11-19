@@ -30,7 +30,7 @@ Oracle caps what re-ranking can add: fusion recovers ~9% of the 35-point gap bet
 
 **Comparison with E1 (48.2% Hit@1).** CLIP-order Hit@1 here is 48.2% [46.5, 49.8] - the same number as E1's for tau=0.95 (E1 reports Hit@1 = centre of the top-1 hit in GT, which is the first group's best hit, the same item). Protocol differences, none affecting Hit@1:
 E1 groups the TOP-5 hits (so it sees <=5 groups from 5 hits, often fewer), this run takes the top-20 hits -> groups -> <=5 groups (E8 `build_candidates`), so more distinct groups survive (oracle 83.1% vs E1's Hit@5 81.6%, which counts hits, not groups); Hit@1 only depends on the best hit, hence equal. E1's R@1 IoU0.5 (7.8%) uses the one group's span around the top-1 hit with a ~1 s span from the pruned index;
-the group-span R@1 here (25.9%) uses the span of the group chosen from the larger 20-hit pool (larger spans), so it is NOT comparable to E1's 7.8 - use the 8 s fixed-window column (41.7%) for localization (E7 M2).
+the group-span R@1 here (25.9%) differs from E1's 7.8% (likely because groups are formed from 20 hits instead of 5, so spans are larger - not verified), so it is NOT comparable to E1's number - use the 8 s fixed-window column (41.7%) for localization (E7 M2).
 
 ## Headline B - the 300+100 sample (REAL groups, K=1, 384 px)
 | method (n=300) | Hit@1 | Hit@3 | oracle | R@1 IoU0.5 (8 s) | paired dHit@1 vs CLIP |
@@ -40,7 +40,7 @@ the group-span R@1 here (25.9%) uses the span of the group chosen from the large
 | z-fusion (w=1, first half) | 53.3 [47.7, 58.7] | 79.3 | 83.7 | 47.3 [42.0, 53.0] | +4.0 [0.0, 8.3] (in-sample) |
 | rank-fusion (w=4) | 52.3 [46.7, 57.7] | 79.7 | 83.7 | 45.7 | +3.0 [-2.7, 8.7] |
 Held-out half (150 positives, w from the other half): CLIP 49.3 [41.3, 57.3], BLIP 49.3, z-fusion 48.7, rank-fusion 49.3 -> **no gain on the held-out half at K=1** (CIs +-8). The full-set run (A) is the better-powered estimate (+3.0 [1.9, 4.2]).
-Padded variant (5 candidates incl. pads; oracle 91.3%): CLIP 49.3, BLIP 53.7 [48.0, 59.0], z-fusion 55.7 [50.0, 61.0] (+6.3 [2.0, 10.7], in-sample), rank-fusion 54.0; held-out half 49.3 / 50.7 / 49.3 / 50.7. DeepSeek (E8 C2K3, padded candidates) = 62.0 [56.7, 67.0]; fused BLIP is -6.3 [-12.7, 0.0] below it (BLIP-only -9 [-15, -2]).
+Padded variant (5 candidates incl. pads; oracle 91.3%): CLIP 49.3, BLIP 53.7 [48.0, 59.0], z-fusion 55.7 [50.0, 61.0] (+6.3 [2.0, 10.7], in-sample), rank-fusion 54.0; held-out half 49.3 / 50.7 / 49.3 / 50.7. DeepSeek (E8 C2K3, padded candidates) = 62.0 [56.7, 67.0]; fused BLIP is -6.3 [-12.7, 0.0] below it (BLIP-only -8.3 [-14.7, -1.7]).
 
 ## Frames per candidate, resolution, query text, top-10 (first 150 positives unless noted, REAL groups; Hit@1 %)
 | config | n | CLIP | BLIP only | z-fusion (w on first half of the subset) | dHit@1 fusion vs CLIP |
