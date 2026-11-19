@@ -44,7 +44,7 @@ def test_choose_w_picks_best_and_ties_smaller():
     itm = np.array([[0.0, 1.0, 0.5]] * 4)
     hit = np.array([[0, 1, 0]] * 4, dtype=float)               # ITM's pick (col 1) is correct
     w, sc = R.choose_w(clip, itm, hit, [0.0, 0.1, 1.0, 5.0])
-    assert sc[0.0] == 0.0 and sc[5.0] == 1.0 and w == 1.0 or w == 5.0
+    assert sc[0.0] == 0.0 and sc[5.0] == 1.0
     assert sc[w] == 1.0 and w == min(k for k, v in sc.items() if v == 1.0)
     w2, _ = R.choose_w(clip, itm, hit, [0.0, 5.0], idx=[0, 1])
     assert w2 == 5.0
