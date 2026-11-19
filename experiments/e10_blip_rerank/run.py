@@ -10,7 +10,8 @@ Frames are decoded from the raw video with OpenCV at the needed timestamps (peak
 Stages (each resumable; scores are cached per query in <out>/raw/<kind>_<qid>.json under key "res|variant|cand|offset"):
   s1  384 px, candidates 0-4, offset 0 (K=1), all queries            [main result]
   s2  384 px, candidates 0-4, offsets -1,+1 (-> K=3), first 150 pos + 50 neg
-  s3  288 px, candidates 0-4, offset 0, first 150 pos + 50 neg       [resolution ablation]
+  s3  288 px, candidates 0-4, offset 0, 300 pos + 50 neg             [resolution ablation / fixed w at 288]
+  s5  FULL test set (3,720 queries), REAL groups only (<=5), K=1 peak frame; see full.py (--res 384|288)
   s4  384 px, candidates 5-9, offset 0, first 150 pos                [top-10 re-ranking]
 Both query variants ("asis", "strip" = leading person / a person removed) are scored from the same image embeddings.
 Usage:  run.py [--stages s1,s2,s3,s4] [--limit N] [--aggregate-only] [--timing]
@@ -33,7 +34,7 @@ VARIANTS = ("asis", "strip")
 STAGES = {                                    # name: (res, cand range, offsets, n_pos, n_neg)
     "s1": (384, range(0, 5), (0.0,), 300, 100),
     "s2": (384, range(0, 5), (-1.0, 1.0), 150, 50),
-    "s3": (288, range(0, 5), (0.0,), 150, 50),
+    "s3": (288, range(0, 5), (0.0,), 300, 50),
     "s4": (384, range(5, 10), (0.0,), 150, 0),
 }
 
@@ -203,17 +204,32 @@ def main():
     ap.add_argument("--aggregate-only", action="store_true")
     ap.add_argument("--timing", action="store_true")
     ap.add_argument("--out", default=None)
+    ap.add_argument("--res", type=int, default=384, help="image size for s5")
+    ap.add_argument("--s5-limit", type=int, default=None, help="s5: only the first N queries (quick test)")
     a = ap.parse_args()
+    if "s5" in a.stages.split(",") and not a.aggregate_only and not a.timing:
+        pass
     out = Path(a.out) if a.out else C.results_dir(EXP)
     out.mkdir(parents=True, exist_ok=True)
+    stages = a.stages.split(",")
+    if a.aggregate_only and stages == ["s5"]:
+        sys.path.insert(0, str(Path(__file__).parent)); import full
+        full.aggregate_s5(out, a.res); return
+    if stages == ["s5"] and not a.timing:                  # s5 needs no 400-query plans
+        sys.path.insert(0, str(Path(__file__).parent)); import full
+        full.run_s5(Blip(), out, a.res, a.s5_limit, decode_frames); full.aggregate_s5(out, a.res); return
     e8, items, plans = build_items(a.limit)
     print(f"[e10] {sum(i['kind'] == 'pos' for i in items)} pos / {sum(i['kind'] == 'neg' for i in items)} neg queries; out={out}", flush=True)
     if not a.aggregate_only:
         blip = Blip()
         if a.timing:
             run_timing(blip, items, plans, out); return
-        for s in a.stages.split(","):
-            run_stage(s, blip, items, plans, out)
+        for s in stages:
+            if s == "s5":
+                sys.path.insert(0, str(Path(__file__).parent)); import full
+                full.run_s5(blip, out, a.res, a.s5_limit, decode_frames)
+            else:
+                run_stage(s, blip, items, plans, out)
     runutil.write_meta(out, limit=a.limit, model=MODEL_ID, seed=SEED, stages=a.stages)
     from importlib import import_module
     sys.path.insert(0, str(Path(__file__).parent))
