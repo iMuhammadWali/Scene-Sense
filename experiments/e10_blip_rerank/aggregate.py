@@ -33,6 +33,10 @@ class Data:
             setattr(self, f"t_{k}", t); setattr(self, f"clip_{k}", sim)
         P = self.q["pos"]
         self.gs = np.array([x["gs"] for x in P]); self.ge = np.array([x["ge"] for x in P]); self.dur = np.array([p["dur"] for p in self.pl["pos"]])
+        self.real = np.zeros((len(P), NC), bool)                 # True where the candidate is a real temporal group (cand_src == 'group')
+        for i, p in enumerate(self.pl["pos"]):
+            for j, c in enumerate(p["cands"][:NC]):
+                self.real[i, j] = c.get("src") == "group"
         self.hit = ((self.t_pos >= self.gs[:, None]) & (self.t_pos <= self.ge[:, None])).astype(float)
         self.hit[np.isnan(self.t_pos)] = np.nan
         self.iou = R.window_iou(self.t_pos, self.gs, self.ge, self.dur, 8.0)
@@ -83,7 +87,8 @@ def evaluate(D, name_scores: dict, rows, tag, add, ref="clip"):
     for m, S in name_scores.items():
         ch = np.argmax(np.where(np.isnan(S[rows]), -np.inf, S[rows]), axis=1)
         v = method_stats(D, ch, rows); v["hit3"] = top3_hit(D, S, rows); vecs[m] = v
-    hit5 = np.nan_to_num(D.hit[rows], nan=0).max(axis=1)
+    avail_c = ~np.isnan(name_scores[ref][rows]) if ref in name_scores else np.ones((n, D.hit.shape[1]), bool)
+    hit5 = np.nan_to_num(np.where(avail_c, D.hit[rows], 0.0), nan=0).max(axis=1)      # oracle over the candidates actually present
     for m, v in vecs.items():
         for met in ("hit1", "hit3", "r1", "iou"):
             lo, hi = ci(v[met], idx)
@@ -123,11 +128,15 @@ def aggregate(out: Path, items, plans):
     info = {k: len(v) for k, v in avail.items()}
     print("[e10] rows with complete scores:", info, flush=True)
 
-    def run_config(cfg, S, rows, cwidth, label=None, dev_split=True):
+    def run_config(cfg, S, rows, cwidth, real=False):
         """Evaluate CLIP, BLIP-only, fused (z, rank) on `rows` for matrices truncated to cwidth candidates."""
         if len(rows) < 8:
             return None
-        c = np.where(np.arange(NC)[None, :] < cwidth, clip, np.nan); s = np.where(np.arange(NC)[None, :] < cwidth, S, np.nan)
+        if real:
+            cfg = cfg + "_real"
+
+        keep = (np.arange(NC)[None, :] < cwidth) & (D.real if real else True)
+        c = np.where(keep, clip, np.nan); s = np.where(keep, S, np.nan)
         ms = {"clip": c, "blip": s}
         for w in WS:
             ms[f"fuse_z_w{w:g}"] = R.fuse_z(c, s, w)
@@ -153,16 +162,24 @@ def aggregate(out: Path, items, plans):
     results = {}
     main_rows = avail["itm_K1_asis"]
     results["K1_asis"] = run_config("K1_asis", mats["itm_K1_asis"], main_rows, 5)
+    results["K1_asis_real"] = run_config("K1_asis", mats["itm_K1_asis"], main_rows, 5, real=True)
     results["K1_strip"] = run_config("K1_strip", mats["itm_K1_strip"], avail["itm_K1_strip"], 5)
+    results["K1_strip_real"] = run_config("K1_strip", mats["itm_K1_strip"], avail["itm_K1_strip"], 5, real=True)
     for nm in ("K3max_asis", "K3mean_asis", "K3max_strip"):
         results[nm] = run_config(nm, mats[f"itm_{nm}"], avail[f"itm_{nm}"], 5)
+        results[nm + "_real"] = run_config(nm, mats[f"itm_{nm}"], avail[f"itm_{nm}"], 5, real=True)
     # same-subset references for the K=3 / 288 / top-10 comparisons: K=1 on the same rows
     sub = avail["itm_K3max_asis"]
     results["K1_asis_on_K3rows"] = run_config("K1_asis_on_K3rows", mats["itm_K1_asis"], sub, 5)
+    results["K1_asis_on_K3rows_real"] = run_config("K1_asis_on_K3rows", mats["itm_K1_asis"], sub, 5, real=True)
     results["K1_288_asis"] = run_config("K1_288_asis", mats["itm_K1_288_asis"], avail["itm_K1_288_asis"], 5)
+    results["K1_288_asis_real"] = run_config("K1_288_asis", mats["itm_K1_288_asis"], avail["itm_K1_288_asis"], 5, real=True)
     results["K1_asis_on_288rows"] = run_config("K1_asis_on_288rows", mats["itm_K1_asis"], avail["itm_K1_288_asis"], 5)
+    results["K1_asis_on_288rows_real"] = run_config("K1_asis_on_288rows", mats["itm_K1_asis"], avail["itm_K1_288_asis"], 5, real=True)
     results["top10_asis"] = run_config("top10_asis", mats["itm_K1_top10_asis"], avail["itm_K1_top10_asis"], 10)
+    results["top10_asis_real"] = run_config("top10_asis", mats["itm_K1_top10_asis"], avail["itm_K1_top10_asis"], 10, real=True)
     results["K1_asis_top5_on_top10rows"] = run_config("K1_asis_top5_on_top10rows", mats["itm_K1_asis"], avail["itm_K1_top10_asis"], 5)
+    results["K1_asis_top5_on_top10rows_real"] = run_config("K1_asis_top5_on_top10rows", mats["itm_K1_asis"], avail["itm_K1_top10_asis"], 5, real=True)
 
     # DeepSeek (E8 C2K3) on the same queries, paired
     e8 = pd.read_csv(C.RESULTS_DIR / "e8_slowpath" / "per_query.csv"); e8 = e8[(e8.cond == "C2K3") & (e8.kind == "pos")].set_index("qid")
@@ -230,11 +247,12 @@ def per_query(out, D, mats, negs, results):
     for i, x in enumerate(D.q["pos"]):
         r = dict(kind="pos", qid=x["qid"], vid=x["vid"], caption=x["caption"], gt_s=x["gs"], gt_e=x["ge"], n_cands=int(np.sum(~np.isnan(D.t_pos[i]))),
                  cand_t=";".join(f"{t:.2f}" for t in D.t_pos[i] if not np.isnan(t)), clip_sim=";".join(f"{s:.4f}" for s in D.clip_pos[i] if not np.isnan(s)),
+                 cand_src=";".join("group" if D.real[i, j] else "pad" for j in range(NC) if not np.isnan(D.t_pos[i, j])),
                  cand_hit=";".join(str(int(h)) for h in D.hit[i] if not np.isnan(h)), cand_iou8s=";".join(f"{u:.3f}" for u in D.iou[i] if not np.isnan(u)))
         for nm, M in mats.items():
             if not np.isnan(M[i]).all():
                 r[nm + "_logit"] = ";".join(f"{v:.3f}" for v in M[i] if not np.isnan(v))
-        for cfg in ("K1_asis", "K3max_asis"):
+        for cfg in ("K1_asis", "K3max_asis", "K1_asis_real", "K3max_asis_real"):
             if results.get(cfg):
                 ms = results[cfg][0]
                 for m in ("blip", "fuse_z_devw", "fuse_rank_devw"):
@@ -269,19 +287,21 @@ def cost_table(out: Path, sm: pd.DataFrame):
         if tm is None: return np.nan, np.nan
         g = tm[(tm.K == K) & (tm.res == res)]
         return float(g.itm_s.mean()), float(g.decode_s.mean())
-    for name, (cfg, m, K) in {"fast path (CLIP only)": ("K1_asis", "clip", 0), "fast + BLIP-ITM K=1, fused z": ("K1_asis", "fuse_z_devw", 1),
-                              "fast + BLIP-ITM K=1, BLIP order": ("K1_asis", "blip", 1), "fast + BLIP-ITM K=3 (max), fused z": ("K3max_asis", "fuse_z_devw", 3),
-                              "fast + BLIP-ITM K=3 (max), BLIP order": ("K3max_asis", "blip", 3)}.items():
-        h = hit(cfg, m)
-        itm, dec = blip_s(K) if K else (0.0, 0.0)
-        rows.append(dict(system=name, n=int(sm[(sm.subset == f"{cfg}|all") & (sm.method == m) & (sm.metric == "hit1")].n.iloc[0]) if not np.isnan(h[0]) else 0,
-                         hit1=h[0], lo=h[1], hi=h[2], added_itm_s=itm, added_decode_s=dec, added_total_s=(itm + dec) if K else 0.0,
-                         base_retrieval_s=retrieval, base_pipeline_wall_s=wall))
-    rows.append(dict(system="DeepSeek slow path (E8 C2K3, API)", n=300, hit1=float(e8s.hit1), lo=float(e8s.hit1_lo), hi=float(e8s.hit1_hi), added_itm_s=np.nan,
+    for suffix, tagname in (("_real", "[real groups]"), ("", "[padded to 5]")):
+        for name, (cfg, m, K) in {"fast path (CLIP only)": ("K1_asis", "clip", 0), "fast + BLIP-ITM K=1, fused z": ("K1_asis", "fuse_z_devw", 1),
+                                  "fast + BLIP-ITM K=1, BLIP order": ("K1_asis", "blip", 1), "fast + BLIP-ITM K=3 (max), fused z": ("K3max_asis", "fuse_z_devw", 3),
+                                  "fast + BLIP-ITM K=3 (max), BLIP order": ("K3max_asis", "blip", 3)}.items():
+            cfg = cfg + suffix
+            h = hit(cfg, m)
+            itm, dec = blip_s(K) if K else (0.0, 0.0)
+            rows.append(dict(system=f"{name} {tagname}", n=int(sm[(sm.subset == f"{cfg}|all") & (sm.method == m) & (sm.metric == "hit1")].n.iloc[0]) if not np.isnan(h[0]) else 0,
+                             hit1=h[0], lo=h[1], hi=h[2], added_itm_s=itm, added_decode_s=dec, added_total_s=(itm + dec) if K else 0.0,
+                             base_retrieval_s=retrieval, base_pipeline_wall_s=wall))
+    rows.append(dict(system="DeepSeek slow path (E8 C2K3, API) [padded to 5]", n=300, hit1=float(e8s.hit1), lo=float(e8s.hit1_lo), hi=float(e8s.hit1_hi), added_itm_s=np.nan,
                      added_decode_s=np.nan, added_total_s=float(e8s.latency_mean_s), base_retrieval_s=retrieval, base_pipeline_wall_s=wall))
     h9 = e9s[(e9s.set == "full") & (e9s.section == "ranking") & (e9s.name == "vlm_only") & (e9s.metric == "hit1")]
     if len(h9):
-        rows.append(dict(system="SmolVLM2-500M yes/no re-rank (E9 C2, local)", n=300, hit1=float(h9.value.iloc[0]), lo=float(h9.lo.iloc[0]), hi=float(h9.hi.iloc[0]),
+        rows.append(dict(system="SmolVLM2-500M yes/no re-rank (E9 C2, local) [padded to 5]", n=300, hit1=float(h9.value.iloc[0]), lo=float(h9.lo.iloc[0]), hi=float(h9.hi.iloc[0]),
                          added_total_s=2.97 + 0.10 + 0.29, base_retrieval_s=retrieval, base_pipeline_wall_s=wall))
     pd.DataFrame(rows).to_csv(out / "cost_table.csv", index=False)
 
@@ -293,9 +313,11 @@ def make_figure(out: Path, sm: pd.DataFrame):
     def g(cfg, m, tag="all", metric="hit1"):
         r = sm[(sm.subset == f"{cfg}|{tag}") & (sm.method == m) & (sm.metric == metric)]
         return (100 * float(r.value.iloc[0]), 100 * float(r.lo.iloc[0]), 100 * float(r.hi.iloc[0])) if len(r) else None
-    spec = [("Fast path\n(CLIP)", g("K1_asis", "clip"), "#9aa0a6"), ("BLIP-ITM\nonly (K=1)", g("K1_asis", "blip"), "#E69F00"),
-            ("CLIP + BLIP\nz-fusion (K=1)", g("K1_asis", "fuse_z_devw"), "#0072B2"), ("CLIP + BLIP\nrank-fusion (K=1)", g("K1_asis", "fuse_rank_devw"), "#56B4E9"),
-            ("DeepSeek\n(E8 C2K3)", g("K1_asis", "deepseek_C2K3"), "#009E73"), ("Oracle\nbest of 5", g("K1_asis", "oracle_best_of_5"), "#d8d8d8")]
+    R_ = "K1_asis_real"
+    spec = [("Fast path\n(CLIP)", g(R_, "clip"), "#9aa0a6"), ("BLIP-ITM\nonly (K=1)", g(R_, "blip"), "#E69F00"),
+            ("CLIP + BLIP\nz-fusion (K=1)", g(R_, "fuse_z_devw"), "#0072B2"), ("CLIP + BLIP\nrank-fusion (K=1)", g(R_, "fuse_rank_devw"), "#56B4E9"),
+            ("Oracle\n(real groups)", g(R_, "clip", metric="hit5_cand_recall"), "#d8d8d8"),
+            ("DeepSeek (E8,\npadded, ref.)", g("K1_asis", "deepseek_C2K3"), "#009E73")]
     spec = [s for s in spec if s[1]]
     fig, axes = plt.subplots(1, 2, figsize=(13.5, 4.9), gridspec_kw=dict(width_ratios=[1.25, 1]))
     ax = axes[0]
@@ -303,16 +325,16 @@ def make_figure(out: Path, sm: pd.DataFrame):
         ax.bar(k, v, 0.62, color=c, yerr=[[v - lo], [hi - v]], capsize=4, error_kw=dict(lw=1, color="#333")); ax.text(k, hi + 1.5, f"{v:.0f}", ha="center", fontsize=9)
     ax.set_xticks(range(len(spec))); ax.set_xticklabels([s[0] for s in spec], fontsize=8); ax.set_ylim(0, 105); ax.set_ylabel("Hit@1 (%), 95% bootstrap CI")
     n = int(sm[(sm.subset == "K1_asis|all") & (sm.method == "clip") & (sm.metric == "hit1")].n.iloc[0])
-    ax.set_title(f"Hit@1 by method, pruned index, n={n} positives\n(fusion weight w chosen on the first half of the sample)", fontsize=10)
+    ax.set_title(f"Hit@1 by method, REAL groups only (no padding), n={n} positives\n(fusion w chosen on the first half; DeepSeek bar used padded candidates)", fontsize=10)
     ax.grid(axis="y", alpha=0.25); ax.spines[["top", "right"]].set_visible(False)
     ax = axes[1]
     col = {"fast path (CLIP only)": "#9aa0a6", "DeepSeek": "#009E73", "SmolVLM2": "#CC79A7", "K=1": "#0072B2", "K=3": "#56B4E9"}
     for _, r in ct.iterrows():
-        if np.isnan(r.hit1): continue
+        if np.isnan(r.hit1) or "[padded" in r.system and "DeepSeek" not in r.system and "Smol" not in r.system: continue
         x = r.base_retrieval_s + (0 if np.isnan(r.added_total_s) else r.added_total_s)
         c = next((v for k, v in col.items() if k in r.system), "#444")
         ax.errorbar(x, 100 * r.hit1, yerr=[[100 * (r.hit1 - r.lo)], [100 * (r.hi - r.hit1)]], fmt="o", color=c, capsize=3)
-        ax.annotate(r.system.replace(" (E8 C2K3, API)", "").replace(" (E9 C2, local)", ""), (x, 100 * r.hit1), textcoords="offset points", xytext=(6, -10), fontsize=7.5)
+        ax.annotate(r.system.replace(" (E8 C2K3, API)", "").replace(" (E9 C2, local)", "").replace(" [real groups]", ""), (x, 100 * r.hit1), textcoords="offset points", xytext=(6, -10), fontsize=7.5)
     ax.set_xscale("log"); ax.set_xlabel("query latency incl. added re-ranker/VLM (s, log), 2 CPU threads"); ax.set_ylabel("Hit@1 (%)")
     ax.set_title("Hit@1 vs latency (retrieval core 0.016 s + added stage)", fontsize=10); ax.grid(alpha=0.25); ax.spines[["top", "right"]].set_visible(False)
     fig.tight_layout(); fig.savefig(C.RESULTS_DIR / "figures" / "e10_blip_rerank.png", dpi=150); plt.close(fig)
