@@ -123,7 +123,8 @@ def aggregate(out: Path, items, plans):
     def mask5(M):
         return np.where(np.arange(NC)[None, :] < 5, M, np.nan)
     avail = {k: complete_rows(top5_clip, mask5(v)) for k, v in mats.items() if k != "itm_K1_top10_asis"}
-    avail["itm_K1_top10_asis"] = complete_rows(clip10, mats["itm_K1_top10_asis"])
+    # top-10: only the first 150 positives were scored for candidates 5-9 (s4); queries with <=5 candidates elsewhere are NOT included (would bias the subset)
+    avail["itm_K1_top10_asis"] = np.intersect1d(complete_rows(clip10, mats["itm_K1_top10_asis"]), np.arange(150))
     D_hit_full = D.hit
     info = {k: len(v) for k, v in avail.items()}
     print("[e10] rows with complete scores:", info, flush=True)
@@ -315,7 +316,7 @@ def make_figure(out: Path, sm: pd.DataFrame):
         return (100 * float(r.value.iloc[0]), 100 * float(r.lo.iloc[0]), 100 * float(r.hi.iloc[0])) if len(r) else None
     R_ = "K1_asis_real"
     spec = [("Fast path\n(CLIP)", g(R_, "clip"), "#9aa0a6"), ("BLIP-ITM\nonly (K=1)", g(R_, "blip"), "#E69F00"),
-            ("CLIP + BLIP\nz-fusion (K=1)", g(R_, "fuse_z_devw"), "#0072B2"), ("CLIP + BLIP\nrank-fusion (K=1)", g(R_, "fuse_rank_devw"), "#56B4E9"),
+            ("CLIP+BLIP\nz-fusion", g(R_, "fuse_z_devw"), "#0072B2"), ("CLIP+BLIP\nrank-fusion", g(R_, "fuse_rank_devw"), "#56B4E9"),
             ("Oracle\n(real groups)", g(R_, "clip", metric="hit5_cand_recall"), "#d8d8d8"),
             ("DeepSeek (E8,\npadded, ref.)", g("K1_asis", "deepseek_C2K3"), "#009E73")]
     spec = [s for s in spec if s[1]]

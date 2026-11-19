@@ -1,14 +1,14 @@
 {
-  "date": "2026-11-19T11:52:35",
-  "git": "9b0933b",
+  "date": "2026-11-19T14:05:53",
+  "git": "813db34",
   "hardware": {
     "platform": "Linux-6.18.44-fc-v653-x86_64-with-glibc2.39",
     "python": "3.13.18",
     "cpu_count": 2,
     "loadavg": [
-      2.0126953125,
-      2.00927734375,
-      1.931640625
+      2.09912109375,
+      2.04931640625,
+      2.0146484375
     ],
     "device": "cpu",
     "torch": "2.15.0+cpu",
@@ -20,5 +20,5 @@
   "limit": null,
   "model": "Salesforce/blip-itm-base-coco",
   "seed": 8,
-  "stages": "s3"
+  "stages": "s2,s4"
 }
