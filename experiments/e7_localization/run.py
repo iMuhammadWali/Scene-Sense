@@ -97,7 +97,7 @@ def run_shards(vids, by_vid, QE, out, force):
                 df["index"] = iname; df["vid"] = v; df["n_kept"] = sel.n_kept; df["n_frames"] = len(emb)
                 parts.append(df)
         pq = pd.concat(parts, ignore_index=True)
-        pq.to_parquet(f.with_suffix(".tmp"), index=False); f.with_suffix(".tmp").rename(f)
+        pq.to_parquet(f.with_suffix(".tmp"), index=False); f.with_suffix(".tmp").replace(f)
         print(f"[e7] {f.name}: {min(si + SHARD_N, len(vids))}/{len(vids)} videos, {time.time() - t0:.0f}s", flush=True)
 
 def metrics_for(pq, q, idx):
@@ -131,7 +131,7 @@ def aggregate(out, df, split, vids):
     dev = pd.DataFrame(dev_rows)
     cols = ["index", "method", "config", "split", "n_queries", "hit1", "hit1_lo", "hit1_hi", "hit5", "r1_iou03", "r1_iou05", "r1_iou05_lo", "r1_iou05_hi",
             "r1_iou07", "miou", "r5_iou05", "pred_len_mean_s"]
-    dev[cols].to_csv(out / "dev_grid.csv", index=False)
+    dev[cols].to_csv(out / "dev_grid.csv", index=False, encoding="utf-8")
     best, rows = {}, []
     for i in INDEXES:
         d = dev[dev["index"] == i]
@@ -147,15 +147,15 @@ def aggregate(out, df, split, vids):
                 rows.append(get(i, b.config, sp))
         best[f"{i}|M5"]["z_scored_variant_of"] = win
     held = pd.DataFrame(rows); held["label"] = held.method.map(METHOD_LABEL)
-    held[["index", "method", "label", "config", "split"] + cols[4:]].to_csv(out / "heldout.csv", index=False)
-    (out / "best_configs.json").write_text(json.dumps(best, indent=2))
+    held[["index", "method", "label", "config", "split"] + cols[4:]].to_csv(out / "heldout.csv", index=False, encoding="utf-8")
+    (out / "best_configs.json").write_text(json.dumps(best, indent=2), encoding="utf-8")
     # sanity: z-scored M3 must equal M3; M0 vs SUMMARY.md
     chk = []
     for i in INDEXES:
         a = get(i, "M3[w=2,a=0.5]", "ALL"); b = get(i, "M5/M3[w=2,a=0.5]", "ALL")
         chk.append(f"{i}: M3 vs z-scored M3 (w=2,a=0.5) R1@0.5 {a['r1_iou05']:.4f} vs {b['r1_iou05']:.4f}")
         m0 = get(i, "M0", "ALL"); chk.append(f"{i}: M0 ALL Hit@1={m0['hit1']:.3f} R1@0.5={m0['r1_iou05']:.3f} mIoU={m0['miou']:.3f} (SUMMARY: full 0.486/0.024/0.097, cos 0.482/0.078/0.150)")
-    (out / "sanity.txt").write_text("\n".join(chk) + "\n"); print("SANITY\n  " + "\n  ".join(chk))
+    (out / "sanity.txt").write_text("\n".join(chk) + "\n", encoding="utf-8"); print("SANITY\n  " + "\n  ".join(chk))
     return dev, held, best, sets
 
 def main():
@@ -164,7 +164,7 @@ def main():
     df = data.load_annotations(); QE = data.load_query_emb(df)
     allv = data.list_available_videos(df)
     split = make_split(allv)
-    (out / "split.json").write_text(json.dumps(split))
+    (out / "split.json").write_text(json.dumps(split), encoding="utf-8")
     vids = data.select_videos(df, a.limit)
     by_vid = {v: g for v, g in df.groupby("vid")}
     print(f"[e7] {len(vids)} videos ({len(allv)} available; dev {len(split['dev'])}, held-out {len(split['heldout'])})", flush=True)

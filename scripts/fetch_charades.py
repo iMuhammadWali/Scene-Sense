@@ -1,6 +1,9 @@
+"""Usage: python scripts/fetch_charades.py <test.parquet> <videos_dir>   (downloads only the needed videos; resumable)"""
 import sys, os, time, pandas as pd
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 from remotezip import RemoteZip
 ann, out = sys.argv[1], sys.argv[2]
+os.makedirs(out, exist_ok=True)
 vids = sorted(pd.read_parquet(ann)['video'].unique())
 URL='https://ai2-public-datasets.s3-us-west-2.amazonaws.com/charades/Charades_v1_480.zip'
 done=0; t=time.time()

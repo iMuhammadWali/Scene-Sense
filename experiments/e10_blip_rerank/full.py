@@ -65,8 +65,8 @@ def run_s5(blip, out: Path, res: int, limit, decode):
         for p in todo:
             ts = [R.frame_times(c["t"], p["dur"])[0] for c in p["cands"]]
             lg, _, _, _ = blip.score([frames[t] for t in ts], [p["caption"]], res)
-            tmp = d / f"{p['qid']}.tmp"; tmp.write_text(json.dumps(dict(vid=v, t=ts, logit=[float(x) for x in lg[0]])))
-            tmp.rename(d / f"{p['qid']}.json"); scored += 1; done_q += 1
+            tmp = d / f"{p['qid']}.tmp"; tmp.write_text(json.dumps(dict(vid=v, t=ts, logit=[float(x) for x in lg[0]])), encoding="utf-8")
+            tmp.replace(d / f"{p['qid']}.json"); scored += 1; done_q += 1
         if (k + 1) % 20 == 0:
             el = time.time() - t0
             print(f"[s5] {k + 1}/{len(by_vid)} videos, {done_q}/{len(plans)} queries ({scored} scored this run), {el:.0f}s", flush=True)
@@ -75,7 +75,7 @@ def run_s5(blip, out: Path, res: int, limit, decode):
 # ---------------------------------------------------------------------------------------------------------------- aggregation
 def fixed_weights(out: Path, res: int):
     """Fusion weights fixed from the 300-query sample at the SAME resolution (first-half-chosen w, real-group config)."""
-    sm = pd.read_csv(out / "summary.csv")
+    sm = pd.read_csv(out / "summary.csv", encoding="utf-8")
     cfg = "K1_asis_real" if res == 384 else "K1_288_asis_real"
     w = {}
     for m in ("fuse_z_devw", "fuse_rank_devw"):
@@ -93,7 +93,7 @@ def aggregate_s5(out: Path, res: int):
     clip = np.full((n, NC), np.nan); itm = np.full((n, NC), np.nan); t = np.full((n, NC), np.nan)
     sp_s = np.full((n, NC), np.nan); sp_e = np.full((n, NC), np.nan)
     for i, p in enumerate(done):
-        r = json.loads((d / f"{p['qid']}.json").read_text())
+        r = json.loads((d / f"{p['qid']}.json").read_text(encoding="utf-8"))
         for j, c in enumerate(p["cands"]):
             clip[i, j], t[i, j], sp_s[i, j], sp_e[i, j] = c["sim"], c["t"], c["span_s"], c["span_e"]
             itm[i, j] = r["logit"][j]
@@ -131,10 +131,10 @@ def aggregate_s5(out: Path, res: int):
         sel = ng == k
         if sel.sum():
             rows.append(dict(method="oracle_by_groups", metric=f"hit5_oracle_ngroups{k}", n=int(sel.sum()), value=float(oracle[sel].mean()), res=res))
-    sm = pd.DataFrame(rows); sm.to_csv(out / f"summary_s5_full_{res}.csv", index=False)
+    sm = pd.DataFrame(rows); sm.to_csv(out / f"summary_s5_full_{res}.csv", index=False, encoding="utf-8")
     pq = pd.DataFrame(dict(qid=[p["qid"] for p in done], vid=[p["vid"] for p in done], n_groups=ng, clip_hit1=vec["clip"]["hit1"], blip_hit1=vec["blip"]["hit1"],
                            fuse_z_hit1=vec["fuse_z"]["hit1"], oracle=oracle, clip_iou8=vec["clip"]["iou8"], fuse_z_iou8=vec["fuse_z"]["iou8"]))
-    pq.to_csv(out / f"per_query_s5_full_{res}.csv", index=False)
+    pq.to_csv(out / f"per_query_s5_full_{res}.csv", index=False, encoding="utf-8")
     with pd.option_context("display.width", 200, "display.max_rows", 200, "display.float_format", "{:.3f}".format):
         print(f"weights (fixed from the 300-query sample, config {cfg}): {W}")
         print(sm[sm.method.isin(["clip", "blip", "fuse_z", "fuse_rank"]) & ~sm.metric.str.startswith("miou")].to_string(index=False))

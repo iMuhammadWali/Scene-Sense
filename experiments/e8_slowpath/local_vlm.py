@@ -7,9 +7,9 @@ Usage:
   python -W ignore experiments/e8_slowpath/local_vlm.py --model 500M --conds C1K1 --aggregate-only
 Queries are processed in sample order, 2 positives then 1 negative, so any prefix is a balanced random subset (same qids as DeepSeek C1).
 """
-import sys, os, json, time, importlib.util, argparse, resource
+import sys, os, json, time, importlib.util, argparse
 from pathlib import Path
-os.environ.setdefault("HF_HOME", "/home/claude/work/models/hf_cache")
+os.environ.setdefault("HF_HOME", str(Path(os.environ.get("SCENESENSE_MODELS_DIR", Path(__file__).resolve().parents[2] / "data" / "models")) / "hf_cache"))
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 spec = importlib.util.spec_from_file_location("e8_run", Path(__file__).with_name("run.py"))
 e8 = importlib.util.module_from_spec(spec); sys.modules["e8_run"] = e8; spec.loader.exec_module(e8)
@@ -66,7 +66,7 @@ def one_call(proc, model, plan, cname, outdir: Path, meta: dict):
                cost_actual_usd=0.0, cost_peak_usd=0.0, local=meta,
                calls=[dict(text=c[0]["text"], latency_s=c[0]["latency_s"], tier="local", choice=c[1], status=c[3]) for c in calls])
     p = e8.raw_path(outdir, cname, q["qid"]); p.parent.mkdir(parents=True, exist_ok=True)
-    tmp = p.with_suffix(".tmp"); tmp.write_text(json.dumps(rec, indent=1, default=lambda o: None if o != o else str(o))); tmp.rename(p)
+    tmp = p.with_suffix(".tmp"); tmp.write_text(json.dumps(rec, indent=1, default=lambda o: None if o != o else str(o)), encoding="utf-8"); tmp.replace(p)
     return rec
 
 def paired(a: np.ndarray, b: np.ndarray):
@@ -131,24 +131,24 @@ def main():
                 rec = one_call(proc, model, plans_all[(c, q["qid"])], c, outdir, meta)
                 if i <= 5 or i % 10 == 0:
                     print(f"  [{i}/{len(todo)}] {rec['task']} choice={rec['choice']} in={rec['input_tokens']} lat={rec['latency_s']:.1f}s "
-                          f"peakRSS={resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1e6:.2f}GB ({time.time() - t0:.0f}s)", flush=True)
-            (outdir / "peak_rss_gb.txt").write_text(f"{resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1e6:.2f}\n")
+                          f"peakRSS={C.peak_rss_gb():.2f}GB ({time.time() - t0:.0f}s)", flush=True)
+            (outdir / "peak_rss_gb.txt").write_text(f"{C.peak_rss_gb():.2f}\n", encoding="utf-8")
     plans = {k: v for k, v in plans_all.items() if k[0] in conds}
     pq = e8.build_per_query(outdir, plans)
     if pq.empty: print("nothing cached"); return
     pq = pq.sort_values(["cond", "kind", "qid"]).reset_index(drop=True)
-    lat = {(r["cond"], r["qid"]): r for r in (json.loads(f.read_text()) for f in (outdir / "raw").glob("*.json"))}
+    lat = {(r["cond"], r["qid"]): r for r in (json.loads(f.read_text(encoding="utf-8")) for f in (outdir / "raw").glob("*.json"))}
     pq["first_try_json"] = [lat[(c, q)].get("first_try_json", True) for c, q in zip(pq.cond, pq.qid)]
     pq["first_try_ok"] = [lat[(c, q)].get("first_try_ok", True) for c, q in zip(pq.cond, pq.qid)]
-    pq.to_csv(outdir / "per_query.csv", index=False)
+    pq.to_csv(outdir / "per_query.csv", index=False, encoding="utf-8")
     sm = e8.aggregate(outdir, pq, None)
     sm["parse_fail_first_try"] = sm.condition.map(lambda c: 1 - pq[pq.cond == c].first_try_ok.mean() if c in set(pq.cond) else np.nan)
     sm["json_format_fail_rate"] = sm.condition.map(lambda c: 1 - pq[pq.cond == c].first_try_json.mean() if c in set(pq.cond) else np.nan)
-    sm["peak_rss_gb"] = float((outdir / "peak_rss_gb.txt").read_text()) if (outdir / "peak_rss_gb.txt").exists() else np.nan
+    sm["peak_rss_gb"] = float((outdir / "peak_rss_gb.txt").read_text(encoding="utf-8")) if (outdir / "peak_rss_gb.txt").exists() else np.nan
     sm["sec_per_query"] = sm.condition.map(lambda c: pq[pq.cond == c].latency_s.mean() if c in set(pq.cond) else np.nan)
-    sm.to_csv(outdir / "summary.csv", index=False)
-    ds = pd.read_csv(C.RESULTS_DIR / e8.EXP / "per_query.csv")
-    cmp_ = compare(outdir, pq, ds, a.model); cmp_.to_csv(outdir / "compare.csv", index=False)
+    sm.to_csv(outdir / "summary.csv", index=False, encoding="utf-8")
+    ds = pd.read_csv(C.RESULTS_DIR / e8.EXP / "per_query.csv", encoding="utf-8")
+    cmp_ = compare(outdir, pq, ds, a.model); cmp_.to_csv(outdir / "compare.csv", index=False, encoding="utf-8")
     with pd.option_context("display.width", 250, "display.max_columns", 30):
         print(cmp_.round(3).to_string(index=False))
         print(sm[sm.system == "slow_vlm"][["condition", "n_pos", "hit1", "none_rate_pos", "n_neg", "correct_none_neg", "invalid_rate_pos", "parse_fail_first_try", "json_format_fail_rate", "sec_per_query", "peak_rss_gb"]].round(3).to_string(index=False))

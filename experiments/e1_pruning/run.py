@@ -34,7 +34,7 @@ def run_shard(shard, cfgs, vids, by_vid, QE, out):
     (out / "shards").mkdir(exist_ok=True)
     vs.to_parquet(out / "shards" / f"{shard}.videos.parquet")
     pq.to_parquet(f.with_suffix(".tmp"), index=False)
-    f.with_suffix(".tmp").rename(f)
+    f.with_suffix(".tmp").replace(f)
     print(f"[e1] shard {shard} done in {time.time() - t0:.0f}s", flush=True)
 
 def aggregate(out, vids, df, grid):
@@ -66,7 +66,7 @@ def aggregate(out, vids, df, grid):
             "select_ms_per_video", "hit1", "hit5", "r1_iou03", "r1_iou05", "r1_iou07", "miou", "r1_iou05_lo", "r1_iou05_hi", "hit1_lo", "hit1_hi", "pred_len_mean_s"]
     op = op[cols]
     op["gt_len_mean_s"] = float((q["ge"] - q["gs"]).mean())
-    op.to_csv(out / "operating_points.csv", index=False)
+    op.to_csv(out / "operating_points.csv", index=False, encoding="utf-8")
     allpq = pd.concat(pq_out, ignore_index=True)
     allpq["config"] = allpq["config"].astype("category")
     allpq.to_parquet(out / "per_query.parquet", index=False)
@@ -84,7 +84,7 @@ def aggregate(out, vids, df, grid):
                                   hit1=best.hit1, hit1_lo=best.hit1_lo, hit1_hi=best.hit1_hi, miou=best.miou))
                 else:
                     b.append(dict(criterion=crit, method=method, budget_pct=bud, params="(no operating point within budget)"))
-    pd.DataFrame(b).to_csv(out / "budget_table.csv", index=False)
+    pd.DataFrame(b).to_csv(out / "budget_table.csv", index=False, encoding="utf-8")
     return op
 
 def sanity(op, out):
@@ -95,7 +95,7 @@ def sanity(op, out):
     same = all(abs(u1[c] - full[c]) < 1e-12 for c in ["hit1", "hit5", "r1_iou03", "r1_iou05", "r1_iou07", "miou"])
     msgs.append(f"uniform fraction=1.0 identical to full_5fps -> {'OK' if same else 'FAIL'}")
     msgs.append(f"NaNs in non-random rows -> {int(op[op.method != 'random_moment'].select_dtypes('number').isna().sum().sum())}")
-    (out / "sanity.txt").write_text("\n".join(msgs) + "\n"); print("SANITY\n  " + "\n  ".join(msgs))
+    (out / "sanity.txt").write_text("\n".join(msgs) + "\n", encoding="utf-8"); print("SANITY\n  " + "\n  ".join(msgs))
 
 def main():
     ap = runutil.base_parser("E1 frame selection sweep"); a = ap.parse_args()

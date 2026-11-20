@@ -17,10 +17,12 @@ def load_annotations() -> pd.DataFrame:
 def _encode_with_team(texts: list[str]) -> np.ndarray:
     """Encode text with the team's loaded CLIP model, applying text_projection exactly ONCE.
 
-    KNOWN ISSUE in the team's CLIPEncoder.encode_text (observed with transformers 4.57): get_text_features already returns the
-    projected 512-d embedding, but _as_feature_tensor re-applies text_projection because the text width (512) equals
-    in_features -> double projection, text embeddings are ~uncorrelated with image space (cos ~0.1 with the correct vector,
-    max image-text cosine ~0.05 instead of ~0.3). Set SSEVAL_TEAM_TEXT=1 to use the team's encode_text unchanged.
+    HISTORY: the team's original CLIPEncoder.encode_text double-projected (get_text_features already returns the projected
+    512-d embedding, but _as_feature_tensor re-applied text_projection -> max image-text cosine ~0.05 instead of ~0.3).
+    The app in app/ is FIXED as of this commit and its encode_text now matches model.get_text_features exactly (cosine 1.000
+    with this function). This function is kept anyway so results are independent of the app version and of the transformers
+    version (get_text_features returns a tensor in 4.57 but a pooled output object in newer releases; both are handled).
+    Set SSEVAL_TEAM_TEXT=1 to use the app's encode_text instead.
     """
     C.setup_team()
     import torch

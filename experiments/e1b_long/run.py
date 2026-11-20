@@ -54,7 +54,7 @@ def run_length(L, order, vids, by_vid, QE, out):
     pq = pd.concat(pq_parts, ignore_index=True)
     st = pd.DataFrame(st_rows, columns=["L", "stream", "config", "n_clips", "dur_s", "n_frames", "n_kept", "index_bytes", "select_s", "n_queries"])
     st.to_parquet(out / "shards" / f"L{L}.streams.parquet")
-    pq.to_parquet(f.with_suffix(".tmp"), index=False); f.with_suffix(".tmp").rename(f)
+    pq.to_parquet(f.with_suffix(".tmp"), index=False); f.with_suffix(".tmp").replace(f)
     print(f"[e1b] L={L} done in {time.time()-t0:.0f}s", flush=True)
 
 def aggregate(out, df, vids, order, lengths):
@@ -86,7 +86,7 @@ def aggregate(out, df, vids, order, lengths):
                  mean_stream_min=sd.mean() / 60)
         r.update(summarize(rm, idx)); rows.append(r)
     res = pd.DataFrame(rows)
-    res.to_csv(out / "long_results.csv", index=False)
+    res.to_csv(out / "long_results.csv", index=False, encoding="utf-8")
     return res
 
 def main():

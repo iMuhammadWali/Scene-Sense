@@ -17,9 +17,9 @@ Usage:
 Resumable: every (query, candidate) forward pass / shuffled-MC call is cached as one JSON in <out>/raw and <out>/posbias/raw.
 """
 from __future__ import annotations
-import sys, os, io, json, time, hashlib, importlib.util, argparse, resource
+import sys, os, io, json, time, hashlib, importlib.util, argparse
 from pathlib import Path
-os.environ.setdefault("HF_HOME", "/home/claude/work/models/hf_cache")
+os.environ.setdefault("HF_HOME", str(Path(os.environ.get("SCENESENSE_MODELS_DIR", Path(__file__).resolve().parents[2] / "data" / "models")) / "hf_cache"))
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 import numpy as np, pandas as pd
 
@@ -120,12 +120,12 @@ def sha(*parts) -> str:
 
 def write_json(p: Path, rec: dict):
     p.parent.mkdir(parents=True, exist_ok=True)
-    tmp = p.with_suffix(".tmp"); tmp.write_text(json.dumps(rec, indent=1, default=lambda o: None if o != o else str(o))); tmp.rename(p)
+    tmp = p.with_suffix(".tmp"); tmp.write_text(json.dumps(rec, indent=1, default=lambda o: None if o != o else str(o)), encoding="utf-8"); tmp.replace(p)
 
 def read_cached(p: Path, key: str):
     if p.exists():
         try:
-            r = json.loads(p.read_text())
+            r = json.loads(p.read_text(encoding="utf-8"))
             if r.get("req_sha") == key:
                 return r
         except Exception:
@@ -238,7 +238,7 @@ def aggregate(out: Path, e8, items, plans, cond: str = "C1"):
             for j, c in enumerate(plans[q["qid"]]["cands"]): h[i, j] = q["gs"] <= c["t"] <= q["ge"]
         return h
     # DeepSeek reference (E8) on the same queries
-    dsa = pd.read_csv(e8.C.RESULTS_DIR / "e8_slowpath" / "per_query.csv")
+    dsa = pd.read_csv(e8.C.RESULTS_DIR / "e8_slowpath" / "per_query.csv", encoding="utf-8")
     dsP = dsa[(dsa.cond == DS_POS[cond]) & (dsa.kind == "pos")].set_index("qid")
     dsN = dsa[(dsa.cond == DS_NEG.get(cond, "-")) & (dsa.kind == "neg")].set_index("qid")
     ctimes = lambda q: ";".join(f"{c['t']:.2f}" for c in plans[q["qid"]]["cands"])
@@ -317,7 +317,7 @@ def aggregate(out: Path, e8, items, plans, cond: str = "C1"):
         elif q["qid"] in dsN.index:
             row["deepseek_choice"] = dsN.loc[q["qid"], "choice"]
         pq.append(row)
-    pd.DataFrame(pq).to_csv(out / f"per_query{sfx}.csv", index=False)
+    pd.DataFrame(pq).to_csv(out / f"per_query{sfx}.csv", index=False, encoding="utf-8")
     # ---- timing (full sample; forward passes only, in whichever run they were measured)
     allq = P + N
     fw = [sum(x["fwd_s"] for x in recs[q["qid"]]) for q in allq]; tot = [sum(x["fwd_s"] + x["proc_s"] for x in recs[q["qid"]]) for q in allq]
@@ -327,10 +327,10 @@ def aggregate(out: Path, e8, items, plans, cond: str = "C1"):
     add("timing", "yes_no_scoring", "frame_decode_s_per_query_(not in the above)", len(dec), float(np.mean(dec)))
     add("timing", "yes_no_scoring", "input_tokens_per_pass", len(fw), float(np.mean([x["n_input_tokens"] for q in allq for x in recs[q["qid"]]])))
     rss = out / "peak_rss_gb.txt"
-    if rss.exists(): add("timing", "process", "peak_rss_gb", 1, float(rss.read_text().split()[0]))
+    if rss.exists(): add("timing", "process", "peak_rss_gb", 1, float(rss.read_text(encoding="utf-8").split()[0]))
     if cond == "C1":
         aggregate_posbias(out, e8, plans, P[:N_POS], add, dsP)       # position-bias rerun exists for the first 100 positives only
-    sm = pd.DataFrame(rows); sm.to_csv(out / f"summary{sfx}.csv", index=False)
+    sm = pd.DataFrame(rows); sm.to_csv(out / f"summary{sfx}.csv", index=False, encoding="utf-8")
     return sm
 
 def aggregate_posbias(out, e8, plans, P, add, ds):
@@ -350,7 +350,7 @@ def aggregate_posbias(out, e8, plans, P, add, ds):
                          first_shown_is_correct=hit_shown[0], fast_top1_shown_pos=LETTERS[perm.index(0)], fast_hit1=bool(hit_shown[perm.index(0)]),
                          n_correct_cands=int(sum(hit_shown)), none=(ch == "NONE")))
     if not rows: return None
-    d = pd.DataFrame(rows); d.to_csv(out / "posbias_per_query.csv", index=False)
+    d = pd.DataFrame(rows); d.to_csv(out / "posbias_per_query.csv", index=False, encoding="utf-8")
     n = len(d); idx = bootstrap_indices(n)
     for m in ("hit1", "picked_first_shown", "picked_fast_top1", "first_shown_is_correct", "fast_hit1", "none"):
         lo, hi = ci(d[m], idx); add("posbias_shuffled", "smolvlm2_500m_mc", m, n, float(d[m].mean()), lo, hi)
@@ -362,7 +362,7 @@ def aggregate_posbias(out, e8, plans, P, add, ds):
     # same queries, unshuffled (E8 local_500M C1K1)
     f = e8.C.RESULTS_DIR / "e8_slowpath" / "local_500M" / "per_query.csv"
     if f.exists():
-        u = pd.read_csv(f); u = u[(u.cond == "C1K1") & (u.kind == "pos") & u.qid.isin(d.qid)]
+        u = pd.read_csv(f, encoding="utf-8"); u = u[(u.cond == "C1K1") & (u.kind == "pos") & u.qid.isin(d.qid)]
         if len(u):
             add("posbias_unshuffled_E8", "smolvlm2_500m_mc", "hit1", len(u), float(u.slow_hit1.mean()), *ci(u.slow_hit1, bootstrap_indices(len(u))))
             add("posbias_unshuffled_E8", "smolvlm2_500m_mc", "picked_first_shown(A)", len(u), float((u.choice == "A").mean()))
@@ -374,7 +374,7 @@ def make_figure(out: Path, path: Path):
     panels = []
     for cond, f in (("C1", out / "summary.csv"), ("C2", out / "summary_C2.csv")):
         if f.exists():
-            sm = pd.read_csv(f); sm = sm[(sm.set == "full") & (sm.section == "ranking") & (sm.metric == "hit1")]
+            sm = pd.read_csv(f, encoding="utf-8"); sm = sm[(sm.set == "full") & (sm.section == "ranking") & (sm.metric == "hit1")]
             if len(sm): panels.append((cond, sm.set_index("name")))
     if not panels: return
     spec = [("fast_top1", "Fast path\n(CLIP top-1)", "#9aa0a6"), ("vlm_only", "SmolVLM2-500M\nyes/no only", "#E69F00"),
@@ -421,16 +421,16 @@ def main():
         for i, q in enumerate(items, 1):
             n_fw += score_query(proc, model, e8, plans[q["qid"]], yes_ids, no_ids, rawdir, out / "raw" if a.cond != "C1" else None)
             if i % 20 == 0 or i == len(items):
-                print(f"  [score {i}/{len(items)}] qid={q['qid']} forwards so far={n_fw} peakRSS={resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1e6:.2f}GB ({time.time() - t0:.0f}s)", flush=True)
+                print(f"  [score {i}/{len(items)}] qid={q['qid']} forwards so far={n_fw} peakRSS={C.peak_rss_gb():.2f}GB ({time.time() - t0:.0f}s)", flush=True)
         if not a.skip_posbias:
             t0 = time.time(); n_mc = 0
             for i, q in enumerate([x for x in items if x["kind"] == "pos"], 1):
                 n_mc += posbias_query(local, e8, proc, model, plans[q["qid"]], out)
                 if i % 10 == 0: print(f"  [posbias {i}] calls so far={n_mc} ({time.time() - t0:.0f}s)", flush=True)
         rss = out / "peak_rss_gb.txt"
-        new = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1e6
-        old = float(rss.read_text().split()[0]) if rss.exists() else 0.0
-        rss.write_text(f"{max(new, old):.2f}\n")
+        new = C.peak_rss_gb()
+        old = float(rss.read_text(encoding="utf-8").split()[0]) if rss.exists() else 0.0
+        rss.write_text(f"{max(new, old):.2f}\n", encoding="utf-8")
     sm = aggregate(out, e8, items, plans, a.cond)
     if sm is None: return
     if not a.no_figure:

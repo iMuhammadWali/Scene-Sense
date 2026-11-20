@@ -22,7 +22,7 @@ class Data:
         self.out = out
         self.q = {k: [x for x in items if x["kind"] == k] for k in ("pos", "neg")}
         self.pl = {k: [plans[(k, x["qid"])] for x in self.q[k]] for k in self.q}
-        self.raw = {k: [json.loads((out / "raw" / f"{k}_{x['qid']}.json").read_text()) if (out / "raw" / f"{k}_{x['qid']}.json").exists()
+        self.raw = {k: [json.loads((out / "raw" / f"{k}_{x['qid']}.json").read_text(encoding="utf-8")) if (out / "raw" / f"{k}_{x['qid']}.json").exists()
                         else {"scores": {}} for x in self.q[k]] for k in self.q}
         for k in self.q:
             n = len(self.q[k])
@@ -183,7 +183,7 @@ def aggregate(out: Path, items, plans):
     results["K1_asis_top5_on_top10rows_real"] = run_config("K1_asis_top5_on_top10rows", mats["itm_K1_asis"], avail["itm_K1_top10_asis"], 5, real=True)
 
     # DeepSeek (E8 C2K3) on the same queries, paired
-    e8 = pd.read_csv(C.RESULTS_DIR / "e8_slowpath" / "per_query.csv"); e8 = e8[(e8.cond == "C2K3") & (e8.kind == "pos")].set_index("qid")
+    e8 = pd.read_csv(C.RESULTS_DIR / "e8_slowpath" / "per_query.csv", encoding="utf-8"); e8 = e8[(e8.cond == "C2K3") & (e8.kind == "pos")].set_index("qid")
     qids = np.array([x["qid"] for x in D.q["pos"]])
     ds = np.array([float(e8.loc[q, "slow_hit1"]) if q in e8.index else np.nan for q in qids])
     ds_iou_w = np.array([float(e8.loc[q, "slow_iou_wide"]) if q in e8.index else np.nan for q in qids])
@@ -235,7 +235,7 @@ def aggregate(out: Path, items, plans):
         cmb_p = np.where(okp, zi(pm) + zc(pos_clip_max), np.nan); cmb_n = np.where(okn, zi(nmx) + zc(neg_clip_max), np.nan)
         au(tag, cmb_p, cmb_n, "z(itm_max)+z(clip_max)")
     sm = pd.DataFrame(rows_summary)
-    sm.to_csv(out / "summary.csv", index=False)
+    sm.to_csv(out / "summary.csv", index=False, encoding="utf-8")
     per_query(out, D, mats, negs, results)
     cost_table(out, sm)
     make_figure(out, sm)
@@ -269,21 +269,21 @@ def per_query(out, D, mats, negs, results):
             if not np.isnan(M[i]).all():
                 r[nm + "_logit"] = ";".join(f"{v:.3f}" for v in M[i] if not np.isnan(v))
         rows.append(r)
-    pd.DataFrame(rows).to_csv(out / "per_query.csv", index=False)
+    pd.DataFrame(rows).to_csv(out / "per_query.csv", index=False, encoding="utf-8")
 
 # ------------------------------------------------------------------------------------------------------------ cost table
 def cost_table(out: Path, sm: pd.DataFrame):
     rows = []
-    e6 = pd.read_csv(C.RESULTS_DIR / "e6_latency" / "stage_summary.csv")
+    e6 = pd.read_csv(C.RESULTS_DIR / "e6_latency" / "stage_summary.csv", encoding="utf-8")
     q6 = e6[(e6.phase == "query")].set_index("stage")["mean_s"]
     retrieval = float(q6["clip_text_embedding"] + q6["faiss_search"])
     wall = float(q6["TOTAL (wall)"])
-    tm = pd.read_csv(out / "timing.csv") if (out / "timing.csv").exists() else None
+    tm = pd.read_csv(out / "timing.csv", encoding="utf-8") if (out / "timing.csv").exists() else None
     def hit(cfg, m, tag="all"):
         r = sm[(sm.subset == f"{cfg}|{tag}") & (sm.method == m) & (sm.metric == "hit1")]
         return (float(r.value.iloc[0]), float(r.lo.iloc[0]), float(r.hi.iloc[0])) if len(r) else (np.nan,) * 3
-    e8s = pd.read_csv(C.RESULTS_DIR / "e8_slowpath" / "summary.csv"); e8s = e8s[(e8s.condition == "C2K3") & (e8s.system == "slow_vlm")].iloc[0]
-    e9s = pd.read_csv(C.RESULTS_DIR / "e9_vlm_scoring" / "summary_C2.csv")
+    e8s = pd.read_csv(C.RESULTS_DIR / "e8_slowpath" / "summary.csv", encoding="utf-8"); e8s = e8s[(e8s.condition == "C2K3") & (e8s.system == "slow_vlm")].iloc[0]
+    e9s = pd.read_csv(C.RESULTS_DIR / "e9_vlm_scoring" / "summary_C2.csv", encoding="utf-8")
     def blip_s(K, res=384):
         if tm is None: return np.nan, np.nan
         g = tm[(tm.K == K) & (tm.res == res)]
@@ -304,13 +304,13 @@ def cost_table(out: Path, sm: pd.DataFrame):
     if len(h9):
         rows.append(dict(system="SmolVLM2-500M yes/no re-rank (E9 C2, local) [padded to 5]", n=300, hit1=float(h9.value.iloc[0]), lo=float(h9.lo.iloc[0]), hi=float(h9.hi.iloc[0]),
                          added_total_s=2.97 + 0.10 + 0.29, base_retrieval_s=retrieval, base_pipeline_wall_s=wall))
-    pd.DataFrame(rows).to_csv(out / "cost_table.csv", index=False)
+    pd.DataFrame(rows).to_csv(out / "cost_table.csv", index=False, encoding="utf-8")
 
 # ------------------------------------------------------------------------------------------------------------ figure
 def make_figure(out: Path, sm: pd.DataFrame):
     import matplotlib; matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    ct = pd.read_csv(out / "cost_table.csv")
+    ct = pd.read_csv(out / "cost_table.csv", encoding="utf-8")
     def g(cfg, m, tag="all", metric="hit1"):
         r = sm[(sm.subset == f"{cfg}|{tag}") & (sm.method == m) & (sm.metric == metric)]
         return (100 * float(r.value.iloc[0]), 100 * float(r.lo.iloc[0]), 100 * float(r.hi.iloc[0])) if len(r) else None

@@ -19,7 +19,7 @@ Usage:  run.py [--stages s1,s2,s3,s4] [--limit N] [--aggregate-only] [--timing]
 from __future__ import annotations
 import sys, os, json, time, importlib.util, argparse
 from pathlib import Path
-os.environ.setdefault("HF_HOME", "/home/claude/work/models/hf_cache")
+os.environ.setdefault("HF_HOME", str(Path(os.environ.get("SCENESENSE_MODELS_DIR", Path(__file__).resolve().parents[2] / "data" / "models")) / "hf_cache"))
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 import numpy as np, pandas as pd
 
@@ -132,14 +132,14 @@ def load_raw(out: Path, kind: str, qid: int) -> dict:
     p = raw_path(out, kind, qid)
     if p.exists():
         try:
-            return json.loads(p.read_text())
+            return json.loads(p.read_text(encoding="utf-8"))
         except Exception:
             pass
     return {"scores": {}, "timing": {}}
 
 def save_raw(out: Path, kind: str, qid: int, rec: dict):
     p = raw_path(out, kind, qid); p.parent.mkdir(parents=True, exist_ok=True)
-    tmp = p.with_suffix(".tmp"); tmp.write_text(json.dumps(rec)); tmp.rename(p)
+    tmp = p.with_suffix(".tmp"); tmp.write_text(json.dumps(rec), encoding="utf-8"); tmp.replace(p)
 
 def stage_queries(items, n_pos, n_neg):
     return [x for x in items if x["kind"] == "pos"][:n_pos] + [x for x in items if x["kind"] == "neg"][:n_neg]
@@ -194,7 +194,7 @@ def run_timing(blip, items, plans, out: Path, n: int = 30):
                 t_itm = time.perf_counter() - t0
                 rows.append(dict(qid=q["qid"], K=K, res=res, n_img=len(fr), decode_s=t_dec, itm_s=t_itm, per_pair_s=t_itm / len(fr)))
     df = pd.DataFrame(rows)
-    df.to_csv(out / "timing.csv", index=False)
+    df.to_csv(out / "timing.csv", index=False, encoding="utf-8")
     print(df.groupby(["K", "res"])[["decode_s", "itm_s", "per_pair_s"]].mean().round(3).to_string(), flush=True)
 
 def main():

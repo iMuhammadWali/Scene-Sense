@@ -1,0 +1,23 @@
+{
+  "_comment": "Reference values for checking a reproduction. FILL IN / CONFIRM TOGETHER before relying on them; null = not yet recorded.",
+  "environment": {"python": "3.13", "transformers": "4.57.6", "torch": "2.15.0", "faiss-cpu": "1.16.0", "numpy": "2.5.4"},
+  "full_set": {
+    "_tolerance_points": 1.5,
+    "e1_hit1_cos_last_drop_tau0.95_pct": 48.2,
+    "e1_hit1_full_5fps_pct": 48.6,
+    "e10_hit1_clip_order_pct": 48.2,
+    "e10_hit1_fusion_pct": 51.2,
+    "e1_pct_frames_kept_tau0.95": null,
+    "e3_absent_auroc": null,
+    "e7_r1_iou05_best_pct": null,
+    "e6_total_ms_per_query": null
+  },
+  "small_sample_sanity_check": {
+    "n_videos": 20,
+    "mean_max_cosine_range": [0.24, 0.36],
+    "hit1_pct_min": 30,
+    "hit1_pct_typical_range": [35, 55],
+    "chance_hit1_pct": 25,
+    "reference_run": {"n_queries": 51, "mean_max_cosine": 0.283, "hit1_pct": 39.2}
+  }
+}

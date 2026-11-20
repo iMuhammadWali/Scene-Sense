@@ -5,7 +5,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 import numpy as np, pandas as pd, matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from sseval import config as C
-out = C.results_dir("e7_localization"); h = pd.read_csv(out / "heldout.csv"); h = h[h.split == "HELD-OUT"]
+out = C.results_dir("e7_localization"); h = pd.read_csv(out / "heldout.csv", encoding="utf-8"); h = h[h.split == "HELD-OUT"]
 order = ["P0", "M0", "M1", "M2", "M3", "M3x", "M4", "M5"]
 # the M4x extension row duplicated M4 (lambda<0 never won on DEV) -> not drawn
 cols = {"full_5fps": "#2a6fbb", "cos095": "#e08a1e"}; names = {"full_5fps": "Full 5 FPS", "cos095": "cos_last_drop tau=0.95"}

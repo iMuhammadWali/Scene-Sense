@@ -9,7 +9,7 @@ REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "src"))
 # scratch session store; must be set BEFORE the team's settings are first read
 _results = Path(os.environ.get("SSEVAL_RESULTS_DIR", REPO / "results"))
-SCRATCH = Path(os.environ.get("SSEVAL_E6_DATA", "/home/claude/work/e6_data"))
+SCRATCH = Path(os.environ.get("SSEVAL_E6_DATA", REPO / "data" / "e6_data"))
 os.environ["SCENESENSE_DATA_DIR"] = str(SCRATCH)
 import numpy as np, pandas as pd, psutil
 from sseval import config as C, data, runutil
@@ -77,7 +77,7 @@ def main():
     order = [avail[i] for i in np.random.default_rng(a.seed).permutation(len(avail))]
     sample, warm_vid = order[:n_vid], order[n_vid]
     by_vid = {v: g for v, g in df.groupby("vid")}
-    print(f"[e6] sample {sample}, warm-up video {warm_vid}; loadavg {os.getloadavg()}", flush=True)
+    print(f"[e6] sample {sample}, warm-up video {warm_vid}; loadavg {getattr(os, "getloadavg", lambda: "n/a")()}", flush=True)
     shutil.rmtree(SCRATCH, ignore_errors=True)
     settings = get_settings(); store = SessionStore(settings)
     res_rows = [dict(item="rss_at_start_mb", value=rss_mb())]
@@ -113,7 +113,7 @@ def main():
     res_rows.append(dict(item="rss_end_mb", value=rss_mb()))
     res_rows.append(dict(item="ru_maxrss_mb", value=__import__("resource").getrusage(__import__("resource").RUSAGE_SELF).ru_maxrss / 1e3))
     R = pd.DataFrame(runs)
-    R.to_csv(out / "stage_timings.csv", index=False)
+    R.to_csv(out / "stage_timings.csv", index=False, encoding="utf-8")
 
     # --- summaries (warm-ups excluded)
     W = R[~R.warmup]
@@ -134,16 +134,16 @@ def main():
                                median_s=x.median(), std_s=float("nan"), min_s=x.min(), max_s=x.max()))
     for nm, v in (("clip_load", clip_load), ("classifier_load", clf_load)):
         sm.append(dict(phase="model load (cold, once)", stage=nm, n=1, mean_s=v, median_s=v, std_s=float("nan"), min_s=v, max_s=v))
-    pd.DataFrame(sm).to_csv(out / "stage_summary.csv", index=False)
+    pd.DataFrame(sm).to_csv(out / "stage_summary.csv", index=False, encoding="utf-8")
 
     Q = W[W.kind == "query"]
     routing = Q.routed.fillna("unknown").value_counts().rename_axis("route").reset_index(name="n")
     routing["pct"] = 100 * routing.n / routing.n.sum()
     routing["failed_at_vlm"] = routing.route.map(lambda r: int(Q[(Q.routed.fillna("unknown") == r) & Q.error.notna()].shape[0]))
-    routing.to_csv(out / "routing_summary.csv", index=False)
+    routing.to_csv(out / "routing_summary.csv", index=False, encoding="utf-8")
     res_rows += [dict(item="video_peak_rss_mb_max", value=W[W.kind == "video"].peak_rss_mb.max()),
                  dict(item="query_peak_rss_mb_max", value=Q.peak_rss_mb.max())]
-    pd.DataFrame(res_rows).to_csv(out / "resources.csv", index=False)
+    pd.DataFrame(res_rows).to_csv(out / "resources.csv", index=False, encoding="utf-8")
     runutil.write_meta(out, n_videos=len(sample), n_queries=len(Q), seed=a.seed, note=
         "shared 2-core CPU; background CLIP encoding job may have been running (see hardware.loadavg); COMPLEX queries fail at the VLM stage (no OpenRouter key)",
         text_encoder_in_pipeline="team CLIPEncoder.encode_text as-is (see report: double text projection under transformers 4.57; affects retrieval content, not timings)")

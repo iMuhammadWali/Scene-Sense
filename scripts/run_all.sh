@@ -6,9 +6,9 @@
 #   --limit N        use only the first N videos in E1/E1b/E3 (quick run)
 set -uo pipefail
 REPO="$(cd "$(dirname "$0")/.." && pwd)"; cd "$REPO"
-PY=${PY:-/home/claude/venv/bin/python}
-export SCENESENSE_DATA_DIR=${SCENESENSE_DATA_DIR:-/home/claude/work/data}
-export SCENESENSE_MODELS_DIR=${SCENESENSE_MODELS_DIR:-/home/claude/work/models}
+PY=${PY:-python}
+EMB=${SSEVAL_EMB:-$REPO/data/emb}
+# data/model dirs default to REPO/data/* inside sseval.config; override with SCENESENSE_DATA_DIR / SCENESENSE_MODELS_DIR / SSEVAL_*
 export SCENESENSE_DEVICE=${SCENESENSE_DEVICE:-cpu}
 ALLOW=0; LIMIT=""; E6V=""; E6Q=""; FORCE=""
 while [ $# -gt 0 ]; do case "$1" in
@@ -18,8 +18,8 @@ while [ $# -gt 0 ]; do case "$1" in
 RES="${SSEVAL_RESULTS_DIR:-$REPO/results}"; mkdir -p "$RES" logs
 log() { echo "[$(date +%H:%M:%S)] $*"; }
 
-# (1) embeddings check only (encoding itself is run separately by /home/claude/experiments/encode_all.py)
-N=$(ls /home/claude/work/emb/*.npz 2>/dev/null | grep -v '\.tmp\.npz$' | wc -l)
+# (1) embeddings check only (encoding itself is run separately: python scripts/encode_all.py)
+N=$(ls "$EMB"/*.npz 2>/dev/null | grep -v '\.tmp\.npz$' | wc -l)
 log "step 1: $N / 1334 video embeddings present"
 if [ "$N" -lt 1334 ] && [ $ALLOW -eq 0 ]; then log "ERROR: embeddings incomplete (use --allow-partial to run anyway)"; exit 1; fi
 

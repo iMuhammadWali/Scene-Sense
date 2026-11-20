@@ -36,7 +36,7 @@ def pareto(d, ycol):
 def fig1():
     f = R / "e1_pruning" / "operating_points.csv"
     if not f.exists(): print("[fig] skip e1 (no results)"); return
-    op = pd.read_csv(f); full = op[op.config == "full_5fps"].iloc[0]; rnd = op[op.method == "random_moment"].iloc[0]
+    op = pd.read_csv(f, encoding="utf-8"); full = op[op.config == "full_5fps"].iloc[0]; rnd = op[op.method == "random_moment"].iloc[0]
     fig, axs = plt.subplots(1, 2, figsize=(11, 4.6), sharex=True)
     for ax, (col, yl) in zip(axs, [("r1_iou05", "R@1, IoU ≥ 0.5"), ("hit1", "Hit@1")]):
         for m, (c, mk, ls, lab) in STYLE.items():
@@ -61,7 +61,7 @@ def fig1():
 def fig2():
     f = R / "e1b_long" / "long_results.csv"
     if not f.exists(): print("[fig] skip e1b"); return
-    d = pd.read_csv(f); d = d[d.method != "random_moment"]
+    d = pd.read_csv(f, encoding="utf-8"); d = d[d.method != "random_moment"]
     fig, axs = plt.subplots(1, 3, figsize=(13, 4.3))
     for cfg, g in d.groupby("config", sort=False):
         m = g.method.iloc[0]; c, mk, ls, lab = STYLE.get(m, ("#222222", "o", "-", "Full 5 FPS"))
@@ -102,7 +102,7 @@ def fig3():
 def fig4():
     f = R / "e6_latency" / "stage_summary.csv"
     if not f.exists(): print("[fig] skip e6"); return
-    s = pd.read_csv(f); s = s[s.phase.isin(["preprocess (per video)", "query"]) & (s.stage != "TOTAL (wall)")]
+    s = pd.read_csv(f, encoding="utf-8"); s = s[s.phase.isin(["preprocess (per video)", "query"]) & (s.stage != "TOTAL (wall)")]
     s = s.assign(label=s.stage.str.replace("_", " "))
     order = list(s[s.phase.str.startswith("pre")].label) + list(s[s.phase == "query"].label)
     s = s.set_index(["phase", "label"]).sort_index()

@@ -8,10 +8,10 @@ from sseval import config as C
 R = C.RESULTS_DIR
 def rd(p):
     f = R / p
-    return pd.read_csv(f) if f.exists() else None
+    return pd.read_csv(f, encoding="utf-8") if f.exists() else None
 def meta(e):
     f = R / e / "meta.json"
-    return json.loads(f.read_text()) if f.exists() else {}
+    return json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
 def pct(x, d=1): return "n/a" if pd.isna(x) else f"{100 * x:.{d}f}"
 def ci(v, lo, hi): return f"{pct(v)} [{pct(lo)}, {pct(hi)}]"
 def overlap(a_lo, a_hi, b_lo, b_hi): return not (a_hi < b_lo or b_hi < a_lo)
@@ -154,5 +154,5 @@ if ss is not None:
         o(f"E6: {c.pct.sum():.0f}% of the {int(rt.n.sum())} sampled Charades queries were routed COMPLEX (VLM path) by the zero-shot classifier, {100 - c.pct.sum():.0f}% SIMPLE.")
 
 L += ["## Observations (derived only from the numbers above)", ""] + [f"{i}. {x}" for i, x in enumerate(obs[:8], 1)] + [""]
-(R / "SUMMARY.md").write_text("\n".join(L))
+(R / "SUMMARY.md").write_text("\n".join(L), encoding="utf-8")
 print("wrote", R / "SUMMARY.md")

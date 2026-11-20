@@ -20,10 +20,10 @@ def git_rev() -> str:
 def write_meta(out: Path, **kw):
     meta = dict(date=datetime.datetime.now().isoformat(timespec="seconds"), git=git_rev(),
                 hardware=C.hardware_info(), **kw)
-    (out / "meta.json").write_text(json.dumps(meta, indent=2, default=str))
+    (out / "meta.json").write_text(json.dumps(meta, indent=2, default=str), encoding="utf-8")
 
 def mark_done(out: Path):
-    (out / "DONE").write_text(datetime.datetime.now().isoformat(timespec="seconds") + "\n")
+    (out / "DONE").write_text(datetime.datetime.now().isoformat(timespec="seconds") + "\n", encoding="utf-8")
 
 def is_done(out: Path, force: bool = False) -> bool:
     return (out / "DONE").exists() and not force

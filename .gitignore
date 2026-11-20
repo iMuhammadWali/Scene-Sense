@@ -5,3 +5,13 @@ data/
 *.npy
 *.mp4
 logs/*.log
+.pytest_cache/
+.venv/
+venv/
+.env
+*.pt
+*.pth
+*.safetensors
+*.faiss
+node_modules/
+app/frontend/dist/

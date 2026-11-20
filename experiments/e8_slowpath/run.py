@@ -15,7 +15,7 @@ Usage:
   python -W ignore experiments/e8_slowpath/run.py --list-models              # GET /models
   python -W ignore experiments/e8_slowpath/run.py [--limit N]                # real run (resumes from raw/ cache)
   python -W ignore experiments/e8_slowpath/run.py --aggregate-only
-The API key is read ONLY from /home/claude/.secrets/deepseek_key and is never logged or stored.
+The API key is read ONLY from ~/.secrets/deepseek_key (or env DEEPSEEK_API_KEY) and is never logged or stored.
 """
 from __future__ import annotations
 import sys, os, re, json, time, base64, hashlib, zlib, datetime, threading, argparse
@@ -31,7 +31,7 @@ from sseval.retrieval import build_index, search
 from app.pipeline.temporal import group_temporally  # team's code, unmodified
 
 EXP = "e8_slowpath"
-KEY_FILE = Path(os.environ.get("E8_KEY_FILE", "/home/claude/.secrets/deepseek_key"))
+KEY_FILE = Path(os.environ.get("E8_KEY_FILE", str(Path.home() / ".secrets" / "deepseek_key")))
 BASE_URL = "https://api.deepseek.com"
 MODEL = "deepseek-flash"
 N_POS, N_NEG, N_CAND = 300, 100, 5
@@ -224,9 +224,9 @@ def materialize(parts: list[dict], vid: str) -> tuple[list[dict], list[bytes]]:
 
 # ---------------------------------------------------------------------------------------------------------------- API
 def load_key() -> str:
-    k = KEY_FILE.read_text().strip()
+    k = os.environ.get("DEEPSEEK_API_KEY", "").strip() or (KEY_FILE.read_text(encoding="utf-8").strip() if KEY_FILE.exists() else "")
     if not k:
-        raise RuntimeError(f"{KEY_FILE} is empty")
+        raise RuntimeError(f"no API key: set DEEPSEEK_API_KEY or put it in {KEY_FILE}")
     return k
 
 def scrub(s: str, key: str | None) -> str:
@@ -358,7 +358,7 @@ def load_cached(out: Path, cname: str, qid: int, sha: str):
     p = raw_path(out, cname, qid)
     if p.exists():
         try:
-            r = json.loads(p.read_text())
+            r = json.loads(p.read_text(encoding="utf-8"))
             if r.get("req_sha") == sha:
                 return r
         except Exception:
@@ -395,13 +395,13 @@ def run_call(api: Api, plan: dict, cname: str, out: Path) -> dict:
     ok_any = any(c["error"] is None for c in rec_calls)
     if ok_any:                                                  # never cache pure transport failures: they should be re-tried on resume
         p = raw_path(out, cname, q["qid"]); p.parent.mkdir(parents=True, exist_ok=True)
-        tmp = p.with_suffix(".tmp"); tmp.write_text(json.dumps(rec, indent=1, default=lambda o: None if o != o else str(o))); tmp.rename(p)
+        tmp = p.with_suffix(".tmp"); tmp.write_text(json.dumps(rec, indent=1, default=lambda o: None if o != o else str(o)), encoding="utf-8"); tmp.replace(p)
     return rec
 
 def execute(tasks, plans, out: Path, api: Api, budget: float):
     """Run uncached tasks, 3 at a time, stopping once estimated cumulative peak-price cost (+ in-flight worst case) reaches budget."""
     # spend of earlier abandoned trials (raw_trial*/ dirs) counts against the same budget
-    cum, done_n = sum(json.loads(f.read_text())["cost_peak_usd"] for f in out.glob("raw_trial*/*.json")), 0
+    cum, done_n = sum(json.loads(f.read_text(encoding="utf-8"))["cost_peak_usd"] for f in out.glob("raw_trial*/*.json")), 0
     todo = []
     for cname, q in tasks:
         r = load_cached(out, cname, q["qid"], plans[(cname, q["qid"])]["sha"])
@@ -663,17 +663,17 @@ def main():
         dry_run(plans_all, plans, tasks, out); return
     spent = None
     if not a.aggregate_only:
-        if not KEY_FILE.exists():
-            print(f"[e8] no API key at {KEY_FILE}; nothing to run (use --dry-run or --aggregate-only)"); return
+        if not (KEY_FILE.exists() or os.environ.get("DEEPSEEK_API_KEY")):
+            print(f"[e8] no API key (env DEEPSEEK_API_KEY or {KEY_FILE}); nothing to run (use --dry-run or --aggregate-only)"); return
         api = Api(load_key())
         spent, stopped = execute(tasks, plans, out, api, a.budget)
     pq = build_per_query(out, plans)
     if pq.empty:
         print("[e8] no completed calls; nothing to aggregate"); return
     pq = pq.sort_values(["cond", "kind", "qid"]).reset_index(drop=True)
-    pq.to_csv(out / "per_query.csv", index=False)
+    pq.to_csv(out / "per_query.csv", index=False, encoding="utf-8")
     sm = aggregate(out, pq, spent)
-    sm.to_csv(out / "summary.csv", index=False)
+    sm.to_csv(out / "summary.csv", index=False, encoding="utf-8")
     (C.RESULTS_DIR / "figures").mkdir(parents=True, exist_ok=True)
     make_figure(sm, C.RESULTS_DIR / "figures" / "e8_fast_vs_slow.png")
     runutil.write_meta(out, limit=a.limit, model=MODEL, seed=a.seed, budget_usd=a.budget)

@@ -1,0 +1,43 @@
+# Reproduction environment, pinned to the versions used for the paper numbers.
+# Python: 3.13 (reference interpreter: CPython 3.13.18). Verified on Linux x86_64; Windows uses the same pins (not run on Windows by the author - report problems).
+#
+# transformers MUST be 4.57.x to match the paper numbers (text/image feature API and processor behaviour differ in other releases).
+# CPU-only torch is fine (nothing here needs a GPU). Install with the CPU index to avoid the multi-GB CUDA wheel:
+#   pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
+# (the reference environment used torch 2.15.0+cpu / torchvision 0.29.2+cpu).
+
+# --- core ML ---
+torch==2.15.0
+torchvision==0.29.2
+transformers==4.57.6
+tokenizers==0.22.2
+accelerate==1.15.0
+safetensors==0.8.0
+huggingface_hub==0.36.2
+sentencepiece==0.2.3
+protobuf==7.36.2
+num2words==0.5.14
+faiss-cpu==1.16.0
+
+# --- data / numerics ---
+numpy==2.5.4
+pandas==3.1.1
+pyarrow==26.0.1
+opencv-python-headless==5.0.0.93
+Pillow==13.0.0
+matplotlib==3.11.2
+remotezip==0.12.6
+requests==2.34.2
+psutil==7.2.2
+
+# --- app backend (imported by the harness: app.config, app.pipeline.*, app.storage.*) ---
+pydantic==2.14.3
+pydantic-settings==2.16.2
+httpx==0.28.1
+fastapi==0.162.5
+starlette==1.10.0
+uvicorn==0.54.0
+python-multipart==0.0.33
+
+# --- tests ---
+pytest==9.2.0

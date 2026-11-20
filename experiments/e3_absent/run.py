@@ -26,7 +26,7 @@ def main():
     if runutil.is_done(out, a.force): print("[e3] DONE exists, skipping"); return
     df = data.load_annotations(); QE = data.load_query_emb(df)
     vids = data.load_videos(data.select_videos(df, a.limit))
-    ood = [l.strip() for l in (HERE / "ood_queries.txt").read_text().splitlines() if l.strip()]
+    ood = [l.strip() for l in (HERE / "ood_queries.txt").read_text(encoding="utf-8").splitlines() if l.strip()]
     OE = data.encode_texts(ood)
     # content words of every caption (negatives are drawn from the whole annotation file, other videos only)
     cw = [data.content_words(c) for c in df["caption"]]
@@ -91,8 +91,8 @@ def main():
         b = [auroc(rng.choice(pos, len(pos)), rng.choice(nv, len(nv))) for _ in range(200)]
         lo.append(np.percentile(b, 2.5)); hi.append(np.percentile(b, 97.5))
     res["auroc_lo"], res["auroc_hi"] = lo, hi
-    res.to_csv(out / "absent_results.csv", index=False)
-    pd.DataFrame(hist).to_csv(out / "score_hist.csv", index=False)
+    res.to_csv(out / "absent_results.csv", index=False, encoding="utf-8")
+    pd.DataFrame(hist).to_csv(out / "score_hist.csv", index=False, encoding="utf-8")
     runutil.write_meta(out, limit=a.limit, n_videos=len(vids), n_positive=int((sc.kind == "positive").sum() // 2),
                        n_indomain=int((sc.kind == "indomain").sum() // 2), n_ood=int((sc.kind == "ood").sum() // 2),
                        text_encoder="team CLIP, single projection" if not C._TEAM_TEXT else "team encode_text (double projection)")
